@@ -1,0 +1,6 @@
+UserAdministrador;Administrador teste;UserAdministrador@teste.com;1;0;90;UserAdministrador;administrador;123;administrador
+UserGerente;Gerente teste;UserGerente@teste.com;1;0;70;UserGerente;gerente;123;gerente
+UserDesenvolvedor;Desenvolvedor teste;UserDesenvolvedor@teste.com;1;0;55;UserDesenvolvedor;desenvolvedor;123;desenvolvedor
+UserAtualizador;Atualizador teste;UserAtualizador@teste.com;1;0;40;UserAtualizador;atualizador;123;atualizador
+UserRelator;Relator teste;UserRelator@teste.com;1;0;25;UserRelator;relator;123;relator
+UserVisualizador;Visualizador teste;UserVisualizador@teste.com;1;0;1;UserVisualizador;visualizador;123;visualizador

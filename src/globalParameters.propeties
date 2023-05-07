@@ -1,0 +1,26 @@
+
+enviroment=hml
+report.name=rest assured demo
+report.path=target=target.reports/
+
+#<== hml ==>
+hml.url.default=http://localhost:8989
+hml.db.url=
+hml.db.name=
+hml.db.user=
+hml.db.password=
+hml.url.token=
+hml.autenticator.user=
+hml.autenticator.password=
+hml.token=ub7evJl4LqH00GzJ9G7k4T8NTjiY9gTL
+
+#<== dev parameters ==>
+dev.url.default=https://serverest.dev
+dev.db.url=
+dev.db.name=
+dev.db.user=
+dev.db.password=
+dev.url.token=
+dev.autenticator.user=
+dev.autenticator.password=
+dev.token=ub7evJl4LqH00GzJ9G7k4T8NTjiY9gTL

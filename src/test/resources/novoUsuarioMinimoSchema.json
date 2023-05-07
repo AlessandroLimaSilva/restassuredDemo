@@ -1,0 +1,146 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://example.com/object1681248483.json",
+  "title": "Root",
+  "type": "object",
+  "required": [
+    "user"
+  ],
+  "properties": {
+    "user": {
+      "$id": "#root/user",
+      "title": "User",
+      "type": "object",
+      "required": [
+        "id",
+        "name",
+        "language",
+        "timezone",
+        "access_level",
+        "projects"
+      ],
+      "properties": {
+        "id": {
+          "$id": "#root/user/id",
+          "title": "Id",
+          "type": "integer",
+          "examples": [
+            1000
+          ],
+          "default": 0
+        },
+        "name": {
+          "$id": "#root/user/name",
+          "title": "Name",
+          "type": "string",
+          "default": "",
+          "examples": [
+            "testuser"
+          ],
+          "pattern": "^.*$"
+        },
+        "language": {
+          "$id": "#root/user/language",
+          "title": "Language",
+          "type": "string",
+          "default": "",
+          "examples": [
+            "english"
+          ],
+          "pattern": "^.*$"
+        },
+        "timezone": {
+          "$id": "#root/user/timezone",
+          "title": "Timezone",
+          "type": "string",
+          "default": "",
+          "examples": [
+            "America/Los_Angeles"
+          ],
+          "pattern": "^.*$"
+        },
+        "access_level": {
+          "$id": "#root/user/access_level",
+          "title": "Access_level",
+          "type": "object",
+          "required": [
+            "id",
+            "name",
+            "label"
+          ],
+          "properties": {
+            "id": {
+              "$id": "#root/user/access_level/id",
+              "title": "Id",
+              "type": "integer",
+              "examples": [
+                25
+              ],
+              "default": 0
+            },
+            "name": {
+              "$id": "#root/user/access_level/name",
+              "title": "Name",
+              "type": "string",
+              "default": "",
+              "examples": [
+                "reporter"
+              ],
+              "pattern": "^.*$"
+            },
+            "label": {
+              "$id": "#root/user/access_level/label",
+              "title": "Label",
+              "type": "string",
+              "default": "",
+              "examples": [
+                "reporter"
+              ],
+              "pattern": "^.*$"
+            }
+          }
+        }
+      ,
+        "projects": {
+          "$id": "#root/user/projects",
+          "title": "Projects",
+          "type": "array",
+          "default": [],
+          "items":{
+            "$id": "#root/user/projects/items",
+            "title": "Items",
+            "type": "object",
+            "required": [
+              "id",
+              "name"
+            ],
+            "properties": {
+              "id": {
+                "$id": "#root/user/projects/items/id",
+                "title": "Id",
+                "type": "integer",
+                "examples": [
+                  1
+                ],
+                "default": 0
+              },
+              "name": {
+                "$id": "#root/user/projects/items/name",
+                "title": "Name",
+                "type": "string",
+                "default": "",
+                "examples": [
+                  "mantisbt"
+                ],
+                "pattern": "^.*$"
+              }
+            }
+          }
+
+        }
+      }
+    }
+
+  }
+}

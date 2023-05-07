@@ -1,0 +1,424 @@
+{
+  "$schema": "https://json-schema.org/draft-04/schema",
+  "id": "http://example.com/example.json",
+  "title": "Root Schema",
+  "type": "object",
+  "default": {},
+  "required": [
+    "issue"
+  ],
+  "properties": {
+    "issue": {
+      "title": "The issue Schema",
+      "type": "object",
+      "default": {},
+      "required": [
+        "id",
+        "summary",
+        "description",
+        "additional_information",
+        "project",
+        "category",
+        "reporter",
+        "status",
+        "resolution",
+        "view_state",
+        "priority",
+        "severity",
+        "reproducibility",
+        "sticky",
+        "created_at",
+        "updated_at",
+        "tags",
+        "history"
+      ],
+      "properties": {
+        "id": {
+          "title": "The id Schema",
+          "type": "integer",
+          "default": 0
+        },
+        "summary": {
+          "title": "The summary Schema",
+          "type": "string",
+          "default": ""
+        },
+        "description": {
+          "title": "The description Schema",
+          "type": "string",
+          "default": ""
+        },
+        "additional_information": {
+          "title": "The additional_information Schema",
+          "type": "string",
+          "default": ""
+        },
+        "project": {
+          "title": "The project Schema",
+          "type": "object",
+          "default": {},
+          "required": [
+            "id",
+            "name"
+          ],
+          "properties": {
+            "id": {
+              "title": "The id Schema",
+              "type": "integer",
+              "default": 0
+            },
+            "name": {
+              "title": "The name Schema",
+              "type": "string",
+              "default": ""
+            }
+          }
+        },
+        "category": {
+          "title": "The category Schema",
+          "type": "object",
+          "default": {},
+          "required": [
+            "id",
+            "name"
+          ],
+          "properties": {
+            "id": {
+              "title": "The id Schema",
+              "type": "integer",
+              "default": 0
+            },
+            "name": {
+              "title": "The name Schema",
+              "type": "string",
+              "default": ""
+            }
+          }
+        },
+        "reporter": {
+          "title": "The reporter Schema",
+          "type": "object",
+          "default": {},
+          "required": [
+            "id",
+            "name",
+            "email"
+          ],
+          "properties": {
+            "id": {
+              "title": "The id Schema",
+              "type": "integer",
+              "default": 0
+            },
+            "name": {
+              "title": "The name Schema",
+              "type": "string",
+              "default": ""
+            },
+            "email": {
+              "title": "The email Schema",
+              "type": "string",
+              "default": ""
+            }
+          }
+        },
+        "status": {
+          "title": "The status Schema",
+          "type": "object",
+          "default": {},
+          "required": [
+            "id",
+            "name",
+            "label",
+            "color"
+          ],
+          "properties": {
+            "id": {
+              "title": "The id Schema",
+              "type": "integer",
+              "default": 0
+            },
+            "name": {
+              "title": "The name Schema",
+              "type": "string",
+              "default": ""
+            },
+            "label": {
+              "title": "The label Schema",
+              "type": "string",
+              "default": ""
+            },
+            "color": {
+              "title": "The color Schema",
+              "type": "string",
+              "default": ""
+            }
+          }
+        },
+        "resolution": {
+          "title": "The resolution Schema",
+          "type": "object",
+          "default": {},
+          "required": [
+            "id",
+            "name",
+            "label"
+          ],
+          "properties": {
+            "id": {
+              "title": "The id Schema",
+              "type": "integer",
+              "default": 0
+            },
+            "name": {
+              "title": "The name Schema",
+              "type": "string",
+              "default": ""
+            },
+            "label": {
+              "title": "The label Schema",
+              "type": "string",
+              "default": ""
+            }
+          }
+        },
+        "view_state": {
+          "title": "The view_state Schema",
+          "type": "object",
+          "default": {},
+          "required": [
+            "id",
+            "name",
+            "label"
+          ],
+          "properties": {
+            "id": {
+              "title": "The id Schema",
+              "type": "integer",
+              "default": 0
+            },
+            "name": {
+              "title": "The name Schema",
+              "type": "string",
+              "default": ""
+            },
+            "label": {
+              "title": "The label Schema",
+              "type": "string",
+              "default": ""
+            }
+          }
+        },
+        "priority": {
+          "title": "The priority Schema",
+          "type": "object",
+          "default": {},
+          "required": [
+            "id",
+            "name",
+            "label"
+          ],
+          "properties": {
+            "id": {
+              "title": "The id Schema",
+              "type": "integer",
+              "default": 0
+            },
+            "name": {
+              "title": "The name Schema",
+              "type": "string",
+              "default": ""
+            },
+            "label": {
+              "title": "The label Schema",
+              "type": "string",
+              "default": ""
+            }
+          }
+        },
+        "severity": {
+          "title": "The severity Schema",
+          "type": "object",
+          "default": {},
+          "required": [
+            "id",
+            "name",
+            "label"
+          ],
+          "properties": {
+            "id": {
+              "title": "The id Schema",
+              "type": "integer",
+              "default": 0
+            },
+            "name": {
+              "title": "The name Schema",
+              "type": "string",
+              "default": ""
+            },
+            "label": {
+              "title": "The label Schema",
+              "type": "string",
+              "default": ""
+            }
+          }
+        },
+        "reproducibility": {
+          "title": "The reproducibility Schema",
+          "type": "object",
+          "default": {},
+          "required": [
+            "id",
+            "name",
+            "label"
+          ],
+          "properties": {
+            "id": {
+              "title": "The id Schema",
+              "type": "integer",
+              "default": 0
+            },
+            "name": {
+              "title": "The name Schema",
+              "type": "string",
+              "default": ""
+            },
+            "label": {
+              "title": "The label Schema",
+              "type": "string",
+              "default": ""
+            }
+          }
+        },
+        "sticky": {
+          "title": "The sticky Schema",
+          "type": "boolean",
+          "default": false
+        },
+        "created_at": {
+          "title": "The created_at Schema",
+          "type": "string",
+          "default": ""
+        },
+        "updated_at": {
+          "title": "The updated_at Schema",
+          "type": "string",
+          "default": ""
+        },
+        "tags": {
+          "title": "The tags Schema",
+          "type": "array",
+          "default": [],
+          "items": {
+            "title": "A Schema",
+            "type": "object",
+            "default": {},
+            "required": [
+              "id",
+              "name"
+            ],
+            "properties": {
+              "id": {
+                "title": "The id Schema",
+                "type": "string",
+                "default": ""
+              },
+              "name": {
+                "title": "The name Schema",
+                "type": "string",
+                "default": ""
+              }
+            }
+          }
+        },
+        "history": {
+          "title": "The history Schema",
+          "type": "array",
+          "default": [],
+          "items": {
+            "title": "A Schema",
+            "type": "object",
+            "required": [
+              "created_at",
+              "user",
+              "type",
+              "message"
+            ],
+            "properties": {
+              "created_at": {
+                "title": "The created_at Schema",
+                "type": "string"
+              },
+              "user": {
+                "title": "The user Schema",
+                "type": "object",
+                "required": [
+                  "id",
+                  "name",
+                  "email"
+                ],
+                "properties": {
+                  "id": {
+                    "title": "The id Schema",
+                    "type": "integer"
+                  },
+                  "name": {
+                    "title": "The name Schema",
+                    "type": "string"
+                  },
+                  "email": {
+                    "title": "The email Schema",
+                    "type": "string"
+                  }
+                }
+              },
+              "type": {
+                "title": "The type Schema",
+                "type": "object",
+                "required": [
+                  "id",
+                  "name"
+                ],
+                "properties": {
+                  "id": {
+                    "title": "The id Schema",
+                    "type": "integer"
+                  },
+                  "name": {
+                    "title": "The name Schema",
+                    "type": "string"
+                  }
+                }
+              },
+              "message": {
+                "title": "The message Schema",
+                "type": "string"
+              },
+              "tag": {
+                "title": "The tag Schema",
+                "type": "object",
+                "default": {},
+                "required": [
+                  "id",
+                  "name"
+                ],
+                "properties": {
+                  "id": {
+                    "title": "The id Schema",
+                    "type": "string",
+                    "default": ""
+                  },
+                  "name": {
+                    "title": "The name Schema",
+                    "type": "string",
+                    "default": ""
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

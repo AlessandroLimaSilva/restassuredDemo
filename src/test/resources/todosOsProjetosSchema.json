@@ -1,0 +1,803 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "http://example.com/example.json",
+  "type": "object",
+  "default": {},
+  "title": "Root Schema",
+  "required": [
+    "projects"
+  ],
+  "properties": {
+    "projects": {
+      "type": "array",
+      "default": [],
+      "title": "The projects Schema",
+      "items": {
+        "type": "object",
+        "default": {},
+        "title": "A Schema",
+        "required": [
+          "id",
+          "name",
+          "status",
+          "description",
+          "enabled",
+          "view_state",
+          "access_level"
+        ],
+        "properties": {
+          "id": {
+            "type": "integer",
+            "default": 0,
+            "title": "The id Schema",
+            "examples": [
+              1
+            ]
+          },
+          "name": {
+            "type": "string",
+            "default": "",
+            "title": "The name Schema",
+            "examples": [
+              "mantisbt"
+            ]
+          },
+          "status": {
+            "type": "object",
+            "default": {},
+            "title": "The status Schema",
+            "required": [
+              "id",
+              "name",
+              "label"
+            ],
+            "properties": {
+              "id": {
+                "type": "integer",
+                "default": 0,
+                "title": "The id Schema",
+                "examples": [
+                  10
+                ]
+              },
+              "name": {
+                "type": "string",
+                "default": "",
+                "title": "The name Schema",
+                "examples": [
+                  "development"
+                ]
+              },
+              "label": {
+                "type": "string",
+                "default": "",
+                "title": "The label Schema",
+                "examples": [
+                  "development"
+                ]
+              }
+            },
+            "examples": [{
+              "id": 10,
+              "name": "development",
+              "label": "development"
+            }]
+          },
+          "description": {
+            "type": "string",
+            "default": "",
+            "title": "The description Schema",
+            "examples": [
+              "Mantis Project"
+            ]
+          },
+          "enabled": {
+            "type": "boolean",
+            "default": false,
+            "title": "The enabled Schema",
+            "examples": [
+              true
+            ]
+          },
+          "view_state": {
+            "type": "object",
+            "default": {},
+            "title": "The view_state Schema",
+            "required": [
+              "id",
+              "name",
+              "label"
+            ],
+            "properties": {
+              "id": {
+                "type": "integer",
+                "default": 0,
+                "title": "The id Schema",
+                "examples": [
+                  10
+                ]
+              },
+              "name": {
+                "type": "string",
+                "default": "",
+                "title": "The name Schema",
+                "examples": [
+                  "public"
+                ]
+              },
+              "label": {
+                "type": "string",
+                "default": "",
+                "title": "The label Schema",
+                "examples": [
+                  "public"
+                ]
+              }
+            },
+            "examples": [{
+              "id": 10,
+              "name": "public",
+              "label": "public"
+            }]
+          },
+          "access_level": {
+            "type": "object",
+            "default": {},
+            "title": "The access_level Schema",
+            "required": [
+              "id",
+              "name",
+              "label"
+            ],
+            "properties": {
+              "id": {
+                "type": "integer",
+                "default": 0,
+                "title": "The id Schema",
+                "examples": [
+                  90
+                ]
+              },
+              "name": {
+                "type": "string",
+                "default": "",
+                "title": "The name Schema",
+                "examples": [
+                  "administrator"
+                ]
+              },
+              "label": {
+                "type": "string",
+                "default": "",
+                "title": "The label Schema",
+                "examples": [
+                  "administrator"
+                ]
+              }
+            },
+            "examples": [{
+              "id": 90,
+              "name": "administrator",
+              "label": "administrator"
+            }]
+          },
+          "custom_fields": {
+            "type": "array",
+            "default": [],
+            "title": "The custom_fields Schema",
+            "items": {
+              "type": "object",
+              "default": {},
+              "title": "A Schema",
+              "required": [
+                "id",
+                "name",
+                "type",
+                "default_value",
+                "possible_values",
+                "valid_regexp",
+                "length_min",
+                "length_max",
+                "access_level_r",
+                "access_level_rw",
+                "display_report",
+                "display_update",
+                "display_resolved",
+                "display_closed",
+                "require_report",
+                "require_update",
+                "require_resolved",
+                "require_closed"
+              ],
+              "properties": {
+                "id": {
+                  "type": "integer",
+                  "default": 0,
+                  "title": "The id Schema",
+                  "examples": [
+                    8
+                  ]
+                },
+                "name": {
+                  "type": "string",
+                  "default": "",
+                  "title": "The name Schema",
+                  "examples": [
+                    "Email"
+                  ]
+                },
+                "type": {
+                  "type": "string",
+                  "default": "",
+                  "title": "The type Schema",
+                  "examples": [
+                    "email"
+                  ]
+                },
+                "default_value": {
+                  "type": "string",
+                  "default": "",
+                  "title": "The default_value Schema",
+                  "examples": [
+                    ""
+                  ]
+                },
+                "possible_values": {
+                  "type": "string",
+                  "default": "",
+                  "title": "The possible_values Schema",
+                  "examples": [
+                    ""
+                  ]
+                },
+                "valid_regexp": {
+                  "type": "string",
+                  "default": "",
+                  "title": "The valid_regexp Schema",
+                  "examples": [
+                    ""
+                  ]
+                },
+                "length_min": {
+                  "type": "integer",
+                  "default": 0,
+                  "title": "The length_min Schema",
+                  "examples": [
+                    0
+                  ]
+                },
+                "length_max": {
+                  "type": "integer",
+                  "default": 0,
+                  "title": "The length_max Schema",
+                  "examples": [
+                    0
+                  ]
+                },
+                "access_level_r": {
+                  "type": "object",
+                  "default": {},
+                  "title": "The access_level_r Schema",
+                  "required": [
+                    "id",
+                    "name",
+                    "label"
+                  ],
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "default": 0,
+                      "title": "The id Schema",
+                      "examples": [
+                        10
+                      ]
+                    },
+                    "name": {
+                      "type": "string",
+                      "default": "",
+                      "title": "The name Schema",
+                      "examples": [
+                        "viewer"
+                      ]
+                    },
+                    "label": {
+                      "type": "string",
+                      "default": "",
+                      "title": "The label Schema",
+                      "examples": [
+                        "viewer"
+                      ]
+                    }
+                  },
+                  "examples": [{
+                    "id": 10,
+                    "name": "viewer",
+                    "label": "viewer"
+                  }]
+                },
+                "access_level_rw": {
+                  "type": "object",
+                  "default": {},
+                  "title": "The access_level_rw Schema",
+                  "required": [
+                    "id",
+                    "name",
+                    "label"
+                  ],
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "default": 0,
+                      "title": "The id Schema",
+                      "examples": [
+                        10
+                      ]
+                    },
+                    "name": {
+                      "type": "string",
+                      "default": "",
+                      "title": "The name Schema",
+                      "examples": [
+                        "viewer"
+                      ]
+                    },
+                    "label": {
+                      "type": "string",
+                      "default": "",
+                      "title": "The label Schema",
+                      "examples": [
+                        "viewer"
+                      ]
+                    }
+                  },
+                  "examples": [{
+                    "id": 10,
+                    "name": "viewer",
+                    "label": "viewer"
+                  }]
+                },
+                "display_report": {
+                  "type": "boolean",
+                  "default": false,
+                  "title": "The display_report Schema",
+                  "examples": [
+                    true
+                  ]
+                },
+                "display_update": {
+                  "type": "boolean",
+                  "default": false,
+                  "title": "The display_update Schema",
+                  "examples": [
+                    true
+                  ]
+                },
+                "display_resolved": {
+                  "type": "boolean",
+                  "default": false,
+                  "title": "The display_resolved Schema",
+                  "examples": [
+                    true
+                  ]
+                },
+                "display_closed": {
+                  "type": "boolean",
+                  "default": false,
+                  "title": "The display_closed Schema",
+                  "examples": [
+                    true
+                  ]
+                },
+                "require_report": {
+                  "type": "boolean",
+                  "default": false,
+                  "title": "The require_report Schema",
+                  "examples": [
+                    false
+                  ]
+                },
+                "require_update": {
+                  "type": "boolean",
+                  "default": false,
+                  "title": "The require_update Schema",
+                  "examples": [
+                    false
+                  ]
+                },
+                "require_resolved": {
+                  "type": "boolean",
+                  "default": false,
+                  "title": "The require_resolved Schema",
+                  "examples": [
+                    false
+                  ]
+                },
+                "require_closed": {
+                  "type": "boolean",
+                  "default": false,
+                  "title": "The require_closed Schema",
+                  "examples": [
+                    false
+                  ]
+                }
+              },
+              "examples": [{
+                "id": 8,
+                "name": "Email",
+                "type": "email",
+                "default_value": "",
+                "possible_values": "",
+                "valid_regexp": "",
+                "length_min": 0,
+                "length_max": 0,
+                "access_level_r": {
+                  "id": 10,
+                  "name": "viewer",
+                  "label": "viewer"
+                },
+                "access_level_rw": {
+                  "id": 10,
+                  "name": "viewer",
+                  "label": "viewer"
+                },
+                "display_report": true,
+                "display_update": true,
+                "display_resolved": true,
+                "display_closed": true,
+                "require_report": false,
+                "require_update": false,
+                "require_resolved": false,
+                "require_closed": false
+              }]
+            },
+            "examples": [
+              [{
+                "id": 8,
+                "name": "Email",
+                "type": "email",
+                "default_value": "",
+                "possible_values": "",
+                "valid_regexp": "",
+                "length_min": 0,
+                "length_max": 0,
+                "access_level_r": {
+                  "id": 10,
+                  "name": "viewer",
+                  "label": "viewer"
+                },
+                "access_level_rw": {
+                  "id": 10,
+                  "name": "viewer",
+                  "label": "viewer"
+                },
+                "display_report": true,
+                "display_update": true,
+                "display_resolved": true,
+                "display_closed": true,
+                "require_report": false,
+                "require_update": false,
+                "require_resolved": false,
+                "require_closed": false
+              }]
+            ]
+          },
+          "versions": {
+            "type": "array",
+            "default": [],
+            "title": "The versions Schema",
+            "items": {
+              "type": "object",
+              "default": {},
+              "title": "A Schema",
+              "required": [
+                "id",
+                "name",
+                "description",
+                "released",
+                "obsolete",
+                "timestamp"
+              ],
+              "properties": {
+                "id": {
+                  "type": "integer",
+                  "default": 0,
+                  "title": "The id Schema",
+                  "examples": [
+                    258
+                  ]
+                },
+                "name": {
+                  "type": "string",
+                  "default": "",
+                  "title": "The name Schema",
+                  "examples": [
+                    "2.0.x"
+                  ]
+                },
+                "description": {
+                  "type": "string",
+                  "default": "",
+                  "title": "The description Schema",
+                  "examples": [
+                    ""
+                  ]
+                },
+                "released": {
+                  "type": "boolean",
+                  "default": false,
+                  "title": "The released Schema",
+                  "examples": [
+                    false
+                  ]
+                },
+                "obsolete": {
+                  "type": "boolean",
+                  "default": false,
+                  "title": "The obsolete Schema",
+                  "examples": [
+                    false
+                  ]
+                },
+                "timestamp": {
+                  "type": "string",
+                  "default": "",
+                  "title": "The timestamp Schema",
+                  "examples": [
+                    "2016-10-02T18:45:04-04:00"
+                  ]
+                }
+              },
+              "examples": [{
+                "id": 258,
+                "name": "2.0.x",
+                "description": "",
+                "released": false,
+                "obsolete": false,
+                "timestamp": "2016-10-02T18:45:04-04:00"
+              }]
+            },
+            "examples": [
+              [{
+                "id": 258,
+                "name": "2.0.x",
+                "description": "",
+                "released": false,
+                "obsolete": false,
+                "timestamp": "2016-10-02T18:45:04-04:00"
+              }]
+            ]
+          },
+          "subProjects": {
+            "type": "array",
+            "default": [],
+            "title": "The subProjects Schema",
+            "items": {
+              "type": "object",
+              "default": {},
+              "title": "A Schema",
+              "required": [
+                "id",
+                "name"
+              ],
+              "properties": {
+                "id": {
+                  "type": "integer",
+                  "default": 0,
+                  "title": "The id Schema",
+                  "examples": [
+                    31
+                  ]
+                },
+                "name": {
+                  "type": "string",
+                  "default": "",
+                  "title": "The name Schema",
+                  "examples": [
+                    "SubProject1"
+                  ]
+                }
+              },
+              "examples": [{
+                "id": 31,
+                "name": "SubProject1"
+              }]
+            },
+            "examples": [
+              [{
+                "id": 31,
+                "name": "SubProject1"
+              }]
+            ]
+          }
+        },
+        "examples": [{
+          "id": 1,
+          "name": "mantisbt",
+          "status": {
+            "id": 10,
+            "name": "development",
+            "label": "development"
+          },
+          "description": "Mantis Project",
+          "enabled": true,
+          "view_state": {
+            "id": 10,
+            "name": "public",
+            "label": "public"
+          },
+          "access_level": {
+            "id": 90,
+            "name": "administrator",
+            "label": "administrator"
+          },
+          "custom_fields": [{
+            "id": 8,
+            "name": "Email",
+            "type": "email",
+            "default_value": "",
+            "possible_values": "",
+            "valid_regexp": "",
+            "length_min": 0,
+            "length_max": 0,
+            "access_level_r": {
+              "id": 10,
+              "name": "viewer",
+              "label": "viewer"
+            },
+            "access_level_rw": {
+              "id": 10,
+              "name": "viewer",
+              "label": "viewer"
+            },
+            "display_report": true,
+            "display_update": true,
+            "display_resolved": true,
+            "display_closed": true,
+            "require_report": false,
+            "require_update": false,
+            "require_resolved": false,
+            "require_closed": false
+          }],
+          "versions": [{
+            "id": 258,
+            "name": "2.0.x",
+            "description": "",
+            "released": false,
+            "obsolete": false,
+            "timestamp": "2016-10-02T18:45:04-04:00"
+          }],
+          "subProjects": [{
+            "id": 31,
+            "name": "SubProject1"
+          }]
+        }]
+      },
+      "examples": [
+        [{
+          "id": 1,
+          "name": "mantisbt",
+          "status": {
+            "id": 10,
+            "name": "development",
+            "label": "development"
+          },
+          "description": "Mantis Project",
+          "enabled": true,
+          "view_state": {
+            "id": 10,
+            "name": "public",
+            "label": "public"
+          },
+          "access_level": {
+            "id": 90,
+            "name": "administrator",
+            "label": "administrator"
+          },
+          "custom_fields": [{
+            "id": 8,
+            "name": "Email",
+            "type": "email",
+            "default_value": "",
+            "possible_values": "",
+            "valid_regexp": "",
+            "length_min": 0,
+            "length_max": 0,
+            "access_level_r": {
+              "id": 10,
+              "name": "viewer",
+              "label": "viewer"
+            },
+            "access_level_rw": {
+              "id": 10,
+              "name": "viewer",
+              "label": "viewer"
+            },
+            "display_report": true,
+            "display_update": true,
+            "display_resolved": true,
+            "display_closed": true,
+            "require_report": false,
+            "require_update": false,
+            "require_resolved": false,
+            "require_closed": false
+          }],
+          "versions": [{
+            "id": 258,
+            "name": "2.0.x",
+            "description": "",
+            "released": false,
+            "obsolete": false,
+            "timestamp": "2016-10-02T18:45:04-04:00"
+          }],
+          "subProjects": [{
+            "id": 31,
+            "name": "SubProject1"
+          }]
+        }]
+      ]
+    }
+  },
+  "examples": [{
+    "projects": [{
+      "id": 1,
+      "name": "mantisbt",
+      "status": {
+        "id": 10,
+        "name": "development",
+        "label": "development"
+      },
+      "description": "Mantis Project",
+      "enabled": true,
+      "view_state": {
+        "id": 10,
+        "name": "public",
+        "label": "public"
+      },
+      "access_level": {
+        "id": 90,
+        "name": "administrator",
+        "label": "administrator"
+      },
+      "custom_fields": [{
+        "id": 8,
+        "name": "Email",
+        "type": "email",
+        "default_value": "",
+        "possible_values": "",
+        "valid_regexp": "",
+        "length_min": 0,
+        "length_max": 0,
+        "access_level_r": {
+          "id": 10,
+          "name": "viewer",
+          "label": "viewer"
+        },
+        "access_level_rw": {
+          "id": 10,
+          "name": "viewer",
+          "label": "viewer"
+        },
+        "display_report": true,
+        "display_update": true,
+        "display_resolved": true,
+        "display_closed": true,
+        "require_report": false,
+        "require_update": false,
+        "require_resolved": false,
+        "require_closed": false
+      }],
+      "versions": [{
+        "id": 258,
+        "name": "2.0.x",
+        "description": "",
+        "released": false,
+        "obsolete": false,
+        "timestamp": "2016-10-02T18:45:04-04:00"
+      }],
+      "subProjects": [{
+        "id": 31,
+        "name": "SubProject1"
+      }]
+    }]
+  }]
+}

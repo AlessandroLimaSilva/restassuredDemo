@@ -1,0 +1,903 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "http://example.com/example.json",
+  "type": "object",
+  "default": {},
+  "title": "Root Schema",
+  "required": [
+    "issues"
+  ],
+  "properties": {
+    "issues": {
+      "type": "array",
+      "default": [],
+      "title": "The issues Schema",
+      "items": {
+        "type": "object",
+        "default": {},
+        "title": "A Schema",
+        "required": [
+          "id",
+          "summary",
+          "description",
+          "project",
+          "category",
+          "reporter",
+          "status",
+          "resolution",
+          "view_state",
+          "priority",
+          "severity",
+          "reproducibility",
+          "sticky",
+          "created_at",
+          "updated_at",
+          "custom_fields",
+          "history"
+        ],
+        "properties": {
+          "id": {
+            "type": "integer",
+            "default": 0,
+            "title": "The id Schema",
+            "examples": [
+              1234
+            ]
+          },
+          "summary": {
+            "type": "string",
+            "default": "",
+            "title": "The summary Schema",
+            "examples": [
+              "Sample issue title"
+            ]
+          },
+          "description": {
+            "type": "string",
+            "default": "",
+            "title": "The description Schema",
+            "examples": [
+              "Sample issue description"
+            ]
+          },
+          "project": {
+            "type": "object",
+            "default": {},
+            "title": "The project Schema",
+            "required": [
+              "id",
+              "name"
+            ],
+            "properties": {
+              "id": {
+                "type": "integer",
+                "default": 0,
+                "title": "The id Schema",
+                "examples": [
+                  1
+                ]
+              },
+              "name": {
+                "type": "string",
+                "default": "",
+                "title": "The name Schema",
+                "examples": [
+                  "mantisbt"
+                ]
+              }
+            },
+            "examples": [{
+              "id": 1,
+              "name": "mantisbt"
+            }]
+          },
+          "category": {
+            "type": "object",
+            "default": {},
+            "title": "The category Schema",
+            "required": [
+              "id",
+              "name"
+            ],
+            "properties": {
+              "id": {
+                "type": "integer",
+                "default": 0,
+                "title": "The id Schema",
+                "examples": [
+                  135
+                ]
+              },
+              "name": {
+                "type": "string",
+                "default": "",
+                "title": "The name Schema",
+                "examples": [
+                  "General"
+                ]
+              }
+            },
+            "examples": [{
+              "id": 135,
+              "name": "General"
+            }]
+          },
+          "reporter": {
+            "type": "object",
+            "default": {},
+            "title": "The reporter Schema",
+            "required": [
+              "id",
+              "name",
+              "real_name",
+              "email"
+            ],
+            "properties": {
+              "id": {
+                "type": "integer",
+                "default": 0,
+                "title": "The id Schema",
+                "examples": [
+                  1
+                ]
+              },
+              "name": {
+                "type": "string",
+                "default": "",
+                "title": "The name Schema",
+                "examples": [
+                  "vboctor"
+                ]
+              },
+              "real_name": {
+                "type": "string",
+                "default": "",
+                "title": "The real_name Schema",
+                "examples": [
+                  "Victor Boctor"
+                ]
+              },
+              "email": {
+                "type": "string",
+                "default": "",
+                "title": "The email Schema",
+                "examples": [
+                  "vboctor@example.com"
+                ]
+              }
+            },
+            "examples": [{
+              "id": 1,
+              "name": "vboctor",
+              "real_name": "Victor Boctor",
+              "email": "vboctor@example.com"
+            }]
+          },
+          "status": {
+            "type": "object",
+            "default": {},
+            "title": "The status Schema",
+            "required": [
+              "id",
+              "name",
+              "label",
+              "color"
+            ],
+            "properties": {
+              "id": {
+                "type": "integer",
+                "default": 0,
+                "title": "The id Schema",
+                "examples": [
+                  10
+                ]
+              },
+              "name": {
+                "type": "string",
+                "default": "",
+                "title": "The name Schema",
+                "examples": [
+                  "new"
+                ]
+              },
+              "label": {
+                "type": "string",
+                "default": "",
+                "title": "The label Schema",
+                "examples": [
+                  "new"
+                ]
+              },
+              "color": {
+                "type": "string",
+                "default": "",
+                "title": "The color Schema",
+                "examples": [
+                  "#fcbdbd"
+                ]
+              }
+            },
+            "examples": [{
+              "id": 10,
+              "name": "new",
+              "label": "new",
+              "color": "#fcbdbd"
+            }]
+          },
+          "resolution": {
+            "type": "object",
+            "default": {},
+            "title": "The resolution Schema",
+            "required": [
+              "id",
+              "name",
+              "label"
+            ],
+            "properties": {
+              "id": {
+                "type": "integer",
+                "default": 0,
+                "title": "The id Schema",
+                "examples": [
+                  10
+                ]
+              },
+              "name": {
+                "type": "string",
+                "default": "",
+                "title": "The name Schema",
+                "examples": [
+                  "open"
+                ]
+              },
+              "label": {
+                "type": "string",
+                "default": "",
+                "title": "The label Schema",
+                "examples": [
+                  "open"
+                ]
+              }
+            },
+            "examples": [{
+              "id": 10,
+              "name": "open",
+              "label": "open"
+            }]
+          },
+          "view_state": {
+            "type": "object",
+            "default": {},
+            "title": "The view_state Schema",
+            "required": [
+              "id",
+              "name",
+              "label"
+            ],
+            "properties": {
+              "id": {
+                "type": "integer",
+                "default": 0,
+                "title": "The id Schema",
+                "examples": [
+                  10
+                ]
+              },
+              "name": {
+                "type": "string",
+                "default": "",
+                "title": "The name Schema",
+                "examples": [
+                  "public"
+                ]
+              },
+              "label": {
+                "type": "string",
+                "default": "",
+                "title": "The label Schema",
+                "examples": [
+                  "public"
+                ]
+              }
+            },
+            "examples": [{
+              "id": 10,
+              "name": "public",
+              "label": "public"
+            }]
+          },
+          "priority": {
+            "type": "object",
+            "default": {},
+            "title": "The priority Schema",
+            "required": [
+              "id",
+              "name",
+              "label"
+            ],
+            "properties": {
+              "id": {
+                "type": "integer",
+                "default": 0,
+                "title": "The id Schema",
+                "examples": [
+                  30
+                ]
+              },
+              "name": {
+                "type": "string",
+                "default": "",
+                "title": "The name Schema",
+                "examples": [
+                  "normal"
+                ]
+              },
+              "label": {
+                "type": "string",
+                "default": "",
+                "title": "The label Schema",
+                "examples": [
+                  "normal"
+                ]
+              }
+            },
+            "examples": [{
+              "id": 30,
+              "name": "normal",
+              "label": "normal"
+            }]
+          },
+          "severity": {
+            "type": "object",
+            "default": {},
+            "title": "The severity Schema",
+            "required": [
+              "id",
+              "name",
+              "label"
+            ],
+            "properties": {
+              "id": {
+                "type": "integer",
+                "default": 0,
+                "title": "The id Schema",
+                "examples": [
+                  50
+                ]
+              },
+              "name": {
+                "type": "string",
+                "default": "",
+                "title": "The name Schema",
+                "examples": [
+                  "minor"
+                ]
+              },
+              "label": {
+                "type": "string",
+                "default": "",
+                "title": "The label Schema",
+                "examples": [
+                  "minor"
+                ]
+              }
+            },
+            "examples": [{
+              "id": 50,
+              "name": "minor",
+              "label": "minor"
+            }]
+          },
+          "reproducibility": {
+            "type": "object",
+            "default": {},
+            "title": "The reproducibility Schema",
+            "required": [
+              "id",
+              "name",
+              "label"
+            ],
+            "properties": {
+              "id": {
+                "type": "integer",
+                "default": 0,
+                "title": "The id Schema",
+                "examples": [
+                  70
+                ]
+              },
+              "name": {
+                "type": "string",
+                "default": "",
+                "title": "The name Schema",
+                "examples": [
+                  "have not tried"
+                ]
+              },
+              "label": {
+                "type": "string",
+                "default": "",
+                "title": "The label Schema",
+                "examples": [
+                  "have not tried"
+                ]
+              }
+            },
+            "examples": [{
+              "id": 70,
+              "name": "have not tried",
+              "label": "have not tried"
+            }]
+          },
+          "sticky": {
+            "type": "boolean",
+            "default": false,
+            "title": "The sticky Schema",
+            "examples": [
+              false
+            ]
+          },
+          "created_at": {
+            "type": "string",
+            "default": "",
+            "title": "The created_at Schema",
+            "examples": [
+              "2017-04-23T13:12:28-04:00"
+            ]
+          },
+          "updated_at": {
+            "type": "string",
+            "default": "",
+            "title": "The updated_at Schema",
+            "examples": [
+              "2017-04-23T13:12:28-04:00"
+            ]
+          },
+          "custom_fields": {
+            "type": "array",
+            "default": [],
+            "title": "The custom_fields Schema",
+            "items": {
+              "type": "object",
+              "default": {},
+              "title": "A Schema",
+              "required": [
+                "field",
+                "value"
+              ],
+              "properties": {
+                "field": {
+                  "type": "object",
+                  "default": {},
+                  "title": "The field Schema",
+                  "required": [
+                    "id",
+                    "name"
+                  ],
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "default": 0,
+                      "title": "The id Schema",
+                      "examples": [
+                        4
+                      ]
+                    },
+                    "name": {
+                      "type": "string",
+                      "default": "",
+                      "title": "The name Schema",
+                      "examples": [
+                        "The City"
+                      ]
+                    }
+                  },
+                  "examples": [{
+                    "id": 4,
+                    "name": "The City"
+                  }]
+                },
+                "value": {
+                  "type": "string",
+                  "default": "",
+                  "title": "The value Schema",
+                  "examples": [
+                    "Seattle"
+                  ]
+                }
+              },
+              "examples": [{
+                "field": {
+                  "id": 4,
+                  "name": "The City"
+                },
+                "value": "Seattle"
+              }]
+            },
+            "examples": [
+              [{
+                "field": {
+                  "id": 4,
+                  "name": "The City"
+                },
+                "value": "Seattle"
+              }]
+            ]
+          },
+          "history": {
+            "type": "array",
+            "default": [],
+            "title": "The history Schema",
+            "items": {
+              "type": "object",
+              "default": {},
+              "title": "A Schema",
+              "required": [
+                "created_at",
+                "user",
+                "type",
+                "message"
+              ],
+              "properties": {
+                "created_at": {
+                  "type": "string",
+                  "default": "",
+                  "title": "The created_at Schema",
+                  "examples": [
+                    "2017-04-23T13:12:28-04:00"
+                  ]
+                },
+                "user": {
+                  "type": "object",
+                  "default": {},
+                  "title": "The user Schema",
+                  "required": [
+                    "id",
+                    "name",
+                    "real_name",
+                    "email"
+                  ],
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "default": 0,
+                      "title": "The id Schema",
+                      "examples": [
+                        36771
+                      ]
+                    },
+                    "name": {
+                      "type": "string",
+                      "default": "",
+                      "title": "The name Schema",
+                      "examples": [
+                        "vboctor"
+                      ]
+                    },
+                    "real_name": {
+                      "type": "string",
+                      "default": "",
+                      "title": "The real_name Schema",
+                      "examples": [
+                        "Victor Boctor"
+                      ]
+                    },
+                    "email": {
+                      "type": "string",
+                      "default": "",
+                      "title": "The email Schema",
+                      "examples": [
+                        "vboctor@example.com"
+                      ]
+                    }
+                  },
+                  "examples": [{
+                    "id": 36771,
+                    "name": "vboctor",
+                    "real_name": "Victor Boctor",
+                    "email": "vboctor@example.com"
+                  }]
+                },
+                "type": {
+                  "type": "object",
+                  "default": {},
+                  "title": "The type Schema",
+                  "required": [
+                    "id",
+                    "name"
+                  ],
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "default": 0,
+                      "title": "The id Schema",
+                      "examples": [
+                        1
+                      ]
+                    },
+                    "name": {
+                      "type": "string",
+                      "default": "",
+                      "title": "The name Schema",
+                      "examples": [
+                        "issue-new"
+                      ]
+                    }
+                  },
+                  "examples": [{
+                    "id": 1,
+                    "name": "issue-new"
+                  }]
+                },
+                "message": {
+                  "type": "string",
+                  "default": "",
+                  "title": "The message Schema",
+                  "examples": [
+                    "New Issue"
+                  ]
+                }
+              },
+              "examples": [{
+                "created_at": "2017-04-23T13:12:28-04:00",
+                "user": {
+                  "id": 36771,
+                  "name": "vboctor",
+                  "real_name": "Victor Boctor",
+                  "email": "vboctor@example.com"
+                },
+                "type": {
+                  "id": 1,
+                  "name": "issue-new"
+                },
+                "message": "New Issue"
+              }]
+            },
+            "examples": [
+              [{
+                "created_at": "2017-04-23T13:12:28-04:00",
+                "user": {
+                  "id": 36771,
+                  "name": "vboctor",
+                  "real_name": "Victor Boctor",
+                  "email": "vboctor@example.com"
+                },
+                "type": {
+                  "id": 1,
+                  "name": "issue-new"
+                },
+                "message": "New Issue"
+              }]
+            ]
+          }
+        },
+        "examples": [{
+          "id": 1234,
+          "summary": "Sample issue title",
+          "description": "Sample issue description",
+          "project": {
+            "id": 1,
+            "name": "mantisbt"
+          },
+          "category": {
+            "id": 135,
+            "name": "General"
+          },
+          "reporter": {
+            "id": 1,
+            "name": "vboctor",
+            "real_name": "Victor Boctor",
+            "email": "vboctor@example.com"
+          },
+          "status": {
+            "id": 10,
+            "name": "new",
+            "label": "new",
+            "color": "#fcbdbd"
+          },
+          "resolution": {
+            "id": 10,
+            "name": "open",
+            "label": "open"
+          },
+          "view_state": {
+            "id": 10,
+            "name": "public",
+            "label": "public"
+          },
+          "priority": {
+            "id": 30,
+            "name": "normal",
+            "label": "normal"
+          },
+          "severity": {
+            "id": 50,
+            "name": "minor",
+            "label": "minor"
+          },
+          "reproducibility": {
+            "id": 70,
+            "name": "have not tried",
+            "label": "have not tried"
+          },
+          "sticky": false,
+          "created_at": "2017-04-23T13:12:28-04:00",
+          "updated_at": "2017-04-23T13:12:28-04:00",
+          "custom_fields": [{
+            "field": {
+              "id": 4,
+              "name": "The City"
+            },
+            "value": "Seattle"
+          }],
+          "history": [{
+            "created_at": "2017-04-23T13:12:28-04:00",
+            "user": {
+              "id": 36771,
+              "name": "vboctor",
+              "real_name": "Victor Boctor",
+              "email": "vboctor@example.com"
+            },
+            "type": {
+              "id": 1,
+              "name": "issue-new"
+            },
+            "message": "New Issue"
+          }]
+        }]
+      },
+      "examples": [
+        [{
+          "id": 1234,
+          "summary": "Sample issue title",
+          "description": "Sample issue description",
+          "project": {
+            "id": 1,
+            "name": "mantisbt"
+          },
+          "category": {
+            "id": 135,
+            "name": "General"
+          },
+          "reporter": {
+            "id": 1,
+            "name": "vboctor",
+            "real_name": "Victor Boctor",
+            "email": "vboctor@example.com"
+          },
+          "status": {
+            "id": 10,
+            "name": "new",
+            "label": "new",
+            "color": "#fcbdbd"
+          },
+          "resolution": {
+            "id": 10,
+            "name": "open",
+            "label": "open"
+          },
+          "view_state": {
+            "id": 10,
+            "name": "public",
+            "label": "public"
+          },
+          "priority": {
+            "id": 30,
+            "name": "normal",
+            "label": "normal"
+          },
+          "severity": {
+            "id": 50,
+            "name": "minor",
+            "label": "minor"
+          },
+          "reproducibility": {
+            "id": 70,
+            "name": "have not tried",
+            "label": "have not tried"
+          },
+          "sticky": false,
+          "created_at": "2017-04-23T13:12:28-04:00",
+          "updated_at": "2017-04-23T13:12:28-04:00",
+          "custom_fields": [{
+            "field": {
+              "id": 4,
+              "name": "The City"
+            },
+            "value": "Seattle"
+          }],
+          "history": [{
+            "created_at": "2017-04-23T13:12:28-04:00",
+            "user": {
+              "id": 36771,
+              "name": "vboctor",
+              "real_name": "Victor Boctor",
+              "email": "vboctor@example.com"
+            },
+            "type": {
+              "id": 1,
+              "name": "issue-new"
+            },
+            "message": "New Issue"
+          }]
+        }]
+      ]
+    }
+  },
+  "examples": [{
+    "issues": [{
+      "id": 1234,
+      "summary": "Sample issue title",
+      "description": "Sample issue description",
+      "project": {
+        "id": 1,
+        "name": "mantisbt"
+      },
+      "category": {
+        "id": 135,
+        "name": "General"
+      },
+      "reporter": {
+        "id": 1,
+        "name": "vboctor",
+        "real_name": "Victor Boctor",
+        "email": "vboctor@example.com"
+      },
+      "status": {
+        "id": 10,
+        "name": "new",
+        "label": "new",
+        "color": "#fcbdbd"
+      },
+      "resolution": {
+        "id": 10,
+        "name": "open",
+        "label": "open"
+      },
+      "view_state": {
+        "id": 10,
+        "name": "public",
+        "label": "public"
+      },
+      "priority": {
+        "id": 30,
+        "name": "normal",
+        "label": "normal"
+      },
+      "severity": {
+        "id": 50,
+        "name": "minor",
+        "label": "minor"
+      },
+      "reproducibility": {
+        "id": 70,
+        "name": "have not tried",
+        "label": "have not tried"
+      },
+      "sticky": false,
+      "created_at": "2017-04-23T13:12:28-04:00",
+      "updated_at": "2017-04-23T13:12:28-04:00",
+      "custom_fields": [{
+        "field": {
+          "id": 4,
+          "name": "The City"
+        },
+        "value": "Seattle"
+      }],
+      "history": [{
+        "created_at": "2017-04-23T13:12:28-04:00",
+        "user": {
+          "id": 36771,
+          "name": "vboctor",
+          "real_name": "Victor Boctor",
+          "email": "vboctor@example.com"
+        },
+        "type": {
+          "id": 1,
+          "name": "issue-new"
+        },
+        "message": "New Issue"
+      }]
+    }]
+  }]
+}

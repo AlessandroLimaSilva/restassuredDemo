@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<extentreports>
+    <configuration>
+        <!-- report theme standard ou dark -->
+        <theme>dark</theme>
+
+        <!-- document enconding -->
+        <enconding>UTF-8</enconding>
+
+        <!-- protocol for script an stylesheets -->
+        <protocol>https</protocol>
+        <documentTitle>Demo RestAssured</documentTitle>
+        <reporterName>Alessandro Lima</reporterName>
+        <offlineMode>false</offlineMode>
+        <js></js>
+        <css></css>
+    </configuration>
+</extentreports>

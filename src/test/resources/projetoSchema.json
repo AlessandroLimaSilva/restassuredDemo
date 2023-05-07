@@ -1,0 +1,378 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "http://example.com/example.json",
+  "title": "Root Schema",
+  "type": "object",
+  "default": {},
+  "required": [
+    "projects"
+  ],
+  "properties": {
+    "projects": {
+      "title": "The projects Schema",
+      "type": "array",
+      "default": [],
+      "items": {
+        "title": "A Schema",
+        "type": "object",
+        "default": {},
+        "required": [
+          "id",
+          "name",
+          "status",
+          "description",
+          "enabled",
+          "view_state",
+          "access_level",
+          "custom_fields",
+          "versions"
+        ],
+        "properties": {
+          "id": {
+            "title": "The id Schema",
+            "type": "integer",
+            "default": 0
+          },
+          "name": {
+            "title": "The name Schema",
+            "type": "string",
+            "default": ""
+          },
+          "status": {
+            "title": "The status Schema",
+            "type": "object",
+            "default": {},
+            "required": [
+              "id",
+              "name",
+              "label"
+            ],
+            "properties": {
+              "id": {
+                "title": "The id Schema",
+                "type": "integer",
+                "default": 0
+              },
+              "name": {
+                "title": "The name Schema",
+                "type": "string",
+                "default": ""
+              },
+              "label": {
+                "title": "The label Schema",
+                "type": "string",
+                "default": ""
+              }
+            }
+          },
+          "description": {
+            "title": "The description Schema",
+            "type": "string",
+            "default": ""
+          },
+          "enabled": {
+            "title": "The enabled Schema",
+            "type": "boolean",
+            "default": false
+          },
+          "view_state": {
+            "title": "The view_state Schema",
+            "type": "object",
+            "default": {},
+            "required": [
+              "id",
+              "name",
+              "label"
+            ],
+            "properties": {
+              "id": {
+                "title": "The id Schema",
+                "type": "integer",
+                "default": 0
+              },
+              "name": {
+                "title": "The name Schema",
+                "type": "string",
+                "default": ""
+              },
+              "label": {
+                "title": "The label Schema",
+                "type": "string",
+                "default": ""
+              }
+            }
+          },
+          "access_level": {
+            "title": "The access_level Schema",
+            "type": "object",
+            "default": {},
+            "required": [
+              "id",
+              "name",
+              "label"
+            ],
+            "properties": {
+              "id": {
+                "title": "The id Schema",
+                "type": "integer",
+                "default": 0
+              },
+              "name": {
+                "title": "The name Schema",
+                "type": "string",
+                "default": ""
+              },
+              "label": {
+                "title": "The label Schema",
+                "type": "string",
+                "default": ""
+              }
+            }
+          },
+          "custom_fields": {
+            "title": "The custom_fields Schema",
+            "type": "array",
+            "default": [],
+            "items": {
+              "title": "A Schema",
+              "type": "object",
+              "default": {},
+              "required": [
+                "id",
+                "name",
+                "type",
+                "default_value",
+                "possible_values",
+                "valid_regexp",
+                "length_min",
+                "length_max",
+                "access_level_r",
+                "access_level_rw",
+                "display_report",
+                "display_update",
+                "display_resolved",
+                "display_closed",
+                "require_report",
+                "require_update",
+                "require_resolved",
+                "require_closed"
+              ],
+              "properties": {
+                "id": {
+                  "title": "The id Schema",
+                  "type": "integer",
+                  "default": 0
+                },
+                "name": {
+                  "title": "The name Schema",
+                  "type": "string",
+                  "default": ""
+                },
+                "type": {
+                  "title": "The type Schema",
+                  "type": "string",
+                  "default": ""
+                },
+                "default_value": {
+                  "title": "The default_value Schema",
+                  "type": "string",
+                  "default": ""
+                },
+                "possible_values": {
+                  "title": "The possible_values Schema",
+                  "type": "string",
+                  "default": ""
+                },
+                "valid_regexp": {
+                  "title": "The valid_regexp Schema",
+                  "type": "string",
+                  "default": ""
+                },
+                "length_min": {
+                  "title": "The length_min Schema",
+                  "type": "integer",
+                  "default": 0
+                },
+                "length_max": {
+                  "title": "The length_max Schema",
+                  "type": "integer",
+                  "default": 0
+                },
+                "access_level_r": {
+                  "title": "The access_level_r Schema",
+                  "type": "object",
+                  "default": {},
+                  "required": [
+                    "id",
+                    "name",
+                    "label"
+                  ],
+                  "properties": {
+                    "id": {
+                      "title": "The id Schema",
+                      "type": "integer",
+                      "default": 0
+                    },
+                    "name": {
+                      "title": "The name Schema",
+                      "type": "string",
+                      "default": ""
+                    },
+                    "label": {
+                      "title": "The label Schema",
+                      "type": "string",
+                      "default": ""
+                    }
+                  }
+                },
+                "access_level_rw": {
+                  "title": "The access_level_rw Schema",
+                  "type": "object",
+                  "default": {},
+                  "required": [
+                    "id",
+                    "name",
+                    "label"
+                  ],
+                  "properties": {
+                    "id": {
+                      "title": "The id Schema",
+                      "type": "integer",
+                      "default": 0
+                    },
+                    "name": {
+                      "title": "The name Schema",
+                      "type": "string",
+                      "default": ""
+                    },
+                    "label": {
+                      "title": "The label Schema",
+                      "type": "string",
+                      "default": ""
+                    }
+                  }
+                },
+                "display_report": {
+                  "title": "The display_report Schema",
+                  "type": "boolean",
+                  "default": false
+                },
+                "display_update": {
+                  "title": "The display_update Schema",
+                  "type": "boolean",
+                  "default": false
+                },
+                "display_resolved": {
+                  "title": "The display_resolved Schema",
+                  "type": "boolean",
+                  "default": false
+                },
+                "display_closed": {
+                  "title": "The display_closed Schema",
+                  "type": "boolean",
+                  "default": false
+                },
+                "require_report": {
+                  "title": "The require_report Schema",
+                  "type": "boolean",
+                  "default": false
+                },
+                "require_update": {
+                  "title": "The require_update Schema",
+                  "type": "boolean",
+                  "default": false
+                },
+                "require_resolved": {
+                  "title": "The require_resolved Schema",
+                  "type": "boolean",
+                  "default": false
+                },
+                "require_closed": {
+                  "title": "The require_closed Schema",
+                  "type": "boolean",
+                  "default": false
+                }
+              }
+            }
+          },
+          "versions": {
+            "title": "The versions Schema",
+            "type": "array",
+            "default": [],
+            "items": {
+              "title": "A Schema",
+              "type": "object",
+              "default": {},
+              "required": [
+                "id",
+                "name",
+                "description",
+                "released",
+                "obsolete",
+                "timestamp"
+              ],
+              "properties": {
+                "id": {
+                  "title": "The id Schema",
+                  "type": "integer",
+                  "default": 0
+                },
+                "name": {
+                  "title": "The name Schema",
+                  "type": "string",
+                  "default": ""
+                },
+                "description": {
+                  "title": "The description Schema",
+                  "type": "string",
+                  "default": ""
+                },
+                "released": {
+                  "title": "The released Schema",
+                  "type": "boolean",
+                  "default": false
+                },
+                "obsolete": {
+                  "title": "The obsolete Schema",
+                  "type": "boolean",
+                  "default": false
+                },
+                "timestamp": {
+                  "title": "The timestamp Schema",
+                  "type": "string",
+                  "default": ""
+                }
+              }
+            }
+          },
+          "subProjects": {
+            "title": "The subProjects Schema",
+            "type": "array",
+            "default": [],
+            "items": {
+              "title": "A Schema",
+              "type": "object",
+              "default": {},
+              "required": [
+                "id",
+                "name"
+              ],
+              "properties": {
+                "id": {
+                  "title": "The id Schema",
+                  "type": "integer",
+                  "default": 0
+                },
+                "name": {
+                  "title": "The name Schema",
+                  "type": "string",
+                  "default": ""
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

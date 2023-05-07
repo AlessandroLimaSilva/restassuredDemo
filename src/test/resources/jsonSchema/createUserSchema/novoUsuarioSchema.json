@@ -1,0 +1,481 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "http://example.com/example.json",
+  "type": "object",
+  "default": {},
+  "title": "Root Schema",
+  "required": [
+    "user"
+  ],
+  "properties": {
+    "user": {
+      "type": "object",
+      "default": {},
+      "title": "The user Schema",
+      "required": [
+        "id",
+        "name",
+        "real_name",
+        "email",
+        "language",
+        "timezone",
+        "access_level",
+        "projects"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "default": 0,
+          "title": "The id Schema",
+          "examples": [
+            1000
+          ]
+        },
+        "name": {
+          "type": "string",
+          "default": "",
+          "title": "The name Schema",
+          "examples": [
+            "testuser"
+          ]
+        },
+        "real_name": {
+          "type": "string",
+          "default": "",
+          "title": "The real_name Schema",
+          "examples": [
+            "Victor Boctor"
+          ]
+        },
+        "email": {
+          "type": "string",
+          "default": "",
+          "title": "The email Schema",
+          "examples": [
+            "victor@yet-another-domain.com"
+          ]
+        },
+        "language": {
+          "type": "string",
+          "default": "",
+          "title": "The language Schema",
+          "examples": [
+            "english"
+          ]
+        },
+        "timezone": {
+          "type": "string",
+          "default": "",
+          "title": "The timezone Schema",
+          "examples": [
+            "America/Los_Angeles"
+          ]
+        },
+        "access_level": {
+          "type": "object",
+          "default": {},
+          "title": "The access_level Schema",
+          "required": [
+            "id",
+            "name",
+            "label"
+          ],
+          "properties": {
+            "id": {
+              "type": "integer",
+              "default": 0,
+              "title": "The id Schema",
+              "examples": [
+                40
+              ]
+            },
+            "name": {
+              "type": "string",
+              "default": "",
+              "title": "The name Schema",
+              "examples": [
+                "updater"
+              ]
+            },
+            "label": {
+              "type": "string",
+              "default": "",
+              "title": "The label Schema",
+              "examples": [
+                "updater"
+              ]
+            }
+          },
+          "examples": [{
+            "id": 40,
+            "name": "updater",
+            "label": "updater"
+          }]
+        },
+        "projects": {
+          "type": "array",
+          "default": [],
+          "title": "The projects Schema",
+          "items": {
+            "type": "object",
+            "title": "A Schema",
+            "required": [
+              "id",
+              "name"
+            ],
+            "properties": {
+              "id": {
+                "type": "integer",
+                "title": "The id Schema",
+                "examples": [
+                  1,
+                  12,
+                  20,
+                  25,
+                  11,
+                  21,
+                  10,
+                  15,
+                  14,
+                  16,
+                  9,
+                  22,
+                  6,
+                  13,
+                  7,
+                  8,
+                  18
+                ]
+              },
+              "name": {
+                "type": "string",
+                "title": "The name Schema",
+                "examples": [
+                  "mantisbt",
+                  "MantisTouch",
+                  "Mylyn Connector",
+                  "Plugin - agileMantis",
+                  "Plugin - CsvImport",
+                  "Plugin - CustomerManagement",
+                  "Plugin - EmailReporting",
+                  "Plugin - FilterPageEdit",
+                  "Plugin - InlineColumnConfiguration",
+                  "Plugin - LinkedCustomFields",
+                  "Plugin - MachineAD",
+                  "Plugin - MantisTouchRedirect",
+                  "Plugin - RecurrCall",
+                  "Plugin - RelatedIssuesExport",
+                  "Plugin - Reminder",
+                  "Plugin - Tasks",
+                  "Plugin - Time Tracking"
+                ]
+              }
+            },
+            "examples": [{
+              "id": 1,
+              "name": "mantisbt"
+            },
+              {
+                "id": 12,
+                "name": "MantisTouch"
+              },
+              {
+                "id": 20,
+                "name": "Mylyn Connector"
+              },
+              {
+                "id": 25,
+                "name": "Plugin - agileMantis"
+              },
+              {
+                "id": 11,
+                "name": "Plugin - CsvImport"
+              },
+              {
+                "id": 21,
+                "name": "Plugin - CustomerManagement"
+              },
+              {
+                "id": 10,
+                "name": "Plugin - EmailReporting"
+              },
+              {
+                "id": 15,
+                "name": "Plugin - FilterPageEdit"
+              },
+              {
+                "id": 14,
+                "name": "Plugin - InlineColumnConfiguration"
+              },
+              {
+                "id": 16,
+                "name": "Plugin - LinkedCustomFields"
+              },
+              {
+                "id": 9,
+                "name": "Plugin - MachineAD"
+              },
+              {
+                "id": 22,
+                "name": "Plugin - MantisTouchRedirect"
+              },
+              {
+                "id": 6,
+                "name": "Plugin - RecurrCall"
+              },
+              {
+                "id": 13,
+                "name": "Plugin - RelatedIssuesExport"
+              },
+              {
+                "id": 7,
+                "name": "Plugin - Reminder"
+              },
+              {
+                "id": 8,
+                "name": "Plugin - Tasks"
+              },
+              {
+                "id": 18,
+                "name": "Plugin - Time Tracking"
+              }]
+          },
+          "examples": [
+            [{
+              "id": 1,
+              "name": "mantisbt"
+            },
+              {
+                "id": 12,
+                "name": "MantisTouch"
+              },
+              {
+                "id": 20,
+                "name": "Mylyn Connector"
+              },
+              {
+                "id": 25,
+                "name": "Plugin - agileMantis"
+              },
+              {
+                "id": 11,
+                "name": "Plugin - CsvImport"
+              },
+              {
+                "id": 21,
+                "name": "Plugin - CustomerManagement"
+              },
+              {
+                "id": 10,
+                "name": "Plugin - EmailReporting"
+              },
+              {
+                "id": 15,
+                "name": "Plugin - FilterPageEdit"
+              },
+              {
+                "id": 14,
+                "name": "Plugin - InlineColumnConfiguration"
+              },
+              {
+                "id": 16,
+                "name": "Plugin - LinkedCustomFields"
+              },
+              {
+                "id": 9,
+                "name": "Plugin - MachineAD"
+              },
+              {
+                "id": 22,
+                "name": "Plugin - MantisTouchRedirect"
+              },
+              {
+                "id": 6,
+                "name": "Plugin - RecurrCall"
+              },
+              {
+                "id": 13,
+                "name": "Plugin - RelatedIssuesExport"
+              },
+              {
+                "id": 7,
+                "name": "Plugin - Reminder"
+              },
+              {
+                "id": 8,
+                "name": "Plugin - Tasks"
+              },
+              {
+                "id": 18,
+                "name": "Plugin - Time Tracking"
+              }]
+          ]
+        }
+      },
+      "examples": [{
+        "id": 1000,
+        "name": "testuser",
+        "real_name": "Victor Boctor",
+        "email": "victor@yet-another-domain.com",
+        "language": "english",
+        "timezone": "America/Los_Angeles",
+        "access_level": {
+          "id": 40,
+          "name": "updater",
+          "label": "updater"
+        },
+        "projects": [{
+          "id": 1,
+          "name": "mantisbt"
+        },
+          {
+            "id": 12,
+            "name": "MantisTouch"
+          },
+          {
+            "id": 20,
+            "name": "Mylyn Connector"
+          },
+          {
+            "id": 25,
+            "name": "Plugin - agileMantis"
+          },
+          {
+            "id": 11,
+            "name": "Plugin - CsvImport"
+          },
+          {
+            "id": 21,
+            "name": "Plugin - CustomerManagement"
+          },
+          {
+            "id": 10,
+            "name": "Plugin - EmailReporting"
+          },
+          {
+            "id": 15,
+            "name": "Plugin - FilterPageEdit"
+          },
+          {
+            "id": 14,
+            "name": "Plugin - InlineColumnConfiguration"
+          },
+          {
+            "id": 16,
+            "name": "Plugin - LinkedCustomFields"
+          },
+          {
+            "id": 9,
+            "name": "Plugin - MachineAD"
+          },
+          {
+            "id": 22,
+            "name": "Plugin - MantisTouchRedirect"
+          },
+          {
+            "id": 6,
+            "name": "Plugin - RecurrCall"
+          },
+          {
+            "id": 13,
+            "name": "Plugin - RelatedIssuesExport"
+          },
+          {
+            "id": 7,
+            "name": "Plugin - Reminder"
+          },
+          {
+            "id": 8,
+            "name": "Plugin - Tasks"
+          },
+          {
+            "id": 18,
+            "name": "Plugin - Time Tracking"
+          }]
+      }]
+    }
+  },
+  "examples": [{
+    "user": {
+      "id": 1000,
+      "name": "testuser",
+      "real_name": "Victor Boctor",
+      "email": "victor@yet-another-domain.com",
+      "language": "english",
+      "timezone": "America/Los_Angeles",
+      "access_level": {
+        "id": 40,
+        "name": "updater",
+        "label": "updater"
+      },
+      "projects": [{
+        "id": 1,
+        "name": "mantisbt"
+      },
+        {
+          "id": 12,
+          "name": "MantisTouch"
+        },
+        {
+          "id": 20,
+          "name": "Mylyn Connector"
+        },
+        {
+          "id": 25,
+          "name": "Plugin - agileMantis"
+        },
+        {
+          "id": 11,
+          "name": "Plugin - CsvImport"
+        },
+        {
+          "id": 21,
+          "name": "Plugin - CustomerManagement"
+        },
+        {
+          "id": 10,
+          "name": "Plugin - EmailReporting"
+        },
+        {
+          "id": 15,
+          "name": "Plugin - FilterPageEdit"
+        },
+        {
+          "id": 14,
+          "name": "Plugin - InlineColumnConfiguration"
+        },
+        {
+          "id": 16,
+          "name": "Plugin - LinkedCustomFields"
+        },
+        {
+          "id": 9,
+          "name": "Plugin - MachineAD"
+        },
+        {
+          "id": 22,
+          "name": "Plugin - MantisTouchRedirect"
+        },
+        {
+          "id": 6,
+          "name": "Plugin - RecurrCall"
+        },
+        {
+          "id": 13,
+          "name": "Plugin - RelatedIssuesExport"
+        },
+        {
+          "id": 7,
+          "name": "Plugin - Reminder"
+        },
+        {
+          "id": 8,
+          "name": "Plugin - Tasks"
+        },
+        {
+          "id": 18,
+          "name": "Plugin - Time Tracking"
+        }]
+    }
+  }]
+}
