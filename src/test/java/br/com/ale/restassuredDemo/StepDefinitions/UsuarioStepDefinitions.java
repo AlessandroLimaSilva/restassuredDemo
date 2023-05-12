@@ -1,17 +1,15 @@
 package br.com.ale.restassuredDemo.StepDefinitions;
 
-import br.com.ale.restassuredDemo.Request.UsuariosRequest;
+import br.com.ale.restassuredDemo.Requests.UsuariosRequest;
 import br.com.ale.restassuredDemo.Types.UsuariosType;
-import br.com.ale.restassuredDemo.dao.DeleteDao;
-import br.com.ale.restassuredDemo.dao.InsertDAO;
-import br.com.ale.restassuredDemo.dao.SelectDAO;
+import br.com.ale.restassuredDemo.DAO.DeleteDao;
+import br.com.ale.restassuredDemo.DAO.InsertDAO;
+import br.com.ale.restassuredDemo.DAO.SelectDAO;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.module.jsv.JsonSchemaValidator;
 import io.restassured.response.ValidatableResponse;
-
-import javax.swing.*;
 
 import java.sql.SQLException;
 

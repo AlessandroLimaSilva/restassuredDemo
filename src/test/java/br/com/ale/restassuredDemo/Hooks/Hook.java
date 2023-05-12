@@ -1,6 +1,5 @@
 package br.com.ale.restassuredDemo.Hooks;
 
-import br.com.ale.restassuredDemo.dao.GerarMassaDeDadosDAO;
 import io.cucumber.java.After;
 import io.cucumber.java.*;
 

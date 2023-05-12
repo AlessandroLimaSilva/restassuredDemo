@@ -1,18 +1,16 @@
 package br.com.ale.restassuredDemo.StepDefinitions;
 
-import br.com.ale.restassuredDemo.Body.CreateAnIssueCopyRequest.CreateAnIssueCopyBody;
-import br.com.ale.restassuredDemo.Body.CreateAnIssueWithAttachmentsRequest.*;
-import br.com.ale.restassuredDemo.Body.CreateNewIssueRequest.Category;
-import br.com.ale.restassuredDemo.Body.CreateNewIssueRequest.CreateNewIssueBody;
-import br.com.ale.restassuredDemo.Body.IssueCreateAnIssueMinimalRequest.CreateBugTextTableBody;
-import br.com.ale.restassuredDemo.Body.IssueCreateAnIssueMinimalRequest.IssueCreateAnIssueMinimalBody;
-import br.com.ale.restassuredDemo.Body.UtilsBody.UsuarioTestBody;
-import br.com.ale.restassuredDemo.Request.IssuesRequest;
-import br.com.ale.restassuredDemo.dao.DeleteDao;
-import br.com.ale.restassuredDemo.dao.GerarMassaDeDadosDAO;
-import br.com.ale.restassuredDemo.dao.InsertDAO;
-import br.com.ale.restassuredDemo.dao.SelectDAO;
-import br.com.ale.restassuredDemo.utils.UtilsQuery;
+import br.com.ale.restassuredDemo.Body.CreateAnIssueCopyRequestBody.CreateAnIssueCopyBody;
+import br.com.ale.restassuredDemo.Body.CreateAnIssueWithAttachmentsRequestBody.*;
+import br.com.ale.restassuredDemo.Body.CreateNewIssueRequestBody.Category;
+import br.com.ale.restassuredDemo.Body.CreateNewIssueRequestBody.CreateNewIssueBody;
+import br.com.ale.restassuredDemo.Body.IssueCreateAnIssueMinimalRequestBody.CreateBugTextTableBody;
+import br.com.ale.restassuredDemo.Body.IssueCreateAnIssueMinimalRequestBody.IssueCreateAnIssueMinimalBody;
+import br.com.ale.restassuredDemo.Body.UtilsRequestBody.UsuarioTestBody;
+import br.com.ale.restassuredDemo.Requests.IssuesRequest;
+import br.com.ale.restassuredDemo.DAO.DeleteDao;
+import br.com.ale.restassuredDemo.DAO.InsertDAO;
+import br.com.ale.restassuredDemo.DAO.SelectDAO;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.cucumber.java.en.And;
@@ -24,11 +22,9 @@ import io.restassured.path.json.JsonPath;
 import io.restassured.response.ValidatableResponse;
 import org.junit.Assert;
 
-import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import static br.com.ale.restassuredDemo.dao.InsertDAO.INSERIR_UM_PROJETO_MANTISBT_PROJECT_TABLE_FILE;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.Matchers.is;
 
