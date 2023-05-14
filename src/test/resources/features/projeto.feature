@@ -1,5 +1,5 @@
 @Projeto
-Feature: Projetos
+Feature: Projeto
 
   @automatizado @[PR-001]ValidarOStatusCodeDeObterTodosOsProjetosCadastradosComSucesso
   Scenario: validar o status code de obter todos os projetos cadastrados com sucesso

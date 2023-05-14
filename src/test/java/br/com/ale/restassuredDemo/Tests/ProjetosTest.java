@@ -6,7 +6,7 @@ import io.cucumber.junit.CucumberOptions;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        features = {"src/test/resources/features/projetos.feature"},
+        features = {"src/test/resources/features/projeto.feature"},
         glue={
                 "classpath:br.com.ale.restassuredDemo.StepDefinitions",
                 "classpath:br.com.ale.restassuredDemo.Hooks"
