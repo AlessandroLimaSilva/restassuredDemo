@@ -22,7 +22,7 @@ Feature: Issues POST
     Then a nova tarefa com dados minimos e criada com sucesso
     And deleto o projeto e tarefa inseridos
 
-  @automatizado @[ISP-004]-ValidarJsonSchemaDeCriarUmaNovaTarefComDadosMinimosComSucesso
+  @automatizado @[ISP-004]-ValidarJsonSchemaDeCriarUmaNovaTarefaComDadosMinimosComSucesso
   Scenario: Validar json schema de criar nova tarefa com dados minimo com sucesso
     When envio uma requisicao informando apenas os dados minimos para criar uma nova tarefa
     Then o schema de criar uma nova tarefa com dados minimos e validado com sucesso

@@ -4,7 +4,7 @@ report.name=rest assured demo
 report.path=target=target.reports/
 
 #<== hml ==>
-hml.url.default=http://localhost:8989
+hml.url.default=http://0.0.0.0:8989
 hml.db.url=
 hml.db.name=
 hml.db.user=
