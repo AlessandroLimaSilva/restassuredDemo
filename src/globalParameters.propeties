@@ -1,14 +1,14 @@
-
 enviroment=hml
 report.name=rest assured demo
 report.path=target=target.reports/
 
 #<== hml ==>
 hml.url.default=http://0.0.0.0:8989
-hml.db.url=
+hml.db.url.mantis=jdbc:mysql://localhost/bugtracker
+hml.db.url.teste=jdbc:mysql://localhost/DADOS_TESTE_API
 hml.db.name=
-hml.db.user=
-hml.db.password=
+hml.db.user=root
+hml.db.password=root
 hml.url.token=
 hml.autenticator.user=
 hml.autenticator.password=
@@ -16,10 +16,11 @@ hml.token=ub7evJl4LqH00GzJ9G7k4T8NTjiY9gTL
 
 #<== dev parameters ==>
 dev.url.default=https://serverest.dev
-dev.db.url=
+dev.db.url.mantis=jdbc:mysql://localhost/bugtracker
+dev.db.url.teste=jdbc:mysql://localhost/DADOS_TESTE_API
 dev.db.name=
-dev.db.user=
-dev.db.password=
+dev.db.user=root
+dev.db.password=root
 dev.url.token=
 dev.autenticator.user=
 dev.autenticator.password=

@@ -33,12 +33,6 @@ public class InsertDAO {
     private String gerente = "src/test/resources/query/UserGerente.sql";
     private String relator = "src/test/resources/query/UserRelator.sql";
     private String visualizador = "src/test/resources/query/UserVisualizador.sql";
-    private String usuarios = "src/test/resources/csv/usuarios.csv";
-
-    private String t = "src/test/resources/query/MassaDeTeste.sql";
-
-    public static String POPULAR_MANTISBT_PROJECT_TABLE_FILE = "src/test/resources/query/popularMantisProjectTable.sql";
-
     public static String INSERIR_UM_PROJETO_MANTISBT_PROJECT_TABLE_FILE = "src/test/resources/query/InsertUmProjetoNoMantiBTProjectTable.sql";
 
     public InsertDAO(){}

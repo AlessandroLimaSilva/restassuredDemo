@@ -1,5 +1,6 @@
 package br.com.ale.restassuredDemo.DAO;
 
+import br.com.ale.restassuredDemo.utils.GlobalParameters;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.sql.Connection;
@@ -9,10 +10,10 @@ public class ConnectionFactory {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ConnectionFactory.class);
     private static Connection CONNECTION;
-    protected static final String CONNECTION_BUG_TRACKER = "jdbc:mysql://localhost/bugtracker";
-    protected static final String CONNECTION_DADOS_DE_TESTE = "jdbc:mysql://localhost/DADOS_TESTE_API";
-    private String usuarioBanco = "root";
-    private String senhaBanco = "root";
+    protected static final String CONNECTION_BUG_TRACKER = GlobalParameters.DB_URL_MANTISBT;
+    protected static final String CONNECTION_DADOS_DE_TESTE = GlobalParameters.DB_URL_MANTISBT;
+    private String usuarioBanco = GlobalParameters.DB_USER;
+    private String senhaBanco = GlobalParameters.DB_PASSWORD;
 
     public ConnectionFactory(){
         try {

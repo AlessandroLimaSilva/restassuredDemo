@@ -44,11 +44,4 @@ public class RequestRestBase {
     public void setEndPoint(String endPoint){
         this.endPoint = endPoint;
     }
-
-    /*
-    public ValidatableResponse executeRequest(){
-        //Response response = RestAssuredUtils.executeRequest();
-        return ;
-    }
-    */
 }
