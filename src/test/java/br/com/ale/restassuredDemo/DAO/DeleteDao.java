@@ -12,8 +12,8 @@ import java.util.ArrayList;
 
 
 public class DeleteDao {
-
     private static final Logger LOGGER = LoggerFactory.getLogger(DeleteDao.class);
+
     private String deletarTodosUsuarios = "DELETE FROM mantis_user_table where id >= 2;";
     private String deletarTodosProjetos = "DELETE FROM mantis_project_table where id >= 1 AND id <=40;";
 
@@ -23,14 +23,11 @@ public class DeleteDao {
         ArrayList<Integer> ids = new ArrayList<Integer>();
 
         try {
-            // 1. Connect to the MySQL database
-            ConnectionFactory conn = new ConnectionFactory();
 
-            // 2. Prepare the SQL statement with a parameterized query
+            ConnectionFactory conn = new ConnectionFactory();
             String sql = "SELECT id FROM mantis_project_table WHERE name = ?";
             PreparedStatement pstmt = conn.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
-            // 3. Iterate over the list of names and execute the query for each name
             for (String name : names) {
                 pstmt.setString(1, name);
                 ResultSet rs = pstmt.executeQuery();
@@ -42,7 +39,6 @@ public class DeleteDao {
                 rs.close();
             }
 
-            // 4. Close the resources
             pstmt.close();
             conn.closeConnection();
         }catch (Exception ex){
@@ -50,6 +46,102 @@ public class DeleteDao {
         }
 
         return ids;
+    }
+
+    public void deletarUsuarioPorNomeMantisBTTableUsuario(String nome){
+        try{
+            ConnectionFactory connectionFactory = new ConnectionFactory();
+            String oneUser = "DELETE FROM bugtracker.mantis_user_table WHERE USERNAME = ?";
+            PreparedStatement pst = connectionFactory.getConnection().prepareStatement(oneUser, Statement.RETURN_GENERATED_KEYS);
+            pst.setString(1, nome);
+            pst.executeUpdate();
+            connectionFactory.transactionConfirm();
+            LOGGER.info(String.valueOf(pst.getGeneratedKeys()));
+            pst.close();
+            connectionFactory.closeConnection();
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+    }
+
+    public void deletarUsuarioPorNomeRealMantisBTTableUsuario(String nome){
+        try{
+            ConnectionFactory connectionFactory = new ConnectionFactory();
+            String oneUser = "DELETE FROM bugtracker.mantis_user_table WHERE REALNAME = ?";
+            PreparedStatement pst = connectionFactory.getConnection().prepareStatement(oneUser, Statement.RETURN_GENERATED_KEYS);
+            pst.setString(1, nome);
+            pst.executeUpdate();
+            connectionFactory.transactionConfirm();
+            LOGGER.info(String.valueOf(pst.getGeneratedKeys()));
+            pst.close();
+            connectionFactory.closeConnection();
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+    }
+
+    public void deleteProjectMantisBTPerIDProject(int id){
+        try{
+            ConnectionFactory connectionFactory = new ConnectionFactory();
+            String oneUser = "DELETE FROM bugtracker.mantis_project_table WHERE id = ?;";
+            PreparedStatement pst = connectionFactory.getConnection().prepareStatement(oneUser, Statement.RETURN_GENERATED_KEYS);
+            pst.setInt(1, id);
+            pst.executeUpdate();
+            connectionFactory.transactionConfirm();
+            LOGGER.info(String.valueOf(pst.getGeneratedKeys()));
+            pst.close();
+            connectionFactory.closeConnection();
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+    }
+
+    public void deleteFileMantisBTPerID(int id){
+        try{
+            ConnectionFactory connectionFactory = new ConnectionFactory();
+            String oneUser = "DELETE FROM bugtracker.mantis_bug_file_table WHERE id = ?;";
+            PreparedStatement pst = connectionFactory.getConnection().prepareStatement(oneUser, Statement.RETURN_GENERATED_KEYS);
+            pst.setInt(1, id);
+            pst.executeUpdate();
+            connectionFactory.transactionConfirm();
+            LOGGER.info(String.valueOf(pst.getGeneratedKeys()));
+            pst.close();
+            connectionFactory.closeConnection();
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+    }
+
+    public void deleteIssueMantisBTPerIDProject(int id){
+        try{
+            ConnectionFactory connectionFactory = new ConnectionFactory();
+            String oneUser = "DELETE FROM bugtracker.mantis_bug_table WHERE id = ?;";
+            PreparedStatement pst = connectionFactory.getConnection().prepareStatement(oneUser, Statement.RETURN_GENERATED_KEYS);
+            pst.setInt(1, id);
+            pst.executeUpdate();
+            connectionFactory.transactionConfirm();
+            LOGGER.info(String.valueOf(pst.getGeneratedKeys()));
+            pst.close();
+            connectionFactory.closeConnection();
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+    }
+
+    public void deleteBUGTextMantisBTPerIDProject(int id){
+        try{
+            ConnectionFactory connectionFactory = new ConnectionFactory();
+            String oneUser = "DELETE FROM bugtracker.mantis_bug_text_table WHERE id = ?;";
+            PreparedStatement pst = connectionFactory.getConnection().prepareStatement(oneUser, Statement.RETURN_GENERATED_KEYS);
+            pst.setInt(1, id);
+            pst.executeUpdate();
+            connectionFactory.transactionConfirm();
+            LOGGER.info(String.valueOf(pst.getGeneratedKeys()));
+            pst.close();
+            connectionFactory.closeConnection();
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
     }
 
     public static void deleteDataByIds(ArrayList<Object> ids) {
@@ -94,7 +186,6 @@ public class DeleteDao {
             ex.printStackTrace();
         }
     }
-
     public void deletelistaDeInstrucoesSQL(String arquivoSQL){
         try{
             SelectDAO selectDAO = new SelectDAO();
@@ -113,6 +204,7 @@ public class DeleteDao {
         }
 
     }
+
     public void setDataDelete(String sql){
         try{
             ConnectionFactory connectionFactory = new ConnectionFactory();
@@ -222,109 +314,12 @@ public class DeleteDao {
         }
     }
 
-    public void deletarUsuarioPorNomeMantisBTTableUsuario(String nome){
-        try{
-            ConnectionFactory connectionFactory = new ConnectionFactory();
-            String oneUser = "DELETE FROM bugtracker.mantis_user_table WHERE USERNAME = ?";
-            PreparedStatement pst = connectionFactory.getConnection().prepareStatement(oneUser, Statement.RETURN_GENERATED_KEYS);
-            pst.setString(1, nome);
-            pst.executeUpdate();
-            connectionFactory.transactionConfirm();
-            LOGGER.info(String.valueOf(pst.getGeneratedKeys()));
-            pst.close();
-            connectionFactory.closeConnection();
-        }catch (Exception ex){
-            ex.printStackTrace();
-        }
-    }
-
-    public void deletarUsuarioPorNomeRealMantisBTTableUsuario(String nome){
-        try{
-            ConnectionFactory connectionFactory = new ConnectionFactory();
-            String oneUser = "DELETE FROM bugtracker.mantis_user_table WHERE REALNAME = ?";
-            PreparedStatement pst = connectionFactory.getConnection().prepareStatement(oneUser, Statement.RETURN_GENERATED_KEYS);
-            pst.setString(1, nome);
-            pst.executeUpdate();
-            connectionFactory.transactionConfirm();
-            LOGGER.info(String.valueOf(pst.getGeneratedKeys()));
-            pst.close();
-            connectionFactory.closeConnection();
-        }catch (Exception ex){
-            ex.printStackTrace();
-        }
-    }
-
     public void deletarBugTextPorDescriptionMantisBT(String nome){
         try{
             ConnectionFactory connectionFactory = new ConnectionFactory();
             String oneUser = "DELETE FROM bugtracker.mantis_bug_text_table WHERE description = ?;";
             PreparedStatement pst = connectionFactory.getConnection().prepareStatement(oneUser, Statement.RETURN_GENERATED_KEYS);
             pst.setString(1, nome);
-            pst.executeUpdate();
-            connectionFactory.transactionConfirm();
-            LOGGER.info(String.valueOf(pst.getGeneratedKeys()));
-            pst.close();
-            connectionFactory.closeConnection();
-        }catch (Exception ex){
-            ex.printStackTrace();
-        }
-    }
-
-    public void deleteProjectMantisBTPerIDProject(int id){
-        try{
-            ConnectionFactory connectionFactory = new ConnectionFactory();
-            String oneUser = "DELETE FROM bugtracker.mantis_project_table WHERE id = ?;";
-            PreparedStatement pst = connectionFactory.getConnection().prepareStatement(oneUser, Statement.RETURN_GENERATED_KEYS);
-            pst.setInt(1, id);
-            pst.executeUpdate();
-            connectionFactory.transactionConfirm();
-            LOGGER.info(String.valueOf(pst.getGeneratedKeys()));
-            pst.close();
-            connectionFactory.closeConnection();
-        }catch (Exception ex){
-            ex.printStackTrace();
-        }
-    }
-
-    public void deleteFileMantisBTPerID(int id){
-        try{
-            ConnectionFactory connectionFactory = new ConnectionFactory();
-            String oneUser = "DELETE FROM bugtracker.mantis_bug_file_table WHERE id = ?;";
-            PreparedStatement pst = connectionFactory.getConnection().prepareStatement(oneUser, Statement.RETURN_GENERATED_KEYS);
-            pst.setInt(1, id);
-            pst.executeUpdate();
-            connectionFactory.transactionConfirm();
-            LOGGER.info(String.valueOf(pst.getGeneratedKeys()));
-            pst.close();
-            connectionFactory.closeConnection();
-        }catch (Exception ex){
-            ex.printStackTrace();
-        }
-    }
-
-    public void deleteIssueMantisBTPerIDProject(int id){
-        try{
-            ConnectionFactory connectionFactory = new ConnectionFactory();
-            //DELETE FROM bugtracker.mantis_project_table WHERE id =
-            String oneUser = "DELETE FROM bugtracker.mantis_bug_table WHERE id = ?;";
-            PreparedStatement pst = connectionFactory.getConnection().prepareStatement(oneUser, Statement.RETURN_GENERATED_KEYS);
-            pst.setInt(1, id);
-            pst.executeUpdate();
-            connectionFactory.transactionConfirm();
-            LOGGER.info(String.valueOf(pst.getGeneratedKeys()));
-            pst.close();
-            connectionFactory.closeConnection();
-        }catch (Exception ex){
-            ex.printStackTrace();
-        }
-    }
-
-    public void deleteBUGTextMantisBTPerIDProject(int id){
-        try{
-            ConnectionFactory connectionFactory = new ConnectionFactory();
-            String oneUser = "DELETE FROM bugtracker.mantis_bug_text_table WHERE id = ?;";
-            PreparedStatement pst = connectionFactory.getConnection().prepareStatement(oneUser, Statement.RETURN_GENERATED_KEYS);
-            pst.setInt(1, id);
             pst.executeUpdate();
             connectionFactory.transactionConfirm();
             LOGGER.info(String.valueOf(pst.getGeneratedKeys()));
