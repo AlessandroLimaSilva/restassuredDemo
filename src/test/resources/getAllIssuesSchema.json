@@ -99,7 +99,6 @@
             "required": [
               "id",
               "name",
-              "real_name",
               "email"
             ],
             "properties": {
@@ -110,11 +109,6 @@
               },
               "name": {
                 "title": "The name Schema",
-                "type": "string",
-                "default": ""
-              },
-              "real_name": {
-                "title": "The real_name Schema",
                 "type": "string",
                 "default": ""
               },
@@ -308,48 +302,6 @@
             "type": "string",
             "default": ""
           },
-          "custom_fields": {
-            "title": "The custom_fields Schema",
-            "type": "array",
-            "default": [],
-            "items": {
-              "title": "A Schema",
-              "type": "object",
-              "default": {},
-              "required": [
-                "field",
-                "value"
-              ],
-              "properties": {
-                "field": {
-                  "title": "The field Schema",
-                  "type": "object",
-                  "default": {},
-                  "required": [
-                    "id",
-                    "name"
-                  ],
-                  "properties": {
-                    "id": {
-                      "title": "The id Schema",
-                      "type": "integer",
-                      "default": 0
-                    },
-                    "name": {
-                      "title": "The name Schema",
-                      "type": "string",
-                      "default": ""
-                    }
-                  }
-                },
-                "value": {
-                  "title": "The value Schema",
-                  "type": "string",
-                  "default": ""
-                }
-              }
-            }
-          },
           "history": {
             "title": "The history Schema",
             "type": "array",
@@ -377,7 +329,6 @@
                   "required": [
                     "id",
                     "name",
-                    "real_name",
                     "email"
                   ],
                   "properties": {
@@ -388,11 +339,6 @@
                     },
                     "name": {
                       "title": "The name Schema",
-                      "type": "string",
-                      "default": ""
-                    },
-                    "real_name": {
-                      "title": "The real_name Schema",
                       "type": "string",
                       "default": ""
                     },

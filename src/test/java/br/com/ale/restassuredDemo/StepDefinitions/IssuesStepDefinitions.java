@@ -482,7 +482,7 @@ public class IssuesStepDefinitions {
 
     @Then("o json schema de obter todas as tarefas e validado com sucesso")
     public void jsonSchemaDeObterTodasAsTarefasEValidadoComSucesso(){
-        validatableResponse.statusCode(200).body(JsonSchemaValidator.matchesJsonSchemaInClasspath("getIssueFilesSchema.json"));
+        validatableResponse.statusCode(200).body(JsonSchemaValidator.matchesJsonSchemaInClasspath("getAllIssuesSchema.json"));
     }
 
     @When("envio uma requisicao de um projeto informando o id")

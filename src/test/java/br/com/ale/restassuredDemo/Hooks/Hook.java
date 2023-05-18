@@ -11,12 +11,11 @@ import org.junit.runner.RunWith;
 public class Hook {
 
 	@BeforeClass
-	public static void setUp(){
-
+	public static void setUp() {
 		InsertDAO insertDAO = new InsertDAO();
 		insertDAO.popularBancoDeDadoTesteAPI();
 
-		//inserir um update para adicionar real_name no administrador do mantisBT
+		// Inserir um update para adicionar real_name no administrador do mantisBT
 	}
 
 	@Before
