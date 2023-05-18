@@ -13,6 +13,7 @@ public class GlobalParameters {
     public static String URL_DEFAULT;
     public static String REPORT_NAME;
     public static String REPORT_PATH;
+    public static String DB_URL;
     public static String DB_URL_TESTE;
     public static String DB_URL_MANTISBT;
     public static String DB_NAME;
@@ -22,9 +23,9 @@ public class GlobalParameters {
     public static String TOKEN;
     public static String AUTHENTICATOR_USER;
     public static String AUTHENTICATOR_PASSWORD;
-    public static List<String> fileContent;
 
     static {
+
         Properties properties = new Properties();
         InputStream inputStream = null;
 
@@ -41,6 +42,7 @@ public class GlobalParameters {
 
         if(ENVIROMENT.equals("hml")){
             DB_URL_MANTISBT = properties.getProperty("hml.db.url.mantis");
+            DB_URL = properties.getProperty("hml.db.url");
             DB_URL_TESTE = properties.getProperty("hml.db.url.teste");
             DB_NAME = properties.getProperty("hml.db.name");
             DB_USER = properties.getProperty("hml.db.user");
@@ -54,6 +56,7 @@ public class GlobalParameters {
 
         if(ENVIROMENT.equals("dev")){
             DB_URL_MANTISBT = properties.getProperty("dev.db.url.mantis");
+            DB_URL = properties.getProperty("dev.db.url");
             DB_URL_TESTE = properties.getProperty("dev.db.url.teste");
             DB_NAME = properties.getProperty("dev.db.name");
             DB_USER = properties.getProperty("dev.db.user");
@@ -66,7 +69,4 @@ public class GlobalParameters {
         }
     }
 
-    public static void setToken(String dado){
-        TOKEN = dado;
-    }
 }

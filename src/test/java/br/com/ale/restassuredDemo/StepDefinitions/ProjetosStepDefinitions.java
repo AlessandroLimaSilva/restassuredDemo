@@ -5,7 +5,6 @@ import br.com.ale.restassuredDemo.Body.UpdateAProjectRequestBody.UpdateAProjectP
 import br.com.ale.restassuredDemo.Body.UtilsRequestBody.ProjetoBody;
 import br.com.ale.restassuredDemo.Requests.ProjetosRequest;
 import br.com.ale.restassuredDemo.DAO.DeleteDao;
-import br.com.ale.restassuredDemo.DAO.GerarMassaDeDadosDAO;
 import br.com.ale.restassuredDemo.DAO.InsertDAO;
 import br.com.ale.restassuredDemo.DAO.SelectDAO;
 import br.com.ale.restassuredDemo.utils.UtilsQuery;
@@ -19,13 +18,10 @@ import io.restassured.path.json.JsonPath;
 import io.restassured.response.ValidatableResponse;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Assert;
-
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-import static org.apache.commons.lang3.StringUtils.contains;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.is;
 
@@ -240,12 +236,7 @@ public void deletoOProjetoQueFoiCadastrado(){
     @And("monto o banco de dados do teste")
     public void montarBancoDeDadosDoTeste() throws Exception {
         InsertDAO insertDAO = new InsertDAO();
-        insertDAO.setInsertOneIssue();
-        //DeleteDao deleteDao = new DeleteDao();
-        //deleteDao.deletarBugTextPorDescriptionMantisBT("testeDescription");
-
-        GerarMassaDeDadosDAO gerarMassaDeDadosDAO = new GerarMassaDeDadosDAO();
-        gerarMassaDeDadosDAO.create();
+        insertDAO.popularBancoDeDadoTesteAPI();
     }
     @When("consulto todos os id's dos projetos")
     public void consultoTodosOsIDSDosProjetos(){

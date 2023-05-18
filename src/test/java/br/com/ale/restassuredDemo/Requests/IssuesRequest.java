@@ -25,7 +25,7 @@ public class IssuesRequest extends RequestRestBase {
         headers.put("content-type","application/json");
     }
 
-    public void createAnIssueMinimalRequest(IssueCreateAnIssueMinimalBody issueCreateAnIssueMinimalBody) throws JsonProcessingException {
+    public void createAnIssueMinimalRequest(IssueCreateAnIssueMinimalBody issueCreateAnIssueMinimalBody){
         setEndPoint(CREATE_AN_ISSUE_END_POINT);
         jsonBody = issueCreateAnIssueMinimalBody;
         method = Method.POST;
@@ -90,7 +90,6 @@ public class IssuesRequest extends RequestRestBase {
 
     public void getIssuesForAProject(String idProjeto){
         setEndPoint(CREATE_AN_ISSUE_END_POINT.concat("?project_id=").concat(idProjeto));
-        //setEndPoint(CREATE_AN_ISSUE_END_POINT.concat("?project_id=").concat(idProjeto).concat("&page_size=10&page=1"));
         method = Method.GET;
         headers.put("Authorization", GlobalParameters.TOKEN);
         headers.put("content-type","application/json");

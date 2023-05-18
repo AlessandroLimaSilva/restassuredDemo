@@ -25,8 +25,6 @@ public class RequestRestBase {
     protected Map<String,String> queryParameters = new HashMap<>();
     protected String authenticatorUser = GlobalParameters.AUTHENTICATOR_USER;
     protected String authenticatorPassword = GlobalParameters.AUTHENTICATOR_PASSWORD;
-    //protected static final String LOGIN_ENDPOINT="/api/rest/users/";
-
 
     public RequestRestBase(){
         enableLoggingOfRequestAndResponseIfValidationFails();

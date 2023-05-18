@@ -7,6 +7,7 @@ import br.com.ale.restassuredDemo.Body.IssueCreateAnIssueMinimalRequestBody.Crea
 import br.com.ale.restassuredDemo.Body.UtilsRequestBody.BugHistoryTableBody;
 import br.com.ale.restassuredDemo.Body.UtilsRequestBody.ProjetoBody;
 import br.com.ale.restassuredDemo.Types.UsuariosType;
+import br.com.ale.restassuredDemo.utils.GlobalParameters;
 import br.com.ale.restassuredDemo.utils.UtilsQuery;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -22,9 +23,22 @@ import java.util.ArrayList;
 public class InsertDAO {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(InsertDAO.class);
+    private String massaTesteApi = "src/test/resources/query/montarBancoTeste.sql";
     public static String INSERIR_UM_PROJETO_MANTISBT_PROJECT_TABLE_FILE = "src/test/resources/query/InsertUmProjetoNoMantiBTProjectTable.sql";
 
     public InsertDAO(){}
+
+    public void popularBancoDeDadoTesteAPI(){
+        try{
+            ArrayList<String> sqlList = UtilsQuery.lerSQL(new File(massaTesteApi));
+            for(String sql: sqlList){
+                InsertDAO insertDAO = new InsertDAO();
+                insertDAO.setDataInsert(sql, GlobalParameters.DB_URL,GlobalParameters.DB_USER,GlobalParameters.DB_PASSWORD);
+            }
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+    }
 
     public void insertlistaDeInstrucoesSQL(String arquivoSQL){
         try{

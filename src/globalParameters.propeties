@@ -4,6 +4,7 @@ report.path=target=target.reports/
 
 #<== hml ==>
 hml.url.default=http://0.0.0.0:8989
+hml.db.url=jdbc:mysql://localhost/
 hml.db.url.mantis=jdbc:mysql://localhost/bugtracker
 hml.db.url.teste=jdbc:mysql://localhost/DADOS_TESTE_API
 hml.db.name=
@@ -16,6 +17,7 @@ hml.token=ub7evJl4LqH00GzJ9G7k4T8NTjiY9gTL
 
 #<== dev parameters ==>
 dev.url.default=https://serverest.dev
+dev.db.url=jdbc:mysql://localhost/
 dev.db.url.mantis=jdbc:mysql://localhost/bugtracker
 dev.db.url.teste=jdbc:mysql://localhost/DADOS_TESTE_API
 dev.db.name=

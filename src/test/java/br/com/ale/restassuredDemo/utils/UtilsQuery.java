@@ -14,14 +14,6 @@ import java.util.*;
  public class UtilsQuery {
     private static final Logger LOGGER = LoggerFactory.getLogger(UtilsQuery.class);
 
-    public static String lerConteudoSQL(File file) throws FileNotFoundException {
-        Scanner sc = new Scanner(file);
-        sc.useDelimiter("\\A");
-        String sql = sc.hasNext() ? sc.next() : "";
-        sc.close();
-        return sql;
-    }
-
     public static ArrayList<String> lerSQL(File file){
         ArrayList<String> arrayList = new ArrayList<>();
         try{
@@ -35,44 +27,6 @@ import java.util.*;
             System.out.println("LerSQL : "+ex.getMessage());
         }
         return arrayList;
-    }
-
-    public static ArrayList<UsuariosType> usuariosList(String file) {
-        ArrayList<UsuariosType> usuarioTypeList;
-        try {
-            Scanner sc = new Scanner(file);
-            usuarioTypeList = new ArrayList<UsuariosType>();
-            while (sc.hasNextLine()) {
-                ArrayList<String> listaUsuario = new ArrayList<String>(Arrays.asList(sc.nextLine().split(";")));
-                UsuariosType usuariosType = new UsuariosType(listaUsuario.get(0),
-                        listaUsuario.get(1),
-                        listaUsuario.get(2),
-                        listaUsuario.get(3),
-                        listaUsuario.get(4),
-                        listaUsuario.get(5),
-                        listaUsuario.get(6),
-                        listaUsuario.get(7),
-                        listaUsuario.get(8));
-                usuarioTypeList.add(usuariosType);
-            }
-            sc.close();
-            for (UsuariosType type : usuarioTypeList) {
-                JOptionPane.showMessageDialog(null, "Usuario : \n" +
-                        "UserName : " + type.getUserName() +
-                        "\nRealName : " + type.getRealName() +
-                        "\nEmail : " + type.getEmail() +
-                        "\nEnabled : " + type.getEnabled() +
-                        "\nProtected : " + type.getProtekted() +
-                        "\nAccess Level : " + type.getAccessLevel() +
-                        "\nCookie String : " + type.getCookieString() +
-                        "\nPassword : " + type.getPassword() +
-                        "\nTipo Cargo : " + type.getTipoCargo());
-            }
-
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-        return usuarioTypeList;
     }
 
     public static String retornarAnoMesDiaAtual(){
@@ -105,14 +59,4 @@ import java.util.*;
          return Integer.parseInt(String.valueOf((new Date().getTime()/1000)));
      }
 
-     /* Investigar este metodo ele retorna os resultados dos teste quando utilizado o testng
-     public static String getAllStackTrace(ITestResult result){
-         String allStackTrace = "";
-
-         for(StackTraceElement stackTrace : result.getThrowable().getStackTrace()){
-             allStackTrace = allStackTrace + "<br>" + stackTrace.toString();
-         }
-
-         return allStackTrace;
-     }*/
 }
