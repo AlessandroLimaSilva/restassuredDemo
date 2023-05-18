@@ -145,7 +145,7 @@ Feature: Issues GET
     Then e retornado um status code de erro <return> com sucesso
     Examples:
       | dado         | return |
-      | adminstrador | 400    |
       | 999999999999 | 404    |
+      | adminstrador | 400    |
       | 9+*/1adeedff | 400    |
       | ???????????9 | 400    |
