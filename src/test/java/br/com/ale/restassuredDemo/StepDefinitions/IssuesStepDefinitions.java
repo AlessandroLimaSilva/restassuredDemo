@@ -7,6 +7,7 @@ import br.com.ale.restassuredDemo.Body.CreateNewIssueRequestBody.CreateNewIssueB
 import br.com.ale.restassuredDemo.Body.IssueCreateAnIssueMinimalRequestBody.CreateBugTextTableBody;
 import br.com.ale.restassuredDemo.Body.IssueCreateAnIssueMinimalRequestBody.IssueCreateAnIssueMinimalBody;
 import br.com.ale.restassuredDemo.Body.UtilsRequestBody.UsuarioTestBody;
+import br.com.ale.restassuredDemo.DAO.ConnectionFactory;
 import br.com.ale.restassuredDemo.Requests.IssuesRequest;
 import br.com.ale.restassuredDemo.DAO.DeleteDao;
 import br.com.ale.restassuredDemo.DAO.InsertDAO;
@@ -21,7 +22,10 @@ import io.restassured.module.jsv.JsonSchemaValidator;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.ValidatableResponse;
 import org.junit.Assert;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,6 +33,7 @@ import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.Matchers.is;
 
 public class IssuesStepDefinitions {
+    private static final Logger LOGGER = LoggerFactory.getLogger(ConnectionFactory.class);
     IssuesRequest issuesRequest;
 
     protected static ValidatableResponse validatableResponse;
