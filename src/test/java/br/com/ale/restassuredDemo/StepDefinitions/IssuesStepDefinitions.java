@@ -33,7 +33,7 @@ import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.Matchers.is;
 
 public class IssuesStepDefinitions {
-    private static final Logger LOGGER = LoggerFactory.getLogger(ConnectionFactory.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(IssuesStepDefinitions.class);
     IssuesRequest issuesRequest;
 
     protected static ValidatableResponse validatableResponse;
@@ -458,7 +458,6 @@ public class IssuesStepDefinitions {
         ObjectMapper mapper = new ObjectMapper();
         CreateNewIssueBody createNewIssueBody = mapper.readValue(body, CreateNewIssueBody.class);
         JsonPath jsonPath = validatableResponse.extract().jsonPath();
-        //int numIssues = jsonPath.getInt("issues.size()");
         List<Integer> idList =jsonPath.getList("issues.id");
         boolean resultado = false;
         for(int x = 0;x < idList.size();x++){

@@ -91,7 +91,6 @@ public class UsuarioStepDefinitions {
         usuariosRequest.criarNovoUsuarioRequest(nomeUsuario);
         validatableResponse = usuariosRequest.executeRequest();
         validatableResponse.log().all();
-        System.out.println("");
     }
 
     @Then("o usuario e criado com sucesso")

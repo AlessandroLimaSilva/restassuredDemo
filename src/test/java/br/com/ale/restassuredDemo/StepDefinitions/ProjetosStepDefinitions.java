@@ -3,13 +3,15 @@ package br.com.ale.restassuredDemo.StepDefinitions;
 import br.com.ale.restassuredDemo.Body.CreateAProjectPostRequestBody.CreateAProjectPostBody;
 import br.com.ale.restassuredDemo.Body.UpdateAProjectRequestBody.UpdateAProjectPatchBody;
 import br.com.ale.restassuredDemo.Body.UtilsRequestBody.ProjetoBody;
-import br.com.ale.restassuredDemo.Requests.ProjetosRequest;
 import br.com.ale.restassuredDemo.DAO.DeleteDao;
 import br.com.ale.restassuredDemo.DAO.InsertDAO;
 import br.com.ale.restassuredDemo.DAO.SelectDAO;
+import br.com.ale.restassuredDemo.Requests.ProjetosRequest;
 import br.com.ale.restassuredDemo.utils.UtilsQuery;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import groovy.lang.GroovyClassLoader;
+import groovy.lang.GroovyObject;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -42,13 +44,22 @@ public class ProjetosStepDefinitions {
     }
 
     @Then("todos os projetos sao retornados com sucesso")
-    public void todosOsProjetosSaoretornadosComSucesso(){
+    public void todosOsProjetosSaoretornadosComSucesso() throws Exception {
         SelectDAO selectDAO = new SelectDAO();
         int quantidadeDeProjetosNoBanco = selectDAO.getQuantidadeDeProjetosCadastradosNoMantiBT();
         JsonPath jsonPath = validatableResponse.extract().jsonPath();
         List<Integer> idList =jsonPath.getList("projects");
         validatableResponse.statusCode(200);
-        Assert.assertEquals(quantidadeDeProjetosNoBanco,idList.size());
+
+
+        GroovyClassLoader loader = new GroovyClassLoader();
+        Class<?> groovyClass = loader.parseClass(new File("src/test/java/br/com/ale/restassuredDemo/utils/ValidacaoRegex.groovy"));
+
+        GroovyObject groovyObject = (GroovyObject) groovyClass.getDeclaredConstructor().newInstance();
+        Object[] objeto = {quantidadeDeProjetosNoBanco, idList.size()};
+        boolean numerosIguais = (boolean) groovyObject.invokeMethod("numerosSaoIguais", objeto);
+        Assert.assertTrue(numerosIguais);
+        //Assert.assertEquals(quantidadeDeProjetosNoBanco,idList.size());
         validatableResponse.log().all();
     }
 
