@@ -1,5 +1,5 @@
-@issueGET
-Feature: Issues GET
+@tarefaGET
+Feature: Tarefa GET
 
   @automatizado @[ISG-001]ObterUmaTarefaComSucesso
   Scenario: obter uma tarefa com sucesso

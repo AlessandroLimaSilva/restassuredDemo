@@ -6,7 +6,7 @@ import io.cucumber.junit.CucumberOptions;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        features = {"src/test/resources/features/issuePOST.feature"},
+        features = {"src/test/resources/features/tarefaGET.feature"},
         glue={
                 "classpath:br.com.ale.restassuredDemo.StepDefinitions",
                 "classpath:br.com.ale.restassuredDemo.Hooks"
@@ -17,5 +17,5 @@ import io.cucumber.junit.CucumberOptions;
         plugin = {"pretty","com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"}
 )
 
-public class IssuePostTest {
+public class TarefasGetTest {
 }

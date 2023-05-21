@@ -1,5 +1,5 @@
-@issuePOST
-Feature: Issues POST
+@TarefaPOST
+Feature: Tarefa POST
 
   Background:
     Given que possuo um novo projeto cadastrado

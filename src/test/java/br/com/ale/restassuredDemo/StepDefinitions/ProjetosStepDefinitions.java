@@ -50,16 +50,12 @@ public class ProjetosStepDefinitions {
         JsonPath jsonPath = validatableResponse.extract().jsonPath();
         List<Integer> idList =jsonPath.getList("projects");
         validatableResponse.statusCode(200);
-
-
         GroovyClassLoader loader = new GroovyClassLoader();
         Class<?> groovyClass = loader.parseClass(new File("src/test/java/br/com/ale/restassuredDemo/utils/ValidacaoRegex.groovy"));
-
         GroovyObject groovyObject = (GroovyObject) groovyClass.getDeclaredConstructor().newInstance();
         Object[] objeto = {quantidadeDeProjetosNoBanco, idList.size()};
         boolean numerosIguais = (boolean) groovyObject.invokeMethod("numerosSaoIguais", objeto);
         Assert.assertTrue(numerosIguais);
-        //Assert.assertEquals(quantidadeDeProjetosNoBanco,idList.size());
         validatableResponse.log().all();
     }
 
