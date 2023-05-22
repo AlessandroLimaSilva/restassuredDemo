@@ -35,7 +35,6 @@ services:
      privileged: true
      networks:
        -  my-networks
-     privileged: true
      user: root  
      ports:
        - '4444:4444'
