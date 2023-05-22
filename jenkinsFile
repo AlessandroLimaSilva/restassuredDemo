@@ -1,0 +1,14 @@
+FROM jenkins/jenkins:lts-jdk11
+
+USER root
+
+# Instalação do Maven
+RUN apt-get update && apt-get install -y --no-install-recommends apt-utils maven
+
+USER jenkins
+
+# Volume para armazenar dados do Jenkins
+VOLUME /var/jenkins_home
+
+# Expor as portas do Jenkins
+EXPOSE 8080 50000
