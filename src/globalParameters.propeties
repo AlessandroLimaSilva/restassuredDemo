@@ -14,7 +14,7 @@ hml.autenticator.password=root
 hml.token=0x3h7TjMGXTORYdz87oS5dL9ojf8GNFI
 
 #<== dev parameters ==>
-dev.url.default=http://localhost:8989
+dev.url.default=http://mantisbt:8989/
 dev.db.url=jdbc:mysql://localhost:3306/
 dev.db.url.mantis=jdbc:mysql://0.0.0.0:3306/bugtracker
 dev.db.url.teste=jdbc:mysql://0.0.0.0:3306/DADOS_TESTE_API
