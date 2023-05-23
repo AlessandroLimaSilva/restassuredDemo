@@ -1,10 +1,10 @@
 enviroment=hml
 
 #<== hml ==>
-hml.url.default=http://0.0.0.0:8989
-hml.db.url=jdbc:mysql://localhost/
-hml.db.url.mantis=jdbc:mysql://0.0.0.0:3306/bugtracker
-hml.db.url.teste=jdbc:mysql://0.0.0.0:3306/DADOS_TESTE_API
+hml.url.default=http://localhost:8989
+hml.db.url=jdbc:mysql://localhost:3306/
+hml.db.url.mantis=jdbc:mysql://localhost:3306/bugtracker
+hml.db.url.teste=jdbc:mysql://localhost:3306/DADOS_TESTE_API
 hml.db.name=
 hml.db.user=root
 hml.db.password=root
@@ -14,8 +14,8 @@ hml.autenticator.password=root
 hml.token=0x3h7TjMGXTORYdz87oS5dL9ojf8GNFI
 
 #<== dev parameters ==>
-dev.url.default=http://0.0.0.0:8989
-dev.db.url=jdbc:mysql://localhost/
+dev.url.default=http://localhost:8989
+dev.db.url=jdbc:mysql://localhost:3306/
 dev.db.url.mantis=jdbc:mysql://0.0.0.0:3306/bugtracker
 dev.db.url.teste=jdbc:mysql://0.0.0.0:3306/DADOS_TESTE_API
 dev.db.name=
