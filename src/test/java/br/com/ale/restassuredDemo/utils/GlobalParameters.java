@@ -67,6 +67,20 @@ public class GlobalParameters {
             AUTHENTICATOR_USER = properties.getProperty("dev.autenticator.user");
             AUTHENTICATOR_PASSWORD = properties.getProperty("dev.autenticator.password");
         }
+
+        if(ENVIROMENT.equals("local")){
+            DB_URL_MANTISBT = properties.getProperty("local.db.url.mantis");
+            DB_URL = properties.getProperty("local.db.url");
+            DB_URL_TESTE = properties.getProperty("local.db.url.teste");
+            DB_NAME = properties.getProperty("local.db.name");
+            DB_USER = properties.getProperty("local.db.user");
+            DB_PASSWORD = properties.getProperty("local.db.password");
+            URL_DEFAULT = properties.getProperty("local.url.default");
+            URL_TOKEN = properties.getProperty("local.url.token");
+            TOKEN = properties.getProperty("local.token");
+            AUTHENTICATOR_USER = properties.getProperty("local.autenticator.user");
+            AUTHENTICATOR_PASSWORD = properties.getProperty("local.autenticator.password");
+        }
     }
 
 }

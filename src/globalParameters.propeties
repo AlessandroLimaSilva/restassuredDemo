@@ -28,9 +28,9 @@ dev.token=0x3h7TjMGXTORYdz87oS5dL9ojf8GNFI
 
 #<== local ==>
 local.url.default=http://mantisbt:80/
-local.db.url=jdbc:mysql://mysql:3306/
-local.db.url.mantis=jdbc:mysql://mysql:3306/bugtracker
-local.db.url.teste=jdbc:mysql://mysql:3306/bugtracker/DADOS_TESTE_API
+local.db.url=jdbc:mysql://localhost:3306/
+local.db.url.mantis=jdbc:mysql://localhost:3306/bugtracker/
+local.db.url.teste=jdbc:mysql://localhost:3306/DADOS_TESTE_API
 local.db.name=
 local.db.user=root
 local.db.password=root
