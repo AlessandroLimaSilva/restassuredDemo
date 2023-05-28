@@ -17,13 +17,13 @@
 		<documentTitle>HTML Extent</documentTitle>
 		<displayTimeFormat>dd/MM/yyyy HH:mm:ss</displayTimeFormat>
 		<!-- timestamp format -->
-		<timeStampFormat>MMM dd, yyyy HH:mm:ss</timeStampFormat>
+		<timeStampFormat>dd MMM, yyyy HH:mm:ss</timeStampFormat>
 
 		<!-- report name - displayed at top-nav -->
 		<reportName>restAssuredDemo Report</reportName>
 
 		<!-- view report without internet -->
-		<offlineMode>false</offlineMode>
+		<offlineMode>true</offlineMode>
 
 		<!-- settings to change component location -->
 		<testViewChartLocation>top</testViewChartLocation>
