@@ -1,7 +1,7 @@
 enviroment=hml
 
 #<== hml ==>
-hml.url.default=http://mantisbt:80/
+hml.url.default=http://mantisbt:8989/
 hml.db.url=jdbc:mysql://mysql:3306/
 hml.db.url.mantis=jdbc:mysql://mysql:3306/bugtracker
 hml.db.url.teste=jdbc:mysql://mysql:3306/bugtracker/DADOS_TESTE_API
