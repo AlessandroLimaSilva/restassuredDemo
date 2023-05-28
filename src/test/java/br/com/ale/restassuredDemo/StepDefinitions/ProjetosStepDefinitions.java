@@ -245,6 +245,7 @@ public void deletoOProjetoQueFoiCadastrado(){
         InsertDAO insertDAO = new InsertDAO();
         insertDAO.popularBancoDeDadoTesteAPI();
     }
+
     @When("consulto todos os id's dos projetos")
     public void consultoTodosOsIDSDosProjetos(){
         SelectDAO selectDAO = new SelectDAO();

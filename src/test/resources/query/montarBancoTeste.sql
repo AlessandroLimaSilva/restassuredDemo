@@ -231,3 +231,5 @@ VALUES('CreateAProjectPostBody',
      "enabled": false,
      "inherit_global": 0
   }');
+
+  UPDATE bugtracker.mantis_user_table SET realname = 'administrator' WHERE username = 'administrator';

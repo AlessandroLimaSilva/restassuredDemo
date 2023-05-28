@@ -1,4 +1,3 @@
-@Projeto
 Feature: Projeto
 
   @automatizado @[PR-001]ValidarOStatusCodeDeObterTodosOsProjetosCadastradosComSucesso

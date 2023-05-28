@@ -1,4 +1,3 @@
-@tarefaGET
 Feature: Tarefa GET
 
   @automatizado @[ISG-001]ObterUmaTarefaComSucesso

@@ -1,4 +1,3 @@
-@TarefaPOST
 Feature: Tarefa POST
 
   Background:

@@ -104,8 +104,3 @@ Feature: Usuario
       | atualizador   |
       | relator       |
       | visualizador  |
-
-  @CriarToken
-  Scenario: criar toke para automacao
-    When ennvio a requisicao
-
