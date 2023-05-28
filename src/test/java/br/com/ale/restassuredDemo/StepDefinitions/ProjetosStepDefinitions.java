@@ -140,7 +140,7 @@ public void deletoOProjetoQueFoiCadastrado(){
         } catch (AssertionError as) {
             throw new AssertionError("Status code expected <404> response as : " + retorno);
         }
-
+        validatableResponse.log().all();
     }
 
     @Then("^e retornado status code (.*) de requisicao invalida em excluir projeto com sucesso$")
