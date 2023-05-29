@@ -35,6 +35,7 @@ services:
      privileged: true
      networks:
        -  my-networks
+     restart: always
      user: root  
      ports:
        - '4444:4444'
@@ -55,6 +56,7 @@ services:
         - HUB_HOST=localhost
         - HUB_PORT=4444
         - NODE_PORT=5556
+      restart: always  
       volumes:
         - '.chrome:/home/seluser/'
       
@@ -63,6 +65,7 @@ services:
     network_mode: host 
     depends_on:
       - selenium_hub
+    restart: always  
     environment:
       - START_XVFB=true
       - HUB_HOST=localhost
@@ -75,6 +78,7 @@ services:
     network_mode: host 
     depends_on:
       - selenium_hub
+    restart: always  
     environment:
       - START_XVFB=true
       - HUB_HOST=localhost
@@ -91,6 +95,7 @@ services:
        - my-networks
      privileged: true
      user: root
+     restart: always
      ports:
       - "8081:8080"
       - "50000:50000"
