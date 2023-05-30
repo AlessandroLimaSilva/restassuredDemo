@@ -170,6 +170,10 @@
                     </dependency>
                 </dependencies>
                 <configuration>
+                    <testFailureIgnore>true</testFailureIgnore>
+                    <includes>
+                        <include>**/*Test.java</include>
+                    </includes>
                     <parallel>methods</parallel>
                     <threadCount>4</threadCount>
                 </configuration>
@@ -186,9 +190,11 @@
                     </dependency>
                 </dependencies>
                 <configuration>
-                    <includes>
+                    <!--testSourceDirectory>${project.basedir}/src/test/java/br/com/ale/restassuredDemo/Tests</testSourceDirectory-->
+                    <!--<includesFile>${project.build.directory}/failsafe-reports/failsafe-summary.xml</includesFile>-->
+                    <!--includes>
                         <include>**/*Test.java</include>
-                    </includes>
+                    </includes-->
                 </configuration>
                 <executions>
                     <execution>
