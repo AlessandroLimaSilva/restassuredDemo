@@ -1,4 +1,4 @@
-enviroment=local
+enviroment=
 
 #<== hml ==>
 hml.url.default=http://mantisbt:80
@@ -11,7 +11,7 @@ hml.db.password=root
 hml.url.token=
 hml.autenticator.user=administrator
 hml.autenticator.password=root
-hml.token=n_dXudPKL1qAHqNliVxIr3UkIIgYH1tV
+hml.token=0x3h7TjMGXTORYdz87oS5dL9ojf8GNFI
 
 #<== dev parameters ==>
 dev.url.default=http://mantisbt:80
@@ -37,4 +37,4 @@ local.db.password=root
 local.url.token=
 local.autenticator.user=administrator
 local.autenticator.password=root
-local.token=n_dXudPKL1qAHqNliVxIr3UkIIgYH1tV
+local.token=0x3h7TjMGXTORYdz87oS5dL9ojf8GNFI
