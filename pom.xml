@@ -228,7 +228,8 @@
                         <configuration>
                             <name>formattedDate</name>
                             <pattern>ddMMyyyy</pattern>
-                            <timeZone>America/Sao_Paulo</timeZone>
+                            <!--timeZone>America/Sao_Paulo</timeZone-->
+                            <timeZone>GMT</timeZone>
                         </configuration>
                     </execution>
                 </executions>
@@ -247,7 +248,8 @@
                         <configuration>
                             <target>
                                 <property name="formattedDate" value="${maven.build.timestamp.format}"/>
-                                <echo message="Relatório Customizado: file://${project.basedir}/target/relatorio/%20${formattedDate}/index.html" />
+                                <echo message="Acesso Web Relatório Customizado: http://localhost:8081/job/QA-API-MantisBT/ws/target/relatorio/%20${formattedDate}/index.html" />
+                                <echo message="Download Relatório Customizado: http://localhost:8081/job/QA-API-MantisBT/ws/target/relatorio/%20${formattedDate}/*zip*/%20${formattedDate}.zip" />
                             </target>
                         </configuration>
                     </execution>
