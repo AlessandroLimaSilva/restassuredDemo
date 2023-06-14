@@ -31,7 +31,7 @@ Feature: Usuario
 
   @automatizado @[Usuario-005]-NaoCriarNovoUsuarioComNomeJaUtilizado
   Scenario Outline: Nao criar novo usuario com nome ja utilizado
-    And ja possuo um usuario com o nome <tipo> cadastrado
+    Given ja possuo um usuario com o nome <tipo> cadastrado
     When envio um usuario do tipo <tipo> ja cadastrado
     Then o usuario com o nome de usuario ja utilizado nao e cadastrado
     And o usuario cadastrado e deletado da aplicacao
@@ -46,7 +46,7 @@ Feature: Usuario
 
   @automatizado @[Usuario-006]-NaoCriarNovoUsuarioComEmailJaUtilizado
   Scenario Outline: Nao criar novo usuario com email ja utilizado
-    And possuo um usuario com o email <tipo> ja cadastrado
+    Given possuo um usuario com o email <tipo> ja cadastrado
     When envio um usuario <tipo> com o email ja cadastrado
     Then o usuario com email ja utilizado nao e cadastrado
     And o usuario com email ja cadastrado e deletado da aplicacao
@@ -92,7 +92,7 @@ Feature: Usuario
 
   @automatizado @[Usuario-011]-DeletarUsuarioComSucesso
   Scenario Outline: deletar usuario com sucesso
-    And que ja possuo o usuario <tipo> cadastrado na aplicacao
+    Given que ja possuo o usuario <tipo> cadastrado na aplicacao
     When envio a requisicao com o id do usuario a ser deletado
     Then o usuario e deletado com sucesso
     And o usuario cadastrado e deletado da aplicacao
