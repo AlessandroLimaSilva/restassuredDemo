@@ -14,6 +14,7 @@ import io.cucumber.junit.CucumberOptions;
         tags={"@automatizado"},
         monochrome = true,
         strict = true,
+        stepNotifications = true,
         plugin = {"pretty","com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:","summary"}
 )
 

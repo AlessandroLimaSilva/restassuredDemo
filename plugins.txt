@@ -16,6 +16,8 @@ display-url-api:2.3.7
 durable-task:507.v050055d0cb_dd
 echarts-api:5.4.0-1
 email-ext:2.97
+envinject:2.901.v0038b_6471582
+envinject-api:1.199.v3ce31253ed13
 font-awesome-api:6.2.1-1
 git:5.0.2
 git-client:4.2.0
@@ -39,6 +41,8 @@ jsch:0.2.8-65.v052c39de79b_2
 junit:1202.v79a_986785076
 ldap:682.v7b_544c9d1512
 mailer:448.v5b_97805e3767
+matrix-auth:3.1.7
+matrix-project:789.v57a_725b_63c79
 maven-plugin:3.22
 mina-sshd-api-common:2.10.0-69.v28e3e36d18eb_
 mina-sshd-api-core:2.10.0-69.v28e3e36d18eb_

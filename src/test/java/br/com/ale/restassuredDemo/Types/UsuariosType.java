@@ -1,5 +1,6 @@
 package br.com.ale.restassuredDemo.Types;
 
+
 public class UsuariosType {
 
     private String userName;
