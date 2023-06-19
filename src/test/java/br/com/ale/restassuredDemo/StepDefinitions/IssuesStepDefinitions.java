@@ -7,9 +7,8 @@ import br.com.ale.restassuredDemo.Body.CreateNewIssueRequestBody.CreateNewIssueB
 import br.com.ale.restassuredDemo.Body.IssueCreateAnIssueMinimalRequestBody.CreateBugTextTableBody;
 import br.com.ale.restassuredDemo.Body.IssueCreateAnIssueMinimalRequestBody.IssueCreateAnIssueMinimalBody;
 import br.com.ale.restassuredDemo.Body.UtilsRequestBody.UsuarioTestBody;
-import br.com.ale.restassuredDemo.DAO.ConnectionFactory;
 import br.com.ale.restassuredDemo.Requests.IssuesRequest;
-import br.com.ale.restassuredDemo.DAO.DeleteDao;
+import br.com.ale.restassuredDemo.DAO.DeleteDAO;
 import br.com.ale.restassuredDemo.DAO.InsertDAO;
 import br.com.ale.restassuredDemo.DAO.SelectDAO;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -25,7 +24,6 @@ import org.junit.Assert;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -93,7 +91,7 @@ public class IssuesStepDefinitions {
 
     @And("os dados da tarefa inseridos sao deletados")
     public void osDadosDaTarefaInseridosSaoDeletados(){
-        DeleteDao deleteDao = new DeleteDao();
+        DeleteDAO deleteDao = new DeleteDAO();
         deleteDao.deleteProjectMantisBTPerIDProject(ID_TAREFA);
     }
 
@@ -429,7 +427,7 @@ public class IssuesStepDefinitions {
 
     @And("deleto o projeto e tarefa inseridos")
     public void deletoOProjetoETarefaInseridos(){
-        DeleteDao deleteDao = new DeleteDao();
+        DeleteDAO deleteDao = new DeleteDAO();
         //Adicionar delete bug text
         deleteDao.deleteProjectMantisBTPerIDProject(ID_PROJETO);
         deleteDao.deleteIssueMantisBTPerIDProject(ID_TAREFA);

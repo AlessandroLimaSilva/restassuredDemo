@@ -24,7 +24,7 @@ public class SelectDAO {
 
     public ArrayList<String> getQueryResult(String query) throws Exception {
         ArrayList<String> arrayList = null;
-        ConnectionFactory connection = new ConnectionFactory();
+        ConnectionFactoryDAO connection = new ConnectionFactoryDAO();
         Statement stmt = null;
 
         try {
@@ -71,7 +71,7 @@ public class SelectDAO {
     public String searchProjectIDPerNameInMantisProjectTable(String nome){
         String query = "SELECT id, name FROM bugtracker.mantis_project_table WHERE name = '"+nome+"';";
         String resposta = null;
-        ConnectionFactory connection = new ConnectionFactory();
+        ConnectionFactoryDAO connection = new ConnectionFactoryDAO();
         Statement stmt = null;
 
         try {
@@ -113,7 +113,7 @@ public class SelectDAO {
     public ArrayList<String> returnNameIDInSearchProjectIDPerNameInMantisProjectTable(String nome){
         String query = "SELECT id, name FROM bugtracker.mantis_project_table WHERE name = '$nome';".replace("$nome",nome);
         ArrayList<String> arrayList = new ArrayList<>();
-        ConnectionFactory connection = new ConnectionFactory();
+        ConnectionFactoryDAO connection = new ConnectionFactoryDAO();
         Statement stmt = null;
 
         try {
@@ -150,7 +150,7 @@ public class SelectDAO {
     public Map<String, Object> getProjectForName(String nome) throws Exception {
         String sql = "SELECT * FROM projeto WHERE NAME ='"+nome+"';";
         Map<String,Object> map = new HashMap<>();
-        ConnectionFactory connection = new ConnectionFactory(ConnectionFactory.CONNECTION_DADOS_DE_TESTE);
+        ConnectionFactoryDAO connection = new ConnectionFactoryDAO(ConnectionFactoryDAO.CONNECTION_DADOS_DE_TESTE);
         Statement stmt = null;
 
         try {
@@ -196,7 +196,7 @@ public class SelectDAO {
     public String getIDProject(String nome) throws Exception {
         String query = "SELECT id FROM bugtracker.mantis_project_table WHERE name LIKE '"+nome+"';";
         String resposta=null;
-        ConnectionFactory connection = new ConnectionFactory();
+        ConnectionFactoryDAO connection = new ConnectionFactoryDAO();
         Statement stmt = null;
 
         try {
@@ -230,7 +230,7 @@ public class SelectDAO {
     public Map<String, Object> getUserForName(String username) throws Exception {
         String sql = "SELECT * FROM usuario WHERE USERNAME ='"+username+"';";
         Map<String,Object> map = new HashMap<>();
-        ConnectionFactory connection = new ConnectionFactory(ConnectionFactory.CONNECTION_DADOS_DE_TESTE);
+        ConnectionFactoryDAO connection = new ConnectionFactoryDAO(ConnectionFactoryDAO.CONNECTION_DADOS_DE_TESTE);
         Statement stmt = null;
 
         try {
@@ -275,7 +275,7 @@ public class SelectDAO {
     public Map<String, Object> getUserForType(String tipoUsuario) throws Exception {
         String sql = "SELECT * FROM usuario WHERE TIPO_USUARIO ='"+tipoUsuario+"';";
         Map<String,Object> map = new HashMap<>();
-        ConnectionFactory connection = new ConnectionFactory(ConnectionFactory.CONNECTION_DADOS_DE_TESTE);
+        ConnectionFactoryDAO connection = new ConnectionFactoryDAO(ConnectionFactoryDAO.CONNECTION_DADOS_DE_TESTE);
         Statement stmt = null;
 
         try {
@@ -319,10 +319,10 @@ public class SelectDAO {
 
     public UsuariosType getUsuarioDadosTesteUsuarioTable(String tipoUsuario){
         UsuariosType usuariosType = new UsuariosType();
-        ConnectionFactory connection = null;
+        ConnectionFactoryDAO connection = null;
         try {
             String sql = "SELECT * FROM DADOS_TESTE_API.usuario WHERE USERNAME = '" + tipoUsuario + "';";
-            connection = new ConnectionFactory(ConnectionFactory.CONNECTION_DADOS_DE_TESTE);
+            connection = new ConnectionFactoryDAO(ConnectionFactoryDAO.CONNECTION_DADOS_DE_TESTE);
             Statement stmt = null;
             stmt = connection.getConnection().createStatement();
             ResultSet rs = stmt.executeQuery(sql);
@@ -354,10 +354,10 @@ public class SelectDAO {
     }
 
     public String getIDUsuarioMantisBTUserTable(String tipoUsuario){
-        ConnectionFactory connection = null;
+        ConnectionFactoryDAO connection = null;
         try {
             String sql = "SELECT id FROM bugtracker.mantis_user_table WHERE username = '" + tipoUsuario + "';";
-            connection = new ConnectionFactory(ConnectionFactory.CONNECTION_DADOS_DE_TESTE);
+            connection = new ConnectionFactoryDAO(ConnectionFactoryDAO.CONNECTION_DADOS_DE_TESTE);
             Statement stmt = null;
             stmt = connection.getConnection().createStatement();
             ResultSet rs = stmt.executeQuery(sql);
@@ -382,10 +382,10 @@ public class SelectDAO {
 
     public UsuariosType getUsuarioNomeRealDadosTesteUsuarioTable(String nomeReal){
         UsuariosType usuariosType = new UsuariosType();
-        ConnectionFactory connection = null;
+        ConnectionFactoryDAO connection = null;
         try {
             String sql = "SELECT * FROM DADOS_TESTE_API.usuario WHERE REALNAME = '"+nomeReal+"';";
-            connection = new ConnectionFactory(ConnectionFactory.CONNECTION_DADOS_DE_TESTE);
+            connection = new ConnectionFactoryDAO(ConnectionFactoryDAO.CONNECTION_DADOS_DE_TESTE);
             Statement stmt = null;
             stmt = connection.getConnection().createStatement();
             ResultSet rs = stmt.executeQuery(sql);
@@ -418,10 +418,10 @@ public class SelectDAO {
 
     public UsuarioTestBody getUsuarioTestBodyMantisBTTableUsuario(){
         UsuarioTestBody usuariosTestBody = new UsuarioTestBody();
-        ConnectionFactory connection = null;
+        ConnectionFactoryDAO connection = null;
         try {
             String sql = "SELECT id,username,realname,email,password,enabled,protected,access_level FROM bugtracker.mantis_user_table Where id = 1;";
-            connection = new ConnectionFactory();
+            connection = new ConnectionFactoryDAO();
             Statement stmt = null;
             stmt = connection.getConnection().createStatement();
             ResultSet rs = stmt.executeQuery(sql);
@@ -454,7 +454,7 @@ public class SelectDAO {
     public Map<String, Object> getUserForEmail(String email) throws Exception {
         String sql = "SELECT * FROM usuario WHERE email ='"+email+"';";
         Map<String,Object> map = new HashMap<>();
-        ConnectionFactory connection = new ConnectionFactory(ConnectionFactory.CONNECTION_DADOS_DE_TESTE);
+        ConnectionFactoryDAO connection = new ConnectionFactoryDAO(ConnectionFactoryDAO.CONNECTION_DADOS_DE_TESTE);
         Statement stmt = null;
 
         try {
@@ -500,7 +500,7 @@ public class SelectDAO {
         ArrayList<Integer> list = new ArrayList<>();
         String query = "SELECT id FROM bugtracker.mantis_bug_text_table WHERE steps_to_reproduce = '$nome'".replace("$nome",nome);
         String resposta = null;
-        ConnectionFactory connection = new ConnectionFactory();
+        ConnectionFactoryDAO connection = new ConnectionFactoryDAO();
         Statement stmt = null;
         try {
             stmt = connection.getConnection().createStatement();
@@ -516,7 +516,7 @@ public class SelectDAO {
             stmt.close();
             connection.closeConnection();
 
-            DeleteDao deleteDao = new DeleteDao();
+            DeleteDAO deleteDao = new DeleteDAO();
             if(list.size() > 0){
                 for(Integer loop: list){
                     deleteDao.deleteBUGTextMantisBTPerIDProject(loop);
@@ -539,7 +539,7 @@ public class SelectDAO {
         ArrayList<Integer> list = new ArrayList<>();
         String query = "SELECT id FROM bugtracker.mantis_project_table WHERE name = '$nome'".replace("$nome",nome);
         String resposta = null;
-        ConnectionFactory connection = new ConnectionFactory();
+        ConnectionFactoryDAO connection = new ConnectionFactoryDAO();
         Statement stmt = null;
         try {
             stmt = connection.getConnection().createStatement();
@@ -555,7 +555,7 @@ public class SelectDAO {
             stmt.close();
             connection.closeConnection();
 
-            DeleteDao deleteDao = new DeleteDao();
+            DeleteDAO deleteDao = new DeleteDAO();
             if(list.size() > 0){
                 for(Integer loop: list){
                     deleteDao.deleteProjectMantisBTPerIDProject(loop);
@@ -578,7 +578,7 @@ public class SelectDAO {
         ArrayList<Integer> list = new ArrayList<>();
         String query = "SELECT id FROM bugtracker.mantis_bug_file_table WHERE filename = '$filename'".replace("$filename",fileName);
         String resposta = null;
-        ConnectionFactory connection = new ConnectionFactory();
+        ConnectionFactoryDAO connection = new ConnectionFactoryDAO();
         Statement stmt = null;
         try {
             stmt = connection.getConnection().createStatement();
@@ -594,7 +594,7 @@ public class SelectDAO {
             stmt.close();
             connection.closeConnection();
 
-            DeleteDao deleteDao = new DeleteDao();
+            DeleteDAO deleteDao = new DeleteDAO();
             if(list.size() > 0){
                 for(Integer loop: list){
                     deleteDao.deleteFileMantisBTPerID(loop);
@@ -616,7 +616,7 @@ public class SelectDAO {
     public String selectRequestJsonBody(String nomeRequest){
         String query = "SELECT request_body FROM DADOS_TESTE_API.json_body_request WHERE nome_requisicao = '$nome';".replace("$nome", nomeRequest);
         String resposta = null;
-        ConnectionFactory connection = new ConnectionFactory();
+        ConnectionFactoryDAO connection = new ConnectionFactoryDAO();
         Statement stmt = null;
         try {
             stmt = connection.getConnection().createStatement();
@@ -651,7 +651,7 @@ public class SelectDAO {
         ArrayList<Integer> list = new ArrayList<>();
         String query = "SELECT COUNT(*) FROM bugtracker.mantis_project_table;";
         int resposta = 0;
-        ConnectionFactory connection = new ConnectionFactory();
+        ConnectionFactoryDAO connection = new ConnectionFactoryDAO();
         Statement stmt = null;
         try {
             stmt = connection.getConnection().createStatement();

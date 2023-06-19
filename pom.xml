@@ -179,6 +179,7 @@
                 </dependencies>
                 <configuration>
                     <testFailureIgnore>false</testFailureIgnore>
+
                     <includes>
                         <include>**/*Test.java</include>
                     </includes>
@@ -203,6 +204,12 @@
                     <!--includes>
                         <include>**/*Test.java</include>
                     </includes-->
+                    <forkMode>always</forkMode>
+                    <reuseForks>true</reuseForks>
+                    <argLine>-DtestFailureMessage=Ocorreu uma falha no Surefire Plugin!</argLine>
+                    <systemPropertyVariables>
+                        <testFailureMessage>Ocorreu uma falha no Surefire Plugin!</testFailureMessage>
+                    </systemPropertyVariables>
                 </configuration>
                 <executions>
                     <execution>
@@ -249,9 +256,29 @@
                         <configuration>
                             <target>
                                 <property name="formattedDate" value="${maven.build.timestamp.format}"/>
-                                <echo message="Acesso Web Relatório Customizado: http://localhost:8081/job/QA-API-MantisBT/ws/target/relatorio/%20${formattedDate}/index.html" />
-                                <echo message="Download Relatório Customizado: http://localhost:8081/job/QA-API-MantisBT/ws/target/relatorio/%20${formattedDate}/*zip*/%20${formattedDate}.zip" />
-                                </target>
+                                <echo message="Acesso Web Relatório Customizado: http://localhost:8081/job/QA-API-MantisBT/ws/target/relatorio/%20${formattedDate}/index.html"/>
+                                <echo message="Download Relatório Customizado: http://localhost:8081/job/QA-API-MantisBT/ws/target/relatorio/%20${formattedDate}/*zip*/%20${formattedDate}.zip"/>
+                            </target>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>test-failure-message</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target>
+                                <fail message="Ocorreu uma falha no Surefire Plugin!"
+                                      message1="Acesso Web Relatório Customizado: http://localhost:8081/job/QA-API-MantisBT/ws/target/relatorio/%20${formattedDate}/index.html"
+                                      message2="Download Relatório Customizado: http://localhost:8081/job/QA-API-MantisBT/ws/target/relatorio/%20${formattedDate}/*zip*/%20${formattedDate}.zip">
+                                    <condition>
+                                        <not>
+                                            <equals arg1="${maven.test.failure.ignore}" arg2="true"/>
+                                        </not>
+                                    </condition>
+                                </fail>
+                            </target>
                         </configuration>
                     </execution>
                 </executions>

@@ -2,7 +2,7 @@ package br.com.ale.restassuredDemo.StepDefinitions;
 
 import br.com.ale.restassuredDemo.Requests.UsuariosRequest;
 import br.com.ale.restassuredDemo.Types.UsuariosType;
-import br.com.ale.restassuredDemo.DAO.DeleteDao;
+import br.com.ale.restassuredDemo.DAO.DeleteDAO;
 import br.com.ale.restassuredDemo.DAO.InsertDAO;
 import br.com.ale.restassuredDemo.DAO.SelectDAO;
 import io.cucumber.java.en.And;
@@ -48,7 +48,7 @@ public class UsuarioStepDefinitions {
     @And("^que ja tenho um usuario cadastrado (.*)$")
     public void queJaTenhoUmUsuarioCadastrado(String nomeUsuario){
         NOME_USUARIO = nomeUsuario;
-        DeleteDao deleteDao = new DeleteDao();
+        DeleteDAO deleteDao = new DeleteDAO();
         deleteDao.deletarUsuarioPorNomeMantisBTTableUsuario(nomeUsuario);
         SelectDAO selectDAO = new SelectDAO();
         UsuariosType usuariosType = selectDAO.getUsuarioDadosTesteUsuarioTable(nomeUsuario);
@@ -77,7 +77,7 @@ public class UsuarioStepDefinitions {
     @When("^envio um novo usuario do tipo (.*)$")
     public void CriarNovoUsuarioPost(String nomeUsuario){
         NOME_USUARIO = nomeUsuario;
-        DeleteDao deleteDao = new DeleteDao();
+        DeleteDAO deleteDao = new DeleteDAO();
         deleteDao.deletarUsuarioPorNomeMantisBTTableUsuario(nomeUsuario);
         usuariosRequest = new UsuariosRequest();
         usuariosRequest.criarNovoUsuarioRequest(nomeUsuario);
@@ -106,7 +106,7 @@ public class UsuarioStepDefinitions {
 
     @And("^ja possuo um usuario com o nome (.*) cadastrado$")
     public void possuoUsuarioComNomeCadastrado(String nome){
-        DeleteDao deleteDao = new DeleteDao();
+        DeleteDAO deleteDao = new DeleteDAO();
         deleteDao.deletarUsuarioPorNomeMantisBTTableUsuario(nome);
         SelectDAO selectDAO = new SelectDAO();
         UsuariosType usuariosType = selectDAO.getUsuarioDadosTesteUsuarioTable(nome);
@@ -116,7 +116,7 @@ public class UsuarioStepDefinitions {
 
     @And("^que ja possuo o usuario (.*) cadastrado na aplicacao$")
     public void queJaPossuoOUsuarioCadastradoNaAplicacao(String nomeUsuario) throws SQLException {
-        DeleteDao deleteDao = new DeleteDao();
+        DeleteDAO deleteDao = new DeleteDAO();
         deleteDao.deletarUsuarioPorNomeMantisBTTableUsuario(nomeUsuario);
         SelectDAO selectDAO = new SelectDAO();
         UsuariosType usuariosType = selectDAO.getUsuarioDadosTesteUsuarioTable(nomeUsuario);
@@ -126,7 +126,7 @@ public class UsuarioStepDefinitions {
 
     @And("^possuo um usuario com o email (.*) ja cadastrado$")
     public void possouUsuarioComEmailCadastrado(String nome){
-        DeleteDao deleteDao = new DeleteDao();
+        DeleteDAO deleteDao = new DeleteDAO();
         deleteDao.deletarUsuarioPorNomeMantisBTTableUsuario(nome);
         SelectDAO selectDAO = new SelectDAO();
         UsuariosType usuariosType = selectDAO.getUsuarioDadosTesteUsuarioTable(nome);
@@ -179,7 +179,7 @@ public class UsuarioStepDefinitions {
 
     @And("o usuario com email ja cadastrado e deletado da aplicacao")
     public void usuarioComEmailJaCadastradoEDeletadoDaAplicacao(){
-        DeleteDao deleteDao = new DeleteDao();
+        DeleteDAO deleteDao = new DeleteDAO();
         deleteDao.deletarUsuarioPorNomeRealMantisBTTableUsuario(NOME_REAL);
     }
 
@@ -191,14 +191,14 @@ public class UsuarioStepDefinitions {
 
     @And("o usuario cadastrado e deletado da aplicacao")
     public void deletarUsuarioDaAplicacaoNoBDMantisBTUsuarioTable(){
-        DeleteDao deleteDao = new DeleteDao();
+        DeleteDAO deleteDao = new DeleteDAO();
         deleteDao.deletarUsuarioPorNomeMantisBTTableUsuario(NOME_USUARIO);
     }
 
     @When("envio um novo usuario minimo")
     public void envioNovoUsuarioMinimo(){
         NOME_USUARIO = "minimo";
-        DeleteDao deleteDao = new DeleteDao();
+        DeleteDAO deleteDao = new DeleteDAO();
         deleteDao.deletarUsuarioPorNomeMantisBTTableUsuario(NOME_USUARIO);
         usuariosRequest = new UsuariosRequest();
         usuariosRequest.criarNovoUsuarioMinimoRequest(NOME_USUARIO);

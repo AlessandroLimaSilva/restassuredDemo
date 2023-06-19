@@ -6,16 +6,16 @@ import org.slf4j.LoggerFactory;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-public class ConnectionFactory {
+public class ConnectionFactoryDAO {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(ConnectionFactory.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ConnectionFactoryDAO.class);
     private static Connection CONNECTION;
     protected static final String CONNECTION_BUG_TRACKER = GlobalParameters.DB_URL_MANTISBT;
     protected static final String CONNECTION_DADOS_DE_TESTE = GlobalParameters.DB_URL_MANTISBT;
     private String usuarioBanco = GlobalParameters.DB_USER;
     private String senhaBanco = GlobalParameters.DB_PASSWORD;
 
-    public ConnectionFactory(){
+    public ConnectionFactoryDAO(){
         try {
             if (CONNECTION != null && !CONNECTION.isClosed()) return;
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -28,7 +28,7 @@ public class ConnectionFactory {
         }
     }
 
-    public ConnectionFactory(String enderecoBanco, String nomeUsuario, String senha){
+    public ConnectionFactoryDAO(String enderecoBanco, String nomeUsuario, String senha){
         try {
             if (CONNECTION != null && !CONNECTION.isClosed()) return;
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -41,7 +41,7 @@ public class ConnectionFactory {
         }
     }
 
-    public ConnectionFactory(String url){
+    public ConnectionFactoryDAO(String url){
         try {
             if (CONNECTION != null && !CONNECTION.isClosed()){
                 CONNECTION.close();

@@ -54,12 +54,12 @@ public class InsertDAO {
 
     public void setDataInsert(String sql) throws Exception {
         try{
-            ConnectionFactory connectionFactory = new ConnectionFactory();
-            PreparedStatement pst = connectionFactory.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ConnectionFactoryDAO connectionFactoryDAO = new ConnectionFactoryDAO();
+            PreparedStatement pst = connectionFactoryDAO.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             pst.executeUpdate();
-            connectionFactory.transactionConfirm();
+            connectionFactoryDAO.transactionConfirm();
             pst.close();
-            connectionFactory.closeConnection();
+            connectionFactoryDAO.closeConnection();
         } catch (SQLException ex) {
             throw new SQLException("Falha ocorrida setDataInsert: "+ex.getMessage());
         }
@@ -68,13 +68,13 @@ public class InsertDAO {
     public void setDataInsert(String sql,String enderecoBanco,String usuario,String senha) throws Exception {
         try{
             LOGGER.info(sql);
-            ConnectionFactory connectionFactory = new ConnectionFactory(enderecoBanco,usuario,senha);
-            PreparedStatement pst = connectionFactory.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ConnectionFactoryDAO connectionFactoryDAO = new ConnectionFactoryDAO(enderecoBanco,usuario,senha);
+            PreparedStatement pst = connectionFactoryDAO.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             pst.executeUpdate();
-            connectionFactory.transactionConfirm();
+            connectionFactoryDAO.transactionConfirm();
             LOGGER.info(String.valueOf(pst.getGeneratedKeys()));
             pst.close();
-            connectionFactory.closeConnection();
+            connectionFactoryDAO.closeConnection();
         } catch (SQLException ex) {
             throw new SQLException("Falha ocorrida setDataInsert: "+sql+"\n"+ex.getMessage());
         }
@@ -91,10 +91,10 @@ public class InsertDAO {
         CreateNewIssueBody createNewIssueBody = mapper.readValue(body, CreateNewIssueBody.class);
         int data = UtilsQuery.getDataEpochTime();
         try{
-            ConnectionFactory connectionFactory = new ConnectionFactory();
+            ConnectionFactoryDAO connectionFactoryDAO = new ConnectionFactoryDAO();
             String sql = "INSERT INTO bugtracker.mantis_bug_table (project_id,reporter_id,reproducibility,bug_text_id,summary,date_submitted,last_updated) " +
                     "VALUES (?,?,?,?,?,?,?)";
-            PreparedStatement pst = connectionFactory.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement pst = connectionFactoryDAO.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             pst.setInt(1, idProjeto);//Project id
             pst.setInt(2, 1);//Administrator id =1
             pst.setInt(3, 10);//Reproducity 10 = always
@@ -103,10 +103,10 @@ public class InsertDAO {
             pst.setString(6, String.valueOf(data));
             pst.setString(7, String.valueOf(data));
             pst.executeUpdate();
-            connectionFactory.transactionConfirm();
+            connectionFactoryDAO.transactionConfirm();
             LOGGER.info(String.valueOf(pst.getGeneratedKeys()));
             pst.close();
-            connectionFactory.closeConnection();
+            connectionFactoryDAO.closeConnection();
         } catch (SQLException ex) {
             throw new SQLException("Falha ocorrida setDataInsertOneUser: "+ex.getMessage());
         }
@@ -118,10 +118,10 @@ public class InsertDAO {
         selectDAO.selectAndDeleteIfExistMantidBTFile(fileName);
 
         try{
-            ConnectionFactory connectionFactory = new ConnectionFactory();
+            ConnectionFactoryDAO connectionFactoryDAO = new ConnectionFactoryDAO();
             String sql = "INSERT INTO bugtracker.mantis_bug_file_table(bug_id, filename, filesize, file_type, content, date_added, user_id) " +
                     "VALUES(?,?,?,?,?,?,?);";
-            PreparedStatement pst = connectionFactory.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement pst = connectionFactoryDAO.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             pst.setInt(1, bugID);//bugId
             pst.setString(2, fileName);//Filename
             pst.setInt(3, 40647);//FileSize
@@ -134,10 +134,10 @@ public class InsertDAO {
             if (rs.next()) {
                 id = rs.getInt(1);
             }
-            connectionFactory.transactionConfirm();
+            connectionFactoryDAO.transactionConfirm();
             LOGGER.info(String.valueOf(pst.getGeneratedKeys()));
             pst.close();
-            connectionFactory.closeConnection();
+            connectionFactoryDAO.closeConnection();
         } catch (SQLException ex) {
             throw new SQLException("setInsertOneProjectAndReturnPk : "+ex.getMessage());
         }
@@ -153,10 +153,10 @@ public class InsertDAO {
         selectDAO.selectAndDeleteIfExistMantidBTProject(projetoBody.getName());
 
         try{
-            ConnectionFactory connectionFactory = new ConnectionFactory();
+            ConnectionFactoryDAO connectionFactoryDAO = new ConnectionFactoryDAO();
             String sql = "INSERT INTO bugtracker.mantis_project_table(NAME, STATUS, ENABLED, VIEW_STATE, ACCESS_MIN, DESCRIPTION, CATEGORY_ID, INHERIT_GLOBAL) " +
                     "VALUES(?,?,?,?,?,?,?,?);";
-            PreparedStatement pst = connectionFactory.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement pst = connectionFactoryDAO.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             pst.setString(1, projetoBody.getName());
             pst.setInt(2, projetoBody.getStatus());
             pst.setInt(3, projetoBody.getEnabled());
@@ -170,10 +170,10 @@ public class InsertDAO {
             if (rs.next()) {
                 id = rs.getInt(1);
             }
-            connectionFactory.transactionConfirm();
+            connectionFactoryDAO.transactionConfirm();
             LOGGER.info(String.valueOf(pst.getGeneratedKeys()));
             pst.close();
-            connectionFactory.closeConnection();
+            connectionFactoryDAO.closeConnection();
         } catch (SQLException ex) {
             throw new SQLException("setInsertOneProjectAndReturnPk : "+ex.getMessage());
         }
@@ -219,10 +219,10 @@ public class InsertDAO {
 
         int data = UtilsQuery.getDataEpochTime();
         try{
-            ConnectionFactory connectionFactory = new ConnectionFactory();
+            ConnectionFactoryDAO connectionFactoryDAO = new ConnectionFactoryDAO();
             String sql = "INSERT INTO bugtracker.mantis_bug_table (project_id,reporter_id,reproducibility,bug_text_id,summary,date_submitted,last_updated) " +
                     "VALUES (?,?,?,?,?,?,?)";
-            PreparedStatement pst = connectionFactory.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement pst = connectionFactoryDAO.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             pst.setInt(1, projectID);//Project id
             pst.setInt(2, 1);//Administrator id =1
             pst.setInt(3, 10);//Reproducity 10 = always
@@ -235,10 +235,10 @@ public class InsertDAO {
             if (rs.next()) {
                 resposta = rs.getInt(1);
             }
-            connectionFactory.transactionConfirm();
+            connectionFactoryDAO.transactionConfirm();
             LOGGER.info(String.valueOf(pst.getGeneratedKeys()));
             pst.close();
-            connectionFactory.closeConnection();
+            connectionFactoryDAO.closeConnection();
         } catch (SQLException ex) {
             throw new SQLException("Falha ocorrida setDataInsertOneUser: "+ex.getMessage());
         }
@@ -253,9 +253,9 @@ public class InsertDAO {
         CreateBugTextTableBody createBugTextTableBody = mapper.readValue(body, CreateBugTextTableBody.class);
         selectDAO.selectAndDeleteIfExistBugText(createBugTextTableBody.getStepsToReproduce());
         try{
-            ConnectionFactory connectionFactory = new ConnectionFactory();
+            ConnectionFactoryDAO connectionFactoryDAO = new ConnectionFactoryDAO();
             String sql = "INSERT INTO bugtracker.mantis_bug_text_table (description,steps_to_reproduce,additional_information) VALUES (?,?,?);";
-            PreparedStatement pst = connectionFactory.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement pst = connectionFactoryDAO.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             pst.setString(1, createBugTextTableBody.getDescription());
             pst.setString(2, createBugTextTableBody.getStepsToReproduce());
             pst.setString(3, createBugTextTableBody.getAdditionalInformation());
@@ -264,9 +264,9 @@ public class InsertDAO {
             if (rs.next()) {
                 id = rs.getInt(1);
             }
-            connectionFactory.transactionConfirm();
+            connectionFactoryDAO.transactionConfirm();
             pst.close();
-            connectionFactory.closeConnection();
+            connectionFactoryDAO.closeConnection();
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -282,9 +282,9 @@ public class InsertDAO {
         bugHistoryTableBody.setBugID(bugID);
         //selectDAO.selectAndDeleteIfExistBugText(createBugTextTableBody.getStepsToReproduce());
         try{
-            ConnectionFactory connectionFactory = new ConnectionFactory();
+            ConnectionFactoryDAO connectionFactoryDAO = new ConnectionFactoryDAO();
             String sql = "INSERT INTO bugtracker.mantis_bug_history_table (user_id,bug_id,field_name,old_value,new_value,type,date_modified) VALUES (?,?,?,?,?,?,?);";
-            PreparedStatement pst = connectionFactory.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement pst = connectionFactoryDAO.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             pst.setInt(1, bugHistoryTableBody.getUserID());//userID = 1
             pst.setInt(2, bugHistoryTableBody.getBugID());//BugID =
             pst.setString(3, bugHistoryTableBody.getFieldName());//FieldName = ""
@@ -297,9 +297,9 @@ public class InsertDAO {
             if (rs.next()) {
                 id = rs.getInt(1);
             }
-            connectionFactory.transactionConfirm();
+            connectionFactoryDAO.transactionConfirm();
             pst.close();
-            connectionFactory.closeConnection();
+            connectionFactoryDAO.closeConnection();
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -311,9 +311,9 @@ public class InsertDAO {
         String nome = "CustomFieldTest";
         String possibleValues = "Seattle";
         try{
-            ConnectionFactory connectionFactory = new ConnectionFactory();
+            ConnectionFactoryDAO connectionFactoryDAO = new ConnectionFactoryDAO();
             String sql = "INSERT INTO bugtracker.mantis_custom_field_table (name,possible_values) VALUES (?,?);";
-            PreparedStatement pst = connectionFactory.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement pst = connectionFactoryDAO.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             pst.setString(1, nome);
             pst.setString(2, possibleValues);
             pst.executeUpdate();
@@ -321,9 +321,9 @@ public class InsertDAO {
             if (rs.next()) {
                 id = rs.getInt(1);
             }
-            connectionFactory.transactionConfirm();
+            connectionFactoryDAO.transactionConfirm();
             pst.close();
-            connectionFactory.closeConnection();
+            connectionFactoryDAO.closeConnection();
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -336,9 +336,9 @@ public class InsertDAO {
     public int setInsertUsuarioTableMantisBTDataBaseAndReturnID(UsuariosType usuariosType) throws SQLException {
         int id = 0;
         try{
-            ConnectionFactory connectionFactory = new ConnectionFactory();
+            ConnectionFactoryDAO connectionFactoryDAO = new ConnectionFactoryDAO();
             String oneUser = "INSERT INTO bugtracker.mantis_user_table(username,realname,email,enabled,protected,access_level,cookie_string) VALUES(?,?,?,?,?,?,?)";
-            PreparedStatement pst = connectionFactory.getConnection().prepareStatement(oneUser, Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement pst = connectionFactoryDAO.getConnection().prepareStatement(oneUser, Statement.RETURN_GENERATED_KEYS);
             pst.setString(1, usuariosType.getUserName());
             pst.setString(2, usuariosType.getRealName());
             pst.setString(3, usuariosType.getEmail());
@@ -351,9 +351,9 @@ public class InsertDAO {
             if (rs.next()) {
                 id = rs.getInt(1);
             }
-            connectionFactory.transactionConfirm();
+            connectionFactoryDAO.transactionConfirm();
             pst.close();
-            connectionFactory.closeConnection();
+            connectionFactoryDAO.closeConnection();
         } catch (SQLException ex) {
             throw new SQLException("Falha ocorrida setInsertUsuarioTableMantisBTDataBaseAndReturnID : "+ex.getMessage());
         }
@@ -362,9 +362,9 @@ public class InsertDAO {
 
     public void setInsertUsuarioTableMantisBTDataBase(UsuariosType usuariosType){
         try{
-            ConnectionFactory connectionFactory = new ConnectionFactory();
+            ConnectionFactoryDAO connectionFactoryDAO = new ConnectionFactoryDAO();
             String oneUser = "INSERT INTO bugtracker.mantis_user_table(username,realname,email,enabled,protected,access_level,cookie_string) VALUES(?,?,?,?,?,?,?)";
-            PreparedStatement pst = connectionFactory.getConnection().prepareStatement(oneUser, Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement pst = connectionFactoryDAO.getConnection().prepareStatement(oneUser, Statement.RETURN_GENERATED_KEYS);
             pst.setString(1, usuariosType.getUserName());
             pst.setString(2, usuariosType.getRealName());
             pst.setString(3, usuariosType.getEmail());
@@ -373,10 +373,10 @@ public class InsertDAO {
             pst.setString(6, usuariosType.getAccessLevel());
             pst.setString(7, usuariosType.getCookieString());
             pst.executeUpdate();
-            connectionFactory.transactionConfirm();
+            connectionFactoryDAO.transactionConfirm();
             LOGGER.info(String.valueOf(pst.getGeneratedKeys()));
             pst.close();
-            connectionFactory.closeConnection();
+            connectionFactoryDAO.closeConnection();
         } catch (Exception ex) {
             System.out.println("Falha ocorrida setInsertUsuarioTableMantisBTDataBase : "+ex.getMessage());
         }

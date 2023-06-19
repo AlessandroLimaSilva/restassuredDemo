@@ -3,7 +3,7 @@ package br.com.ale.restassuredDemo.StepDefinitions;
 import br.com.ale.restassuredDemo.Body.CreateAProjectPostRequestBody.CreateAProjectPostBody;
 import br.com.ale.restassuredDemo.Body.UpdateAProjectRequestBody.UpdateAProjectPatchBody;
 import br.com.ale.restassuredDemo.Body.UtilsRequestBody.ProjetoBody;
-import br.com.ale.restassuredDemo.DAO.DeleteDao;
+import br.com.ale.restassuredDemo.DAO.DeleteDAO;
 import br.com.ale.restassuredDemo.DAO.InsertDAO;
 import br.com.ale.restassuredDemo.DAO.SelectDAO;
 import br.com.ale.restassuredDemo.Requests.ProjetosRequest;
@@ -78,7 +78,7 @@ public class ProjetosStepDefinitions {
 
     @And("deleto o projeto que foi cadastrado")
 public void deletoOProjetoQueFoiCadastrado(){
-        DeleteDao deleteDao = new DeleteDao();
+        DeleteDAO deleteDao = new DeleteDAO();
         deleteDao.deleteProjectMantisBTPerIDProject(ID_PROJETO);
     }
 
