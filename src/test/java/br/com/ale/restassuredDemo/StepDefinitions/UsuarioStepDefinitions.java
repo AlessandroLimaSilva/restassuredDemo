@@ -78,7 +78,7 @@ public class UsuarioStepDefinitions {
     public void CriarNovoUsuarioPost(String nomeUsuario){
         NOME_USUARIO = nomeUsuario;
         DeleteDAO deleteDao = new DeleteDAO();
-        deleteDao.deletarUsuarioPorNomeMantisBTTableUsuario(nomeUsuario);
+        deleteDao.deletarUsuarioPorNomeMantisBTTableUsuario(NOME_USUARIO);
         usuariosRequest = new UsuariosRequest();
         usuariosRequest.criarNovoUsuarioRequest(nomeUsuario);
         validatableResponse = usuariosRequest.executeRequest();

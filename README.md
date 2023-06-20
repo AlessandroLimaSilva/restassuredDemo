@@ -1,6 +1,7 @@
 # Framework de Teste de API com RestAssured em um Ambiente de Testes Docker
 
 Neste tutorial, vamos explorar como configurar um ambiente de testes completo com Docker que contém os contêineres do MantisBT, MySQL e Jenkins, juntamente com o uso do framework de teste de API RestAssured. O ambiente de testes Docker fornecerá uma infraestrutura completa e escalável para executar testes de API do MantisBT API de forma automatizada e controlada.
+Ao Final deste tutorial teremos implementado um Pipepline com CI/CD completo de testes automatizados.
 
 ## Ambiente de Testes Docker
 
@@ -485,76 +486,256 @@ Para começar a utilizar este framework de teste de API, siga estas etapas:
     ![Texto alternativo](src/test/resources/readmeImg/mantisBT10.png)
   - - #### Lembre-se iremos precisar do token nos passos seguintes
 
-- ### Configurando o Jenkins
-    #### 1. Abra o terminal pressionando "Ctrl + Alt + T" no teclado e digite.
-    ```bash
-    sudo docker ps -a
-    ```
-    #### Sera retornado as informações dos container
-    ```bash
-    code@Nitro:~$ sudo docker ps -a
-    CONTAINER ID   IMAGE                      COMMAND                  CREATED       STATUS       PORTS                                                                                      NAMES
-    e8b5c06810f2   vimagick/mantisbt:latest   "docker-php-entrypoi…"   4 hours ago   Up 4 hours   0.0.0.0:8989->80/tcp, :::8989->80/tcp                                                      docker-mantisbt-1
-    48a433718ca3   docker-jenkins             "/usr/bin/tini -- /u…"   4 hours ago   Up 4 hours   0.0.0.0:50000->50000/tcp, :::50000->50000/tcp, 0.0.0.0:8081->8080/tcp, :::8081->8080/tcp   jenkins
-    352cf52ae2a3   mysql:5.7                  "docker-entrypoint.s…"   4 hours ago   Up 4 hours   0.0.0.0:3306->3306/tcp, :::3306->3306/tcp, 33060/tcp                                       docker-mysql-1
-    ```    
-    #### Iremos copiar o CONTAINER ID do nosso container do Jenkins e no terminal e iremos digitar.
-    #### sudo docker exec -it CONTAINER ID bash
-    ```bash
-    sudo docker exec -it 48a433718ca3 bash 
-    ```
-    #### Agora estamos acessando o container do jenkins pelo terminal, com isso iremos copiar o password para acessar o jenkins no terminal e digitamos.
-    ```bash
-    cat /var/jenkins_home/secrets/initialAdminPassword 
-    ```
-    ![Texto alternativo](src/test/resources/readmeImg/jenkins01.png)
-    #### Copie o password, precisaremos dele para acessar o jenkins
+  - ### Configurando o Jenkins
+      #### 1. Abra o terminal pressionando "Ctrl + Alt + T" no teclado e digite.
+      ```bash
+      sudo docker ps -a
+      ```
+      #### Sera retornado as informações dos container
+      ```bash
+      code@Nitro:~$ sudo docker ps -a
+      CONTAINER ID   IMAGE                      COMMAND                  CREATED       STATUS       PORTS                                                                                      NAMES
+      e8b5c06810f2   vimagick/mantisbt:latest   "docker-php-entrypoi…"   4 hours ago   Up 4 hours   0.0.0.0:8989->80/tcp, :::8989->80/tcp                                                      docker-mantisbt-1
+      48a433718ca3   docker-jenkins             "/usr/bin/tini -- /u…"   4 hours ago   Up 4 hours   0.0.0.0:50000->50000/tcp, :::50000->50000/tcp, 0.0.0.0:8081->8080/tcp, :::8081->8080/tcp   jenkins
+      352cf52ae2a3   mysql:5.7                  "docker-entrypoint.s…"   4 hours ago   Up 4 hours   0.0.0.0:3306->3306/tcp, :::3306->3306/tcp, 33060/tcp                                       docker-mysql-1
+      ```    
+      #### Iremos copiar o CONTAINER ID do nosso container do Jenkins e no terminal e iremos digitar.
+      #### sudo docker exec -it CONTAINER ID bash
+      ```bash
+      sudo docker exec -it 48a433718ca3 bash 
+      ```
+      #### Agora estamos acessando o container do jenkins pelo terminal, com isso iremos copiar o password para acessar o jenkins no terminal e digitamos.
+      ```bash
+      cat /var/jenkins_home/secrets/initialAdminPassword 
+      ```
+      ![Texto alternativo](src/test/resources/readmeImg/jenkins01.png)
+      #### Copie o password, precisaremos dele para acessar o jenkins
 
-    #### 2. Abra um navegador e digite na barra de endereço
-    #### [http://0.0.0.0:8081/login?from=%2F](http://0.0.0.0:8081/login?from=%2F)
+      #### 2. Abra um navegador e digite na barra de endereço
+      #### [http://0.0.0.0:8081/login?from=%2F](http://0.0.0.0:8081/login?from=%2F)
 
-    #### ou
+      #### ou
 
-    #### [http://localhost:8081/login?from=%2F](http://localhost:8081/login?from=%2F)
-    #### Vamos informar a senha de administrador e clicar em Continuar
-    ![Texto alternativo](src/test/resources/readmeImg/jenkins02.png)
+      #### [http://localhost:8081/login?from=%2F](http://localhost:8081/login?from=%2F)
+      #### Vamos informar a senha de administrador e clicar em Continuar
+      ![Texto alternativo](src/test/resources/readmeImg/jenkins02.png)
     
-    #### Clique em Instalar as extensões sugeridas, as extensões necessarias ja foram adicionadas no container.
-    ![Texto alternativo](src/test/resources/readmeImg/jenkins03.png)
-    ![Texto alternativo](src/test/resources/readmeImg/jenkins04.png)
-    #### Agora iremos preencher os campos para criar um usuario administrativo
-    - #### Em Nome de usuario informe
-    ```bash
-    root
-    ```
-    - #### Em Senha informe
-    ```bash
-    root
-    ```
-    - #### Em Confirmar Senha informe
-    ```bash
-    root
-    ```
-    - #### Em Nome Completo informe
-    ```bash
-    root root
-    ```
-    - #### Em Endereço de Email informe
-    ```bash
-    root@root.com
-    ```
-    - #### Clique em Salvar e continuar
-    ![Texto alternativo](src/test/resources/readmeImg/jenkins05.png)
-    - #### Clique em Gravar e Concluir
-    ![Texto alternativo](src/test/resources/readmeImg/jenkins06.png)
-    - #### Clique em Reiniciar
-    ![Texto alternativo](src/test/resources/readmeImg/jenkins07.png)
-    - #### Aguarde o jenkins realizar as configurações, se dentro de 5 minutos a pagina não recarregar sozinha aperte F5 para recarregar a pagina.
-    ![Texto alternativo](src/test/resources/readmeImg/jenkins08.png)
+      #### Clique em Instalar as extensões sugeridas, as extensões necessarias ja foram adicionadas no container.
+      ![Texto alternativo](src/test/resources/readmeImg/jenkins03.png)
+      ![Texto alternativo](src/test/resources/readmeImg/jenkins04.png)
+      #### Agora iremos preencher os campos para criar um usuario administrativo
+      - #### Em Nome de usuario informe
+      ```bash
+      root
+      ```
+      - #### Em Senha informe
+      ```bash
+      root
+      ```
+      - #### Em Confirmar Senha informe
+      ```bash
+      root
+      ```
+      - #### Em Nome Completo informe
+      ```bash
+      root root
+      ```
+      - #### Em Endereço de Email informe
+      ```bash
+      root@root.com
+      ```
+      - #### Clique em Salvar e continuar
+      ![Texto alternativo](src/test/resources/readmeImg/jenkins05.png)
+      - #### Clique em Gravar e Concluir
+      ![Texto alternativo](src/test/resources/readmeImg/jenkins06.png)
+      - #### Clique em Reiniciar
+      ![Texto alternativo](src/test/resources/readmeImg/jenkins07.png)
+      - #### Aguarde o jenkins realizar as configurações, se dentro de 5 minutos a pagina não recarregar sozinha aperte F5 para recarregar a pagina.
+      ![Texto alternativo](src/test/resources/readmeImg/jenkins08.png)
 
-  #### 3. Agora iremos configurar o jenkins para executar os nossos testes.
-
+    #### 3. Agora iremos configurar o jenkins para executar os nossos testes.
+    #### Agora iremos preencher os campos para realizar o login
+      - #### Em Nome de usuario informe
+      ```bash
+      root
+      ```
+      - #### Em Senha informe
+      ```bash
+      root
+      ```
+      #### Agora clique em entrar
+      ![Texto alternativo](src/test/resources/readmeImg/jenkins09.png)
     
+    #### Clique em nova tarefa
+    ![Texto alternativo](src/test/resources/readmeImg/jenkins09.png)
+    
+    #### Informe o nome do teste 
+    ```bash
+    QA-MantisBT-API
+    ```
+    ![Texto alternativo](src/test/resources/readmeImg/jenkins11.png)
+    
+    #### Clique em Construir um projeto de software de estilo livre
+    ![Texto alternativo](src/test/resources/readmeImg/jenkins12.png)
+
+    #### Clique em Tudo certo
+    ![Texto alternativo](src/test/resources/readmeImg/jenkins13.png)
+    
+    #### Informe a descrição do projeto 
+    ```bash
+    Testes automatizados API MantisBT
+    ```
+    ![Texto alternativo](src/test/resources/readmeImg/jenkins14.png)
+    
+    #### Selecione Esta construção é parametrizada. 
+    ![Texto alternativo](src/test/resources/readmeImg/jenkins15.png)
+
+    #### Clique em Adicionar parametro
+    ![Texto alternativo](src/test/resources/readmeImg/jenkins16.png)
+
+    #### Clique em Parametro da senha
+    ![Texto alternativo](src/test/resources/readmeImg/jenkins17.png)
+
+    #### Preencha Nome 
+    ```bash
+    TOKEN
+    ```
+    ![Texto alternativo](src/test/resources/readmeImg/jenkins18.png)
+  
+    #### Agora iremos preencher valor padrão com token que geramos no MantisBT
+    ```bash
+    vYpgsCjNSf2AE-dVR2Xtqs9asBvXp2Qd
+    ```
+    ![Texto alternativo](src/test/resources/readmeImg/jenkins19.png)
+
+    #### Clique em novamente Adicionar parametro
+    ![Texto alternativo](src/test/resources/readmeImg/jenkins16.png)
+
+    #### Clique em Parametro de texto
+    ![Texto alternativo](src/test/resources/readmeImg/jenkins217.png)
+
+    #### Preencha Nome
+    ```bash
+    AMBIENTE
+    ```
+    ![Texto alternativo](src/test/resources/readmeImg/jenkins218.png)
+
+    #### Agora iremos preencher valor padrão com o ambiente no qual iremos executar os testes
+    ```bash
+    hml
+    ```
+    ![Texto alternativo](src/test/resources/readmeImg/jenkins219.png)
+
+    #### Clique em Aplicar
+    ![Texto alternativo](src/test/resources/readmeImg/jenkins20.png)
+
+    #### Clique em Gerenciamento do codigo
+    ![Texto alternativo](src/test/resources/readmeImg/jenkins21.png)
+
+    #### Clique em Git
+    ![Texto alternativo](src/test/resources/readmeImg/jenkins21.png)
+
+    #### Preencha Repository URL
+    ```bash
+    https://github.com/AlessandroLimaSilva/restassuredDemo
+    ```
+    ![Texto alternativo](src/test/resources/readmeImg/jenkins22.png)
+
+    #### Preencha Branch Specifier (blank for 'any')
+    ```bash
+    */main
+    ```
+    ![Texto alternativo](src/test/resources/readmeImg/jenkins23.png)
+
+    #### Clique em Aplicar
+    ![Texto alternativo](src/test/resources/readmeImg/jenkins20.png)
+
+    #### Clique em Ambiente de construção
+    ![Texto alternativo](src/test/resources/readmeImg/jenkins24.png)
+
+    #### Clique em Delete workspace before build starts
+    ![Texto alternativo](src/test/resources/readmeImg/jenkins25.png)
+
+    #### Clique em Ambiente de construção
+    ![Texto alternativo](src/test/resources/readmeImg/jenkins26.png)
+
+    #### Clique em Adicionar passo na construção
+    ![Texto alternativo](src/test/resources/readmeImg/jenkins27.png)
+
+    #### Clique em Executar shell
+    ![Texto alternativo](src/test/resources/readmeImg/jenkins28.png)
+
+    #### Preencha Command, estamos passando as variaveis que criamos no inicio da configuração.
+    ```bash
+    sed -i "s|enviroment=.*|enviroment=$AMBIENTE|" src/globalParameters.propeties
+    sed -i "s|$AMBIENTE.token=.*|$AMBIENTE.token=$TOKEN|" src/globalParameters.propeties
+    ```
+    ![Texto alternativo](src/test/resources/readmeImg/jenkins29.png)
+
+    #### Clique em Aplicar
+    ![Texto alternativo](src/test/resources/readmeImg/jenkins20.png)
+
+    #### Clique em Adicionar passo na construção
+    ![Texto alternativo](src/test/resources/readmeImg/jenkins27.png)
+
+    #### Clique em Chamar alvos Maven de alto nivel
+    ![Texto alternativo](src/test/resources/readmeImg/jenkins30.png)
+
+    #### Preencha Goals
+    ```bash
+    clean verify "-Dcucumber.filters.tags= @automatizado"
+    ```
+    ![Texto alternativo](src/test/resources/readmeImg/jenkins31.png)
+
+    #### Clique em Ações de pós-construção
+    ![Texto alternativo](src/test/resources/readmeImg/jenkins32.png)
+
+    #### Clique em Adicionar ação de pós-construção
+    ![Texto alternativo](src/test/resources/readmeImg/jenkins33.png)
+
+    #### Clique em Publicar relatorio de testes do junit
+    ![Texto alternativo](src/test/resources/readmeImg/jenkins34.png)
+
+    #### Preencha Relatorio XML de teste
+    ```bash
+    target/surefire-reports/*.xml
+    ```
+    ![Texto alternativo](src/test/resources/readmeImg/jenkins35.png)
+
+    #### Clique novamente em Adicionar ação de pós-construção
+    ![Texto alternativo](src/test/resources/readmeImg/jenkins33.png)
+
+    #### Clique Publish HTML reports
+    ![Texto alternativo](src/test/resources/readmeImg/jenkins36.png)
+
+    #### Clique Adicionar
+    ![Texto alternativo](src/test/resources/readmeImg/jenkins37.png)
+
+    #### Preencha HTML directory to archive
+    ```bash
+    ./target/relatorio/ 2023/
+    ```
+    ![Texto alternativo](src/test/resources/readmeImg/jenkins38.png)
+
+    #### Preencha HTML directory to archive
+    ```bash
+    index.html
+    ```
+    ![Texto alternativo](src/test/resources/readmeImg/jenkins39.png)
+
+    #### Preencha Report title
+    ```bash
+    HTML Report
+    ```
+    ![Texto alternativo](src/test/resources/readmeImg/jenkins40.png)
+
+    #### Clique em Aplicar
+    ![Texto alternativo](src/test/resources/readmeImg/jenkins20.png)
+
+    #### Clique em Salvar
+    ![Texto alternativo](src/test/resources/readmeImg/jenkins20.png)
+    
+    #### Agora ja temos nosso job configurado no jenkins e pronto para execução dos testes.
 
 3. Importe o projeto em sua IDE preferida como um projeto Maven existente.
 3. Certifique-se de que todas as dependências do Maven sejam baixadas corretamente.
