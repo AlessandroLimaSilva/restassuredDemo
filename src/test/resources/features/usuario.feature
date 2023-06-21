@@ -1,3 +1,4 @@
+@usuario
 Feature: Usuario
 
   @automatizado @[Usuario-001]-ObterMinhasInformacoesDeUsuarioComSucesso

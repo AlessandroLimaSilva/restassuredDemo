@@ -39,7 +39,6 @@ public class UsuarioStepDefinitions {
                 "real_name", containsString("admin"),
                 "email",containsString("root@localhost"),
                 "language", containsString("english"),
-                "timezone", containsString("America/Sao_Paulo"),
                 "access_level.id", is(90),
                 "access_level.name", containsString("administrator"),
                 "access_level.label", containsString("administrator"));

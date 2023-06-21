@@ -35,8 +35,8 @@ public class ProjetosStepDefinitions {
     protected static ArrayList<Object> ts = new ArrayList<>();
     public static Integer ID_PROJETO;
 
-    @When("envio a requisicao para obter todos os projetos")
-    public void envioARequisicaoParaObterTodosOsProjetos(){
+    @When("uma requisição é enviada para obter todos os projetos")
+    public void umaRequisicaoEEnviadaParaObterTodosOsProjetos(){
         PROJETOS_REQUEST = new ProjetosRequest();
         PROJETOS_REQUEST.todosOsProjetosRequest();
         validatableResponse = PROJETOS_REQUEST.executeRequest();
@@ -51,7 +51,7 @@ public class ProjetosStepDefinitions {
         List<Integer> idList =jsonPath.getList("projects");
         validatableResponse.statusCode(200);
         GroovyClassLoader loader = new GroovyClassLoader();
-        Class<?> groovyClass = loader.parseClass(new File("src/test/java/br/com/ale/restassuredDemo/utils/ValidacaoRegex.groovy"));
+        Class<?> groovyClass = loader.parseClass(new File("src/test/java/br/com/ale/restassuredDemo/utils/ValidacaoGroovy.groovy"));
         GroovyObject groovyObject = (GroovyObject) groovyClass.getDeclaredConstructor().newInstance();
         Object[] objeto = {quantidadeDeProjetosNoBanco, idList.size()};
         boolean numerosIguais = (boolean) groovyObject.invokeMethod("numerosSaoIguais", objeto);
@@ -59,13 +59,13 @@ public class ProjetosStepDefinitions {
         validatableResponse.log().all();
     }
 
-    @Then("o status code 200 e validado com sucesso")
-    public void statusCodeHTTPOKEValidadoComSucesso(){
+    @Then("o status code 200 e retornado com sucesso")
+    public void statusCodeHTTPOKERetornadoComSucesso(){
         validatableResponse.statusCode(200);
     }
 
-    @And("que possuo um projeto cadastrado")
-    public void quePossuoUmProjetoCadastrado() throws Exception {
+    @And("que exista um projeto cadastrado")
+    public void queExistaUmProjetoCadastrado() throws Exception {
         InsertDAO insertDAO = new InsertDAO();
         ID_PROJETO = insertDAO.setInsertOneProjectAndReturnPk();
     }
@@ -76,8 +76,8 @@ public class ProjetosStepDefinitions {
         validatableResponse.body(JsonSchemaValidator.matchesJsonSchemaInClasspath("todosOsProjetosSchema.json"));
     }
 
-    @And("deleto o projeto que foi cadastrado")
-public void deletoOProjetoQueFoiCadastrado(){
+    @And("o projeto cadastrado é deletado")
+public void projetoCadastradoEDeletado(){
         DeleteDAO deleteDao = new DeleteDAO();
         deleteDao.deleteProjectMantisBTPerIDProject(ID_PROJETO);
     }
@@ -101,31 +101,31 @@ public void deletoOProjetoQueFoiCadastrado(){
         }
     }
 
-    @When("envio a requisicao com o id do projeto a ser excluido")
-    public void enviarRequisicaoComIdDoProjetoASerExcluido(){
+    @When("uma requisição é enviada com o id do projeto a ser excluido")
+    public void umaRequisicaoEEnviadaComOIDDoProjetoASerExcluido(){
         PROJETOS_REQUEST = new ProjetosRequest();
         PROJETOS_REQUEST.deletarProjetoIDRequest(String.valueOf(ID_PROJETO));
         validatableResponse = PROJETOS_REQUEST.executeRequest();
     }
 
-    @When("^informo id (.*) invalido na requisicao de excluir um projeto$")
-    public void informoIDInvalidoNaRequisicaoDeExcluirUmProjeto(String idProjeto){
+    @When("^uma requisição para excluir um projeto é enviada informando o id (.*) invalido$")
+    public void umaRequisicaoParaExcluirUmProjetoEEnviadaInformandoOIDInvalido(String idProjeto){
         PROJETOS_REQUEST = new ProjetosRequest();
         PROJETOS_REQUEST.deletarProjetoIDRequest(String.valueOf(idProjeto));
         validatableResponse = PROJETOS_REQUEST.executeRequest();
         validatableResponse.log().all();
     }
 
-    @When("informo o id {int} de um projeto nao cadastrado na requisicao")
-    public void informoOIDDeUmProjetoNaoCadastradoNaRequisicao(int idProjeto){
+    @When("uma requisição é enviada com o id {int} de um projeto nao cadastrado")
+    public void umaRequisicaoEEnviadaComOIDDeUmProjetoNaoCadastrado(int idProjeto){
         PROJETOS_REQUEST = new ProjetosRequest();
         PROJETOS_REQUEST.deletarProjetoIDRequest(String.valueOf(idProjeto));
         validatableResponse = PROJETOS_REQUEST.executeRequest();
         validatableResponse.log().all();
     }
 
-    @Then("e informado que nao existe um projeto com esse id com sucesso")
-    public void informadoQuenaoExisteUmProjetoComEsseIDComSucesso() {
+    @Then("e retornado que nao existe um projeto com esse id com sucesso")
+    public void retornadoQuenaoExisteUmProjetoComEsseIDComSucesso() {
         String retorno =  Arrays.toString(validatableResponse.extract().statusLine().split(" "));
         try {
             String[] list = new String[]{Arrays.toString(validatableResponse.extract().statusLine().split(" "))};
@@ -171,16 +171,16 @@ public void deletoOProjetoQueFoiCadastrado(){
         validatableResponse = PROJETOS_REQUEST.executeRequest();
     }
 
-    @When("envio a requisicao com o id do projeto ser pesquisado")
-    public void enviarRequisicaoComIdDoProjetoASerPesquisado(){
+    @When("uma requisição é enviada com o id do projeto a ser pesquisado")
+    public void umaRequisicaoEEnviadaComOIDDoProjetoASerPesquisado(){
         PROJETOS_REQUEST = new ProjetosRequest();
         PROJETOS_REQUEST.obterProjetoIDRequest(String.valueOf(ID_PROJETO));
         validatableResponse = PROJETOS_REQUEST.executeRequest();
         validatableResponse.log().all();
     }
 
-    @When("que envio o id {int} de um projeto que nao existe")
-    public void queEnvioOIDDeUmProjetoQueNaoExiste(int idProjeto){
+    @When("uma requisição é enviada com o id {int} de um projeto que nao existe")
+    public void umaRequisicaoEEnviadaComOIDDeUmProjetoQueNaoExiste(int idProjeto){
         ID_PROJETO = idProjeto;
         PROJETOS_REQUEST = new ProjetosRequest();
         PROJETOS_REQUEST.obterProjetoIDRequest(String.valueOf(idProjeto));
@@ -240,10 +240,15 @@ public void deletoOProjetoQueFoiCadastrado(){
         validatableResponse.log().all();
     }
 
-    @And("monto o banco de dados do teste")
-    public void montarBancoDeDadosDoTeste() throws Exception {
+    @And("a miserable little pile of secrets")
+    public void aMiserableLittlePileOfSecrets(){
         InsertDAO insertDAO = new InsertDAO();
         insertDAO.popularBancoDeDadoTesteAPI();
+    }
+
+    @Then("Dracula Conde")
+    public void DraculaConde(){
+        System.out.println("Banco de dados online e populado com sucesso !!!");
     }
 
     @When("consulto todos os id's dos projetos")
@@ -268,8 +273,8 @@ public void deletoOProjetoQueFoiCadastrado(){
         }
     }
 
-    @When("informo os dados necessarios para criar um novo projeto na requisicao")
-    public void informoOsDadosNecessariosParaCriarUmNovoProjetoNaRequisicao() throws JsonProcessingException {
+    @When("uma requisição é enviada com os dados necessarios para criar um novo projeto")
+    public void umaRequisicaoEEnviadaComOsDadosNecessariosParaCriarUmNovoProjeto() throws JsonProcessingException {
         SelectDAO selectDAO = new SelectDAO();
         String body = selectDAO.selectRequestJsonBody("CreateAProjectPostBody");
         ObjectMapper mapper = new ObjectMapper();
@@ -297,8 +302,8 @@ public void deletoOProjetoQueFoiCadastrado(){
         validatableResponse.log().all();
     }
 
-    @When("informo os dados para alterar o projeto")
-    public void informoOsDadosParaAlterarONomeDoProjetoPara() throws JsonProcessingException {
+    @When("uma requisição é enviada com os dados para alterar o projeto")
+    public void umaRequisicaoEEnviadaComOsDadosParaAlterarOProjeto() throws JsonProcessingException {
         SelectDAO selectDAO = new SelectDAO();
         String body = selectDAO.selectRequestJsonBody("UpdateAProjectPatchBody");
         ObjectMapper mapper = new ObjectMapper();
@@ -310,8 +315,8 @@ public void deletoOProjetoQueFoiCadastrado(){
         validatableResponse.log().all();
     }
 
-    @When("informo na requisicao um id {int} de projeto que nao existe")
-    public void informoNaRequisicaoUmIDDeProjetoQueNaoExiste(int idProjeto) throws JsonProcessingException {
+    @When("uma requisição é enviada informando o id {int} de um projeto que nao existe")
+    public void umaRequisicaoEEnviadaInformandoOIDDeUmProjetoQueNaoExiste(int idProjeto) throws JsonProcessingException {
         ID_PROJETO = idProjeto;
         SelectDAO selectDAO = new SelectDAO();
         String body = selectDAO.selectRequestJsonBody("UpdateAProjectPatchBody");
@@ -324,8 +329,8 @@ public void deletoOProjetoQueFoiCadastrado(){
         validatableResponse.log().all();
     }
 
-    @When("^informo o id (.*) invalido na requisicao alterar um projeto$")
-    public void informoOIDInvalidoNaRequisicaoAlterarUmProjeto(String idProjeto) throws JsonProcessingException {
+    @When("^uma requisição para alterar um projeto é enviada informando o id (.*) invalido$")
+    public void umaRequisicaoParaAlterarUmProjetoEEnviadaInformandoOIDInvalido(String idProjeto) throws JsonProcessingException {
         SelectDAO selectDAO = new SelectDAO();
         String body = selectDAO.selectRequestJsonBody("UpdateAProjectPatchBody");
         ObjectMapper mapper = new ObjectMapper();

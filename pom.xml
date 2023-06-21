@@ -160,6 +160,14 @@
                         </goals>
                     </execution>
                 </executions>
+                <configuration>
+                    <testFailureIgnore>false</testFailureIgnore>
+                    <includes>
+                        <include>**/*Test.java</include>
+                    </includes>
+                    <parallel>methods</parallel>
+                    <threadCount>4</threadCount>
+                </configuration>
                 <dependencies>
                     <dependency>
                         <groupId>junit</groupId>
@@ -177,15 +185,6 @@
                         <version>1.5.1</version>
                     </dependency>
                 </dependencies>
-                <configuration>
-                    <testFailureIgnore>false</testFailureIgnore>
-
-                    <includes>
-                        <include>**/*Test.java</include>
-                    </includes>
-                    <parallel>methods</parallel>
-                    <threadCount>4</threadCount>
-                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

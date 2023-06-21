@@ -1,6 +1,6 @@
-# Framework de Teste de API com RestAssured em um Ambiente de Testes Docker
+# Framework de Teste de API com RestAssured com Ambiente CI/CD de Testes automatizados
 
-Neste tutorial, vamos explorar como configurar um ambiente de testes completo com Docker que contém os contêineres do MantisBT, MySQL e Jenkins, juntamente com o uso do framework de teste de API RestAssured. O ambiente de testes Docker fornecerá uma infraestrutura completa e escalável para executar testes de API do MantisBT API de forma automatizada e controlada.
+Neste tutorial, vamos explorar como configurar um ambiente CI/CD de testes completo com Docker que contém os contêineres do MantisBT, MySQL e Jenkins, juntamente com o uso do framework de teste de API RestAssured. O ambiente de testes Docker fornecerá uma infraestrutura completa e escalável para executar testes de API do MantisBT API de forma automatizada e controlada.
 Ao Final deste tutorial teremos implementado um Pipepline com CI/CD completo de testes automatizados.
 
 ## Ambiente de Testes Docker
@@ -32,46 +32,8 @@ Este é um projeto incrível de um framework de teste de API altamente eficiente
 
 - **Jackson Databind**: O Jackson Databind é uma biblioteca de serialização e desserialização JSON muito popular no ecossistema Java. Com ele, você pode converter facilmente objetos Java em formato JSON e vice-versa. Ele fornece uma maneira simples e eficiente de trabalhar com dados JSON em seus testes de API.
 
-## Organização do Projeto
+- **MySQL**: Aproveite a integração com o MySQL para armazenar e gerenciar dados em seus testes. O MySQL é um sistema de gerenciamento de banco de dados relacional amplamente utilizado, conhecido por sua confiabilidade e desempenho. Com o MySQL, você pode criar tabelas, inserir dados, realizar consultas e muito mais, tornando-o uma escolha poderosa para o armazenamento e recuperação de dados em seus testes.
 
-Este projeto está estruturado de forma organizada para facilitar o desenvolvimento e a manutenção dos testes de API:
-
-```
-|-- src
-|   |-- globalParameters.properties
-|   |-- test
-|       |-- java
-|           |-- br.com.ale.restassuredDemo
-|               |--  Base
-|                   |-- RestBase.java
-|               |--  Body
-|                   |-- Body.java
-|               |--  DAO
-|                   |-- DAO.java
-|               |--  Hooks
-|                   |-- Hook.java
-|               |--  Requests
-|                   |-- Request.java
-|               |-- StepDefinitions
-|                   |-- StepDefinitions.java
-|               |--  Tests
-|                   |-- Test.java
-|               |--  Types
-|                   |-- Type.java
-|               |-- utils
-|                   |-- ApiUtils.java
-|           |-- resources
-|               |-- Schema.json
-|               |-- extent.properties
-|               |-- extentConfig
-|                   |-- extent-html.xml 
-|               |-- features
-|                   |-- .features
-|            
-
-_tests.feature
-|-- reports
-```
 
 ## Configuração e Execução
     
@@ -553,7 +515,7 @@ Para começar a utilizar este framework de teste de API, siga estas etapas:
       - #### Aguarde o jenkins realizar as configurações, se dentro de 5 minutos a pagina não recarregar sozinha aperte F5 para recarregar a pagina.
       ![Texto alternativo](src/test/resources/readmeImg/jenkins08.png)
 
-    #### 3. Agora iremos configurar o jenkins para executar os nossos testes.
+    #### 3. Agora iremos configurar o job no jenkins para executar os nossos testes de modo continuo CI com o nosso codigo que esta no github.
     #### Agora iremos preencher os campos para realizar o login
       - #### Em Nome de usuario informe
       ```bash
@@ -681,6 +643,18 @@ Para começar a utilizar este framework de teste de API, siga estas etapas:
     #### Clique em Chamar alvos Maven de alto nivel
     ![Texto alternativo](src/test/resources/readmeImg/jenkins30.png)
 
+    #### Preencha Goals, utilizaremos este passo para montar nosso banco de dados que os utilizaram
+    ```bash
+    clean verify "-Dcucumber.filters.tags=@MontaOBancoDeDados"
+    ```
+    ![Texto alternativo](src/test/resources/readmeImg/jenkins231.png)
+
+    #### Clique em Adicionar passo na construção
+    ![Texto alternativo](src/test/resources/readmeImg/jenkins27.png)
+
+    #### Clique em Chamar alvos Maven de alto nivel
+    ![Texto alternativo](src/test/resources/readmeImg/jenkins30.png)
+
     #### Preencha Goals
     ```bash
     clean verify "-Dcucumber.filters.tags= @automatizado"
@@ -711,7 +685,7 @@ Para começar a utilizar este framework de teste de API, siga estas etapas:
     #### Clique Adicionar
     ![Texto alternativo](src/test/resources/readmeImg/jenkins37.png)
 
-    #### Preencha HTML directory to archive
+    #### Preencha HTML directory to archive, tenha cuidado para preencher é necessario o espaço antes de 2023, hello bug jenkins. 
     ```bash
     ./target/relatorio/ 2023/
     ```
@@ -735,34 +709,168 @@ Para começar a utilizar este framework de teste de API, siga estas etapas:
     #### Clique em Salvar
     ![Texto alternativo](src/test/resources/readmeImg/jenkins20.png)
     
-    #### Agora ja temos nosso job configurado no jenkins e pronto para execução dos testes.
+    #### Agora ja temos nosso job CI/CD configurado no jenkins e pronto para execução dos testes.
 
-3. Importe o projeto em sua IDE preferida como um projeto Maven existente.
-3. Certifique-se de que todas as dependências do Maven sejam baixadas corretamente.
-4. Explore os arquivos de teste e personalização para atender às necessidades específicas do seu projeto.
-5. Execute os testes usando a opção de execução de teste fornecida pela sua IDE ou via linha de comando com o comando `mvn test`.
-6. Desfrute dos relatórios detalhados gerados automaticamente no diretório `reports`.
+## Executando os testes no jenkins
+Neste passo iremos executar os testes no job que criamos no passo anterior.
+Tambem iremos visualizar os relatorios gerados apos a execução dos testes.
+
+#### Agora iremos preencher os campos para realizar o login
+   #### Em Nome de usuario informe
+   ```bash
+   root
+   ```
+   #### Em Senha informe
+   ```bash
+   root
+   ```
+   #### Agora clique em entrar
+   ![Texto alternativo](src/test/resources/readmeImg/jenkins09.png)
+
+   #### Agora clique QA-API-MantisBT
+   ![Texto alternativo](src/test/resources/readmeImg/jenkins41.png)
+
+   #### Agora clique me Construir com parâmetros 
+   ![Texto alternativo](src/test/resources/readmeImg/jenkins42.png) 
+
+   #### O modo como foi configurado o job nos permite construir o teste em ambientes diferentes, so precisamos passar o token e o ambiente.
+   - #### Clique em construir, como ja passamos as informações de token e ambiente não precisamos modificar nenhuma informação.
+   ![Texto alternativo](src/test/resources/readmeImg/jenkins43.png)
+
+   #### Para acompanhar a execução dos testes clique na barra azul
+   ![Texto alternativo](src/test/resources/readmeImg/jenkins44.png)
+
+   #### Nesta tela podemos acompanhar o log dos nossos testes sendo executados
+   ![Texto alternativo](src/test/resources/readmeImg/jenkins45.png)
+    
+   #### Nesta tela podemos visualizar o termino dos testes neste caso tivemos testes que falharam \\^^/, e isso é bom.
+   ![Texto alternativo](src/test/resources/readmeImg/jenkins46.png)
+    
+   #### Clique em QA-API-MantisBT.
+   ![Texto alternativo](src/test/resources/readmeImg/jenkins47.png)
+
+   #### Agora iremos visualizar o resultado do teste atraves do junit.
+   - #### Clique no job em que executamos os testes, neste caso o job 11.
+   ![Texto alternativo](src/test/resources/readmeImg/jenkins48.png)
+
+   #### Clique em resultado de testes.
+   ![Texto alternativo](src/test/resources/readmeImg/jenkins49.png)
+
+   #### Os resultados dos testes são apresentados.
+   ![Texto alternativo](src/test/resources/readmeImg/jenkins50.png)
+
+   #### Agora iremos visualizar o resultado do teste atraves do ExtentReport.
+   - #### Clique em QA-API-MantisBT.
+   ![Texto alternativo](src/test/resources/readmeImg/jenkins50.png)
+
+   #### Clique em HTML report.
+   ![Texto alternativo](src/test/resources/readmeImg/jenkins51.png)
+
+   #### O Nosso relatorio ExtentReport sera apresentado dessa forma pelo jenkins por medida de segurança.
+   #### Por isso vamos realizar o download do relatorio do ExtentReporter
+   - #### Clique em Back to QA-API-MantisBT
+   ![Texto alternativo](src/test/resources/readmeImg/jenkins52.png)
+
+   #### Clique em Workspace
+   ![Texto alternativo](src/test/resources/readmeImg/jenkins53.png)
+
+   #### Clique em target
+   ![Texto alternativo](src/test/resources/readmeImg/jenkins54.png) 
+
+   #### Clique em 2023
+   ![Texto alternativo](src/test/resources/readmeImg/jenkins55.png)
+
+   #### Clique em (Todos os arquivos em .zip), aguarde o fim do download do relatorio
+   ![Texto alternativo](src/test/resources/readmeImg/jenkins56.png)
+
+   #### descompacte o arquivo e abra o arquivo index.html, pronto ja podemos visualizar o Relatorio do ExtentReport
+   ![Texto alternativo](src/test/resources/readmeImg/jenkins57.png) 
+
+
+## Desafios Base 2
+
+### Teste automatizado de API da aplicação MantisBT
+
+##### - [✔] Tarefa concluída
+
+##### - [x] Tarefas pendentes
+
+### 1. [✔] Implementar 50 algoritmos de testes que manipulem uma aplicação cuja interface é uma API REST. 
+
+   ##### Mais de 50 algoritmos de testes unicos de api implementados.
+   ##### Software utilizado para os testes MantisBT.
+
+### 2. [✔] Alguns algoritmos de testes devem ler dados de uma planilha Excel para implementar Data-Driven. 
+
+   ##### Implementação de Data-Driven pelo Cucumber.
+   ![Texto alternativo](src/test/resources/readmeImg/dataDriven01.png)
+   ![Texto alternativo](src/test/resources/readmeImg/dataDriven02.png)
+   ![Texto alternativo](src/test/resources/readmeImg/dataDriven03.png)
+   ![Texto alternativo](src/test/resources/readmeImg/dataDriven04.png)
+
+### 3. [✔] Notem que 50 algoritmos de testes podem cobrir mais de 50 casos de testes se usarmos Data-Driven. Em outras palavras, implementar 50 CTs usando data-driven não é a mesma coisa que implementar 50 algoritmos de testes. </summary>
+
+   ##### Mais de 50 casos de testes unicos implementados, colocar o total de testes !!!
+
+### 4. [✔] O projeto deve tratar autenticação. Exemplo: OAuth2. 
+
+   #### Autenticação via token da API passada atraves do headers
+
+### 5. [X] Pelo menos um teste deve fazer a validação usando REGEX (Expressões Regulares). </summary>
+
+   #### Não implementado.
+
+### 6. [✔] Pelo menos um algoritmo de teste deve usar código Groovy / Node.js ou outra linguagem para fazer scripts.. 
+
+#### Implementado uma classe em Groovy [ValidacaoGroovy.groovy](https://github.com/AlessandroLimaSilva/restassuredDemo/blob/main/src/test/java/br/com/ale/restassuredDemo/utils/ValidacaoGroovy.groovy) para realizar um assert
+![Texto alternativo](src/test/resources/readmeImg/groovy01.png)
+
+![Texto alternativo](src/test/resources/readmeImg/groovy02.png)
+![Texto alternativo](src/test/resources/readmeImg/groovy03.png)
+
+
+### 7. [✔] O projeto deverá gerar um relatório de testes automaticamente. 
+
+#### O projeto gera automaticamente um relatorio do ExtentReport .
+![Texto alternativo](src/test/resources/readmeImg/relatorio01.png)
+
+#### O projeto gera automaticamente um relatorio do junit que pode ser visualizado no jenkins .
+![Texto alternativo](src/test/resources/readmeImg/jenkins50.png)
+
+### 8. [✔] Implementar pelo menos dois ambientes (desenvolvimento / homologação) 
+
+#### O Projeto foi desenvolvido para implementar quantos ambientes forem necessarios.
+#### Neste caso foram implementados 3 ambientes hml, dev e local.
+#### basta apenas adicionar o ambiente desejado atraves do arquivo [globalParameters.propeties](https://github.com/AlessandroLimaSilva/restassuredDemo/blob/main/src/globalParameters.propeties) e implementar na classe [GlobalParameters.java](https://github.com/AlessandroLimaSilva/restassuredDemo/blob/main/src/test/java/br/com/ale/restassuredDemo/utils/GlobalParameters.java)
+#### Na configuração realizada no job do jenkins é passado em qual ambiente o teste sera executado.
+![Texto alternativo](src/test/resources/readmeImg/jenkins43.png)
+![Texto alternativo](src/test/resources/readmeImg/jenkins29.png)
+
+### 9. [✔] A massa de dados dos testes deve ser preparada neste projeto, seja com scripts carregando massa nova no BD ou com restore de banco de dados. 
+
+#### A construção do banco de dados e a massa de dados é realizada atraves da execução de um algortimo de teste e configurada em um passo anterior a execução dos testes no jenkins.
+![Texto alternativo](src/test/resources/readmeImg/jenkins231.png)
+#### Isso tambem poderia ser feito atraves de um shell script que executaria o caso de teste responsavel por criar e popular o banco de dados utilizado pela automação.
+#### Sendo que este workaround so foi implementado, dados que as bibliotecas utilizadas no framework não dispoem de uma solução para executar um metodo antes da execução.
+
+
+### 10. [✔] Executar testes em paralelo. Pelo menos duas threads (25 testes cada).
+
+#### Dado que nosso testes são executados pelo maven-surefire-plugin.
+![Texto alternativo](src/test/resources/readmeImg/thread05.png)
+#### Configurei o paralelismo no maven-surefire-plugin para 4 threads.
+![Texto alternativo](src/test/resources/readmeImg/thread06.png)
+#### O cucumber trabalha com paralelismo dividindo cada caso de teste em duas thread uma fica responsavel pela feature e a outra pela execução do teste.
+#### Assim temos 2 threads para cada caso de teste, totalizando 8 threads para executar nossos testes.
+#### podemos visualozar as threads no log de execução dos testes no jenkins, e local tambem.
+![Texto alternativo](src/test/resources/readmeImg/thread01.png)
+![Texto alternativo](src/test/resources/readmeImg/thread02.png)
+![Texto alternativo](src/test/resources/readmeImg/thread03.png)
+![Texto alternativo](src/test/resources/readmeImg/thread04.png)
+
+### - 11. [✔] Execução ambiente CI/CD Jenkins montado em docker
 
 ## Personalização e Expansão
 
 Este framework de teste de API é altamente personalizável e pode ser facilmente expandido para atender às necessidades exclusivas do seu projeto. Você pode adicionar novos casos de teste, criar classes utilitárias adicionais e integrar bibliotecas adicionais conforme necessário.
 
-## Suporte
-
-Se você precisar de suporte ou quiser contribuir para aprimorar este framework de teste de API, não hesite em entrar em contato com [nome_do_contato] em [email_do_contato].
-
-Aproveite o uso deste framework de teste de API com RestAssured, Cucumber, JUnit 4, Extent Reporter e Jackson Databind, e obtenha resultados eficientes e confiáveis em seus testes de API!
-
-### Teste automatizado de API da aplicação MantisBT
-#### - [ ] Tarefa concluída
-#### - [x] Tarefas pendentes
-#### - [x] Implementar no minimo 50 Casos de Testes
-#### - [x] Implementação de Data-Driven pelo Cucumber
-#### - [x] Autenticação da API atraves do headers
-#### - [] pelo menos uma validação por regex
-#### - [x] groovy nos asserts pegar o nome da biblioteca
-#### - [x] Relatorio de testes extent reporter
-#### - [x] pelo menos dois ambientes local, jenkins
-#### - [x] Massa de teste condicionada No Mysql, inserida antes dos testes
-#### - [x] Testes em paralelo dividos em 4 threads,
-#### - [x] Execução ambiente montado em docker com execução no jenkins

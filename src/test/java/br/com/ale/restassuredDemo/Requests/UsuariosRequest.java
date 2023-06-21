@@ -89,8 +89,6 @@ public class UsuariosRequest extends RequestRestBase {
     }
 
     public void envioRequisicaoComIDDoUsuario(String nome){
-        SelectDAO selectDAO = new SelectDAO();
-        //setEndPoint(USERS_END_POINT.concat(selectDAO.getIDUsuarioMantisBTUserTable(nome)));
         setEndPoint(USERS_END_POINT.concat(String.valueOf(1)));
         method = Method.GET;
         headers.put("Authorization",GlobalParameters.TOKEN);
