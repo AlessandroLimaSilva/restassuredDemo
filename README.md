@@ -862,13 +862,15 @@ Tambem iremos visualizar os relatorios gerados apos a execução dos testes.
 ![Texto alternativo](src/test/resources/readmeImg/thread06.png)
 #### O cucumber trabalha com paralelismo dividindo cada caso de teste em duas thread uma fica responsavel pela feature e a outra pela execução do teste.
 #### Assim temos 2 threads para cada caso de teste, totalizando 8 threads para executar nossos testes.
-#### podemos visualozar as threads no log de execução dos testes no jenkins, e local tambem.
+#### podemos visualizar as threads no log de execução dos testes no jenkins, e local tambem.
 ![Texto alternativo](src/test/resources/readmeImg/thread01.png)
 ![Texto alternativo](src/test/resources/readmeImg/thread02.png)
 ![Texto alternativo](src/test/resources/readmeImg/thread03.png)
 ![Texto alternativo](src/test/resources/readmeImg/thread04.png)
 
 ### - 11. [✔] Execução ambiente CI/CD Jenkins montado em docker
+#### As instruções e arquivos necessarios para construir um ambiente de teste CI/CD estão documentadas nesse repositorio.
+#### Assim não é necessario utilizar o servidor de terceiros.
 
 ## Personalização e Expansão
 
