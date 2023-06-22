@@ -17,10 +17,6 @@ import java.util.Map;
 public class SelectDAO {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SelectDAO.class);
-    private static final String beneficiariosAtivos = "src/test/resources/sql/Beneficiarios_Ativos.sql";
-
-    private static final String usuarioSelectFromName = "";
-    private static final String projetoSelectFromNome = "";
 
     public ArrayList<String> getQueryResult(String query) throws Exception {
         ArrayList<String> arrayList = null;
@@ -69,7 +65,7 @@ public class SelectDAO {
     }
 
     public String searchProjectIDPerNameInMantisProjectTable(String nome){
-        String query = "SELECT id, name FROM bugtracker.mantis_project_table WHERE name = '"+nome+"';";
+        String query = "SELECT id, name FROM bugtracker.mantis_project_table WHERE name = '$nome';".replace("$nome",nome);
         String resposta = null;
         ConnectionFactoryDAO connection = new ConnectionFactoryDAO();
         Statement stmt = null;
@@ -147,54 +143,8 @@ public class SelectDAO {
         return arrayList;
     }
 
-    public Map<String, Object> getProjectForName(String nome) throws Exception {
-        String sql = "SELECT * FROM projeto WHERE NAME ='"+nome+"';";
-        Map<String,Object> map = new HashMap<>();
-        ConnectionFactoryDAO connection = new ConnectionFactoryDAO(ConnectionFactoryDAO.CONNECTION_DADOS_DE_TESTE);
-        Statement stmt = null;
-
-        try {
-
-            stmt = connection.getConnection().createStatement();
-            ResultSet rs = stmt.executeQuery(sql);
-
-            if(!rs.isBeforeFirst()){
-                return null;
-            }
-
-            else{
-
-                if (rs.next()) {
-                    int i = 1;
-                    map.put("name",rs.getString(i++));
-                    map.put("status",rs.getInt(i++));
-                    map.put("enabled",rs.getInt(i++));
-                    map.put("viewState",rs.getInt(i++));
-                    map.put("accessMin",rs.getInt(i++));
-                    map.put("description",rs.getString(i++));
-                    map.put("categoryID",rs.getInt(i));
-                    map.put("inheritGlobal",rs.getInt(i));
-                }
-            }
-            LOGGER.info("ESSA POORRRA DE INSERIR NOMP = "+map.get("name").toString());
-            rs.close();
-            stmt.close();
-            connection.closeConnection();
-
-        } catch (SQLException errorsql) {
-            throw new Exception("Falha ocorrida Connection Factory: "+errorsql.getMessage());
-        } finally{
-            try {
-                connection.closeConnection();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        return map;
-    }
-
-    public String getIDProject(String nome) throws Exception {
-        String query = "SELECT id FROM bugtracker.mantis_project_table WHERE name LIKE '"+nome+"';";
+    public String getIDProject(String nome) {
+        String query = "SELECT id FROM bugtracker.mantis_project_table WHERE name LIKE '$nome';".replace("$nome",nome);
         String resposta=null;
         ConnectionFactoryDAO connection = new ConnectionFactoryDAO();
         Statement stmt = null;
@@ -228,7 +178,7 @@ public class SelectDAO {
     }
 
     public Map<String, Object> getUserForName(String username) throws Exception {
-        String sql = "SELECT * FROM usuario WHERE USERNAME ='"+username+"';";
+        String sql = "SELECT * FROM usuario WHERE USERNAME = '$username';".replace("$username",username);
         Map<String,Object> map = new HashMap<>();
         ConnectionFactoryDAO connection = new ConnectionFactoryDAO(ConnectionFactoryDAO.CONNECTION_DADOS_DE_TESTE);
         Statement stmt = null;
@@ -273,7 +223,7 @@ public class SelectDAO {
     }
 
     public Map<String, Object> getUserForType(String tipoUsuario) throws Exception {
-        String sql = "SELECT * FROM usuario WHERE TIPO_USUARIO ='"+tipoUsuario+"';";
+        String sql = "SELECT * FROM usuario WHERE TIPO_USUARIO = '$tipoUsuario';".replace("$tipoUsuario",tipoUsuario);
         Map<String,Object> map = new HashMap<>();
         ConnectionFactoryDAO connection = new ConnectionFactoryDAO(ConnectionFactoryDAO.CONNECTION_DADOS_DE_TESTE);
         Statement stmt = null;
@@ -321,7 +271,7 @@ public class SelectDAO {
         UsuariosType usuariosType = new UsuariosType();
         ConnectionFactoryDAO connection = null;
         try {
-            String sql = "SELECT * FROM DADOS_TESTE_API.usuario WHERE USERNAME = '" + tipoUsuario + "';";
+            String sql = "SELECT * FROM DADOS_TESTE_API.usuario WHERE USERNAME = '$tipoUsuario';".replace("$tipoUsuario",tipoUsuario);
             connection = new ConnectionFactoryDAO(ConnectionFactoryDAO.CONNECTION_DADOS_DE_TESTE);
             Statement stmt = null;
             stmt = connection.getConnection().createStatement();
@@ -357,7 +307,7 @@ public class SelectDAO {
         UsuariosType usuariosType = new UsuariosType();
         ConnectionFactoryDAO connection = null;
         try {
-            String sql = "SELECT * FROM DADOS_TESTE_API.usuario WHERE EMAIL = '" + emailUsuario + "';";
+            String sql = "SELECT * FROM DADOS_TESTE_API.usuario WHERE EMAIL = '$emailUsuario';".replace("$emailUsuario",emailUsuario);
             connection = new ConnectionFactoryDAO(ConnectionFactoryDAO.CONNECTION_DADOS_DE_TESTE);
             Statement stmt = null;
             stmt = connection.getConnection().createStatement();
@@ -392,7 +342,7 @@ public class SelectDAO {
     public String getIDUsuarioMantisBTUserTable(String tipoUsuario){
         ConnectionFactoryDAO connection = null;
         try {
-            String sql = "SELECT id FROM bugtracker.mantis_user_table WHERE username = '" + tipoUsuario + "';";
+            String sql = "SELECT id FROM bugtracker.mantis_user_table WHERE username = '$tipoUsuario';".replace("$tipoUsuario",tipoUsuario);
             connection = new ConnectionFactoryDAO(ConnectionFactoryDAO.CONNECTION_DADOS_DE_TESTE);
             Statement stmt = null;
             stmt = connection.getConnection().createStatement();
@@ -420,7 +370,7 @@ public class SelectDAO {
         UsuariosType usuariosType = new UsuariosType();
         ConnectionFactoryDAO connection = null;
         try {
-            String sql = "SELECT * FROM DADOS_TESTE_API.usuario WHERE REALNAME = '"+nomeReal+"';";
+            String sql = "SELECT * FROM DADOS_TESTE_API.usuario WHERE REALNAME = '$nomeReal';".replace("$nomeReal",nomeReal);
             connection = new ConnectionFactoryDAO(ConnectionFactoryDAO.CONNECTION_DADOS_DE_TESTE);
             Statement stmt = null;
             stmt = connection.getConnection().createStatement();

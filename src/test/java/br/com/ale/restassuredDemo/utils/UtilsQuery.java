@@ -1,15 +1,17 @@
  package br.com.ale.restassuredDemo.utils;
 
-import br.com.ale.restassuredDemo.Types.UsuariosType;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.apache.commons.codec.binary.Base64;
-import javax.swing.*;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.*;
+ import org.apache.commons.codec.binary.Base64;
+ import org.slf4j.Logger;
+ import org.slf4j.LoggerFactory;
+
+ import java.io.File;
+ import java.io.FileInputStream;
+ import java.io.FileNotFoundException;
+ import java.io.IOException;
+ import java.util.ArrayList;
+ import java.util.Calendar;
+ import java.util.Date;
+ import java.util.Scanner;
 
  public class UtilsQuery {
     private static final Logger LOGGER = LoggerFactory.getLogger(UtilsQuery.class);
