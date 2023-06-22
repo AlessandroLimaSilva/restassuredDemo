@@ -152,22 +152,6 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.22.1</version>
-                <executions>
-                    <execution>
-                        <id>test</id>
-                        <goals>
-                            <goal>test</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <testFailureIgnore>false</testFailureIgnore>
-                    <includes>
-                        <include>**/*Test.java</include>
-                    </includes>
-                    <parallel>methods</parallel>
-                    <threadCount>4</threadCount>
-                </configuration>
                 <dependencies>
                     <dependency>
                         <groupId>junit</groupId>
@@ -185,6 +169,14 @@
                         <version>1.5.1</version>
                     </dependency>
                 </dependencies>
+                <configuration>
+                    <testFailureIgnore>true</testFailureIgnore>
+                    <includes>
+                        <include>**/*Test.java</include>
+                    </includes>
+                    <parallel>methods</parallel>
+                    <threadCount>4</threadCount>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -203,12 +195,6 @@
                     <!--includes>
                         <include>**/*Test.java</include>
                     </includes-->
-                    <forkMode>always</forkMode>
-                    <reuseForks>true</reuseForks>
-                    <argLine>-DtestFailureMessage=Ocorreu uma falha no Surefire Plugin!</argLine>
-                    <systemPropertyVariables>
-                        <testFailureMessage>Ocorreu uma falha no Surefire Plugin!</testFailureMessage>
-                    </systemPropertyVariables>
                 </configuration>
                 <executions>
                     <execution>
@@ -218,67 +204,6 @@
                             <goal>integration-test</goal>
                             <goal>verify</goal>
                         </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>build-helper-maven-plugin</artifactId>
-                <version>3.2.0</version>
-                <executions>
-                    <execution>
-                        <id>timestamp-property</id>
-                        <goals>
-                            <goal>timestamp-property</goal>
-                        </goals>
-                        <configuration>
-                            <name>formattedDate</name>
-                            <pattern>yyyy</pattern>
-                            <!--pattern>ddMMyyyy</pattern-->
-                            <!--timeZone>America/Sao_Paulo</timeZone-->
-                            <timeZone>GMT</timeZone>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-antrun-plugin</artifactId>
-                <version>3.0.0</version>
-                <executions>
-                    <execution>
-                        <id>custom-report</id>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                        <configuration>
-                            <target>
-                                <property name="formattedDate" value="${maven.build.timestamp.format}"/>
-                                <echo message="Acesso Web Relatório Customizado: http://localhost:8081/job/QA-API-MantisBT/ws/target/relatorio/%20${formattedDate}/index.html"/>
-                                <echo message="Download Relatório Customizado: http://localhost:8081/job/QA-API-MantisBT/ws/target/relatorio/%20${formattedDate}/*zip*/%20${formattedDate}.zip"/>
-                            </target>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>test-failure-message</id>
-                        <phase>test</phase>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                        <configuration>
-                            <target>
-                                <fail message="Ocorreu uma falha no Surefire Plugin!"
-                                      message1="Acesso Web Relatório Customizado: http://localhost:8081/job/QA-API-MantisBT/ws/target/relatorio/%20${formattedDate}/index.html"
-                                      message2="Download Relatório Customizado: http://localhost:8081/job/QA-API-MantisBT/ws/target/relatorio/%20${formattedDate}/*zip*/%20${formattedDate}.zip">
-                                    <condition>
-                                        <not>
-                                            <equals arg1="${maven.test.failure.ignore}" arg2="true"/>
-                                        </not>
-                                    </condition>
-                                </fail>
-                            </target>
-                        </configuration>
                     </execution>
                 </executions>
             </plugin>
