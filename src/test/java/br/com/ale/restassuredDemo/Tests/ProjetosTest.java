@@ -11,7 +11,7 @@ import io.cucumber.junit.CucumberOptions;
                 "classpath:br.com.ale.restassuredDemo.StepDefinitions",
                 "classpath:br.com.ale.restassuredDemo.Hooks"
         },
-        tags={"@automatizado"},
+        tags={"@automatizado","@MontaOBancoDeDados"},
         monochrome = true,
         strict = true,
         stepNotifications = true,
