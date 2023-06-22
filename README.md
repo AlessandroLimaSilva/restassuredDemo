@@ -810,11 +810,11 @@ Tambem iremos visualizar os relatorios gerados apos a execução dos testes.
 
 ### 3. [✔] Notem que 50 algoritmos de testes podem cobrir mais de 50 casos de testes se usarmos Data-Driven. Em outras palavras, implementar 50 CTs usando data-driven não é a mesma coisa que implementar 50 algoritmos de testes. </summary>
 
-   ##### Mais de 50 casos de testes unicos implementados, colocar o total de testes !!!
+   ##### Mais de 50 casos de testes unicos implementados.
 
 ### 4. [✔] O projeto deve tratar autenticação. Exemplo: OAuth2. 
 
-   #### Autenticação via token da API passada atraves do headers
+   #### Autenticação via token da API, passada atraves do headers.
 
 ### 5. [X] Pelo menos um teste deve fazer a validação usando REGEX (Expressões Regulares). </summary>
 
@@ -845,6 +845,7 @@ Tambem iremos visualizar os relatorios gerados apos a execução dos testes.
 #### Na configuração realizada no job do jenkins é passado em qual ambiente o teste sera executado.
 ![Texto alternativo](src/test/resources/readmeImg/jenkins43.png)
 ![Texto alternativo](src/test/resources/readmeImg/jenkins29.png)
+#### No jenkins é possivel utilizar 2 ambientes hml e dev.
 
 ### 9. [✔] A massa de dados dos testes deve ser preparada neste projeto, seja com scripts carregando massa nova no BD ou com restore de banco de dados. 
 
