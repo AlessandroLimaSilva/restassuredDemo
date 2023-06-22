@@ -64,6 +64,22 @@ public class DeleteDAO {
         }
     }
 
+    public void deletarUsuarioPorEmailMantisBTTableUsuario(String email){
+        try{
+            ConnectionFactoryDAO connectionFactoryDAO = new ConnectionFactoryDAO();
+            String oneUser = "DELETE FROM bugtracker.mantis_user_table WHERE email = ?";
+            PreparedStatement pst = connectionFactoryDAO.getConnection().prepareStatement(oneUser, Statement.RETURN_GENERATED_KEYS);
+            pst.setString(1, email);
+            pst.executeUpdate();
+            connectionFactoryDAO.transactionConfirm();
+            LOGGER.info(String.valueOf(pst.getGeneratedKeys()));
+            pst.close();
+            connectionFactoryDAO.closeConnection();
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+    }
+
     public void deletarUsuarioPorNomeRealMantisBTTableUsuario(String nome){
         try{
             ConnectionFactoryDAO connectionFactoryDAO = new ConnectionFactoryDAO();

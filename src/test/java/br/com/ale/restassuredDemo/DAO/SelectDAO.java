@@ -353,6 +353,42 @@ public class SelectDAO {
         return usuariosType;
     }
 
+    public UsuariosType getUsuarioDadosEmailTesteUsuarioTable(String emailUsuario){
+        UsuariosType usuariosType = new UsuariosType();
+        ConnectionFactoryDAO connection = null;
+        try {
+            String sql = "SELECT * FROM DADOS_TESTE_API.usuario WHERE EMAIL = '" + emailUsuario + "';";
+            connection = new ConnectionFactoryDAO(ConnectionFactoryDAO.CONNECTION_DADOS_DE_TESTE);
+            Statement stmt = null;
+            stmt = connection.getConnection().createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+
+            if (!rs.isBeforeFirst()) {
+                return null;
+            } else {
+                if (rs.next()) {
+                    usuariosType.setUserName(rs.getString(1));
+                    usuariosType.setRealName(rs.getString(2));
+                    usuariosType.setEmail(rs.getString(3));
+                    usuariosType.setEnabled(rs.getString(4));
+                    usuariosType.setProtekted(rs.getString(5));
+                    usuariosType.setAccessLevel(rs.getString(6));
+                    usuariosType.setCookieString(rs.getString(7));
+                    usuariosType.setPassword(rs.getString(8));
+                    usuariosType.setTipoCargo(rs.getString(9));
+                }
+            }
+            rs.close();
+            stmt.close();
+            connection.closeConnection();
+
+        } catch (Exception ex) {
+            System.out.println("Falha ocorrida Connection Factory: " + ex.getMessage());
+        }
+
+        return usuariosType;
+    }
+
     public String getIDUsuarioMantisBTUserTable(String tipoUsuario){
         ConnectionFactoryDAO connection = null;
         try {

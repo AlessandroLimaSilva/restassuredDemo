@@ -73,8 +73,8 @@ public class UsuarioStepDefinitions {
                 "user.email",containsString(usuariosType.getEmail()));
     }
 
-    @When("^envio um novo usuario do tipo (.*)$")
-    public void CriarNovoUsuarioPost(String nomeUsuario){
+    @When("^um usuario tenha enviado a requisição de um novo usuario do tipo (.*)$")
+    public void umUsuarioTenhaEnviadoARequisicaoDeUmNovoUsuarioDoTipo(String nomeUsuario){
         NOME_USUARIO = nomeUsuario;
         DeleteDAO deleteDao = new DeleteDAO();
         deleteDao.deletarUsuarioPorNomeMantisBTTableUsuario(NOME_USUARIO);
@@ -83,8 +83,8 @@ public class UsuarioStepDefinitions {
         validatableResponse = usuariosRequest.executeRequest();
     }
 
-    @When("^envio um usuario do tipo (.*) ja cadastrado$")
-    public void envioUsuarioJaCadastrado(String nomeUsuario){
+    @When("^uma requisição para novo usuario com o nome (.*) ja utilizado é enviada$")
+    public void umaRequisicaoParaNovoUsuarioComONomeJaUtilizadoEEnviada(String nomeUsuario){
         NOME_USUARIO = nomeUsuario;
         usuariosRequest = new UsuariosRequest();
         usuariosRequest.criarNovoUsuarioRequest(nomeUsuario);
@@ -103,8 +103,8 @@ public class UsuarioStepDefinitions {
         validatableResponse.log().all();
     }
 
-    @And("^ja possuo um usuario com o nome (.*) cadastrado$")
-    public void possuoUsuarioComNomeCadastrado(String nome){
+    @And("^que exista um usuario com o nome (.*) cadastrado$")
+    public void queExistaUmUsuarioComONomeCadastrado(String nome){
         DeleteDAO deleteDao = new DeleteDAO();
         deleteDao.deletarUsuarioPorNomeMantisBTTableUsuario(nome);
         SelectDAO selectDAO = new SelectDAO();
@@ -113,8 +113,8 @@ public class UsuarioStepDefinitions {
         insertDAO.setInsertUsuarioTableMantisBTDataBase(usuariosType);
     }
 
-    @And("^que ja possuo o usuario (.*) cadastrado na aplicacao$")
-    public void queJaPossuoOUsuarioCadastradoNaAplicacao(String nomeUsuario) throws SQLException {
+    @And("^que exista um usuario (.*) cadastrado na aplicacao$")
+    public void queExistaUmUsuarioCadastradoNaAplicacao(String nomeUsuario) throws SQLException {
         DeleteDAO deleteDao = new DeleteDAO();
         deleteDao.deletarUsuarioPorNomeMantisBTTableUsuario(nomeUsuario);
         SelectDAO selectDAO = new SelectDAO();
@@ -123,12 +123,12 @@ public class UsuarioStepDefinitions {
         ID_USUARIO = insertDAO.setInsertUsuarioTableMantisBTDataBaseAndReturnID(usuariosType);
     }
 
-    @And("^possuo um usuario com o email (.*) ja cadastrado$")
-    public void possouUsuarioComEmailCadastrado(String nome){
+    @And("^que exista um usuario com o email (.*) cadastrado$")
+    public void queExistaUmUsuarioComOEmailCadastrado(String email){
         DeleteDAO deleteDao = new DeleteDAO();
-        deleteDao.deletarUsuarioPorNomeMantisBTTableUsuario(nome);
+        deleteDao.deletarUsuarioPorEmailMantisBTTableUsuario(email);
         SelectDAO selectDAO = new SelectDAO();
-        UsuariosType usuariosType = selectDAO.getUsuarioDadosTesteUsuarioTable(nome);
+        UsuariosType usuariosType = selectDAO.getUsuarioDadosEmailTesteUsuarioTable(email);
         usuariosType.setUserName(usuariosType.getRealName());
         EMAIL = usuariosType.getEmail();
         NOME_REAL = usuariosType.getRealName();
@@ -136,8 +136,8 @@ public class UsuarioStepDefinitions {
         insertDAO.setInsertUsuarioTableMantisBTDataBase(usuariosType);
     }
 
-    @When("envio um novo usuario sem o nome de usuario")
-    public void envioNovoUsuarioSemNomeDeUsuario(){
+    @When("um usuario tenha enviado uma requisicao de novo usuario sem o nome de usuario")
+    public void umUsuarioTenhaEnviadoUmaRequisicaoDeNovoUsuarioSemONomeDeUsuario(){
         NOME_USUARIO = "administrador";
         usuariosRequest = new UsuariosRequest();
         usuariosRequest.CriarNovoUsuarioSemNomeDeUsuarioRequest(NOME_USUARIO);
@@ -152,10 +152,10 @@ public class UsuarioStepDefinitions {
         validatableResponse.log().all();
     }
 
-    @When("^envio um usuario (.*) com o email ja cadastrado$")
-    public void envioUmUsuarioComEmailJaCadastrado(String nome){
+    @When("^uma requisição para novo usuario com o email (.*) ja utilizado é enviada$")
+    public void umaRequisicaoParaNovoUsuarioComOEmailJaUtilizadoEEnviada(String email){
         usuariosRequest = new UsuariosRequest();
-        usuariosRequest.criarNovoUsuarioRequest(nome);
+        usuariosRequest.criarNovoUsuarioPorEmailRequest(email);
         validatableResponse = usuariosRequest.executeRequest();
     }
 
@@ -182,8 +182,8 @@ public class UsuarioStepDefinitions {
         deleteDao.deletarUsuarioPorNomeRealMantisBTTableUsuario(NOME_REAL);
     }
 
-    @Then("o schema de criar novo usuario e validado com sucesso")
-    public void schemaDoNovoUsuarioValidadoComSucesso(){
+    @Then("o json schema ao criar novo usuario e validado com sucesso")
+    public void oJsonSchemaAoCriarNovoUsuarioEValidadoComSucesso(){
         validatableResponse.log().all();
         validatableResponse.body(JsonSchemaValidator.matchesJsonSchemaInClasspath("novoUsuarioSchema.json"));
     }
@@ -194,9 +194,9 @@ public class UsuarioStepDefinitions {
         deleteDao.deletarUsuarioPorNomeMantisBTTableUsuario(NOME_USUARIO);
     }
 
-    @When("envio um novo usuario minimo")
-    public void envioNovoUsuarioMinimo(){
-        NOME_USUARIO = "minimo";
+    @When("um usuario envia uma requisicao de um novo usuario {string}")
+    public void UmUsuarioEnviaUmaRequisicaoDeUmNovoUsuarioMinimo(String tipoUsuario){
+        NOME_USUARIO = tipoUsuario;
         DeleteDAO deleteDao = new DeleteDAO();
         deleteDao.deletarUsuarioPorNomeMantisBTTableUsuario(NOME_USUARIO);
         usuariosRequest = new UsuariosRequest();
@@ -204,8 +204,8 @@ public class UsuarioStepDefinitions {
         validatableResponse = usuariosRequest.executeRequest();
     }
 
-    @When("envio a requisicao com o id do usuario a ser deletado")
-    public void envioARequisicaoComIDDoUsuarioASerDeletado(){
+    @When("um usuario envia uma requisicao com o id do usuario a ser deletado")
+    public void umUsuarioEnviaUmaRequisicaComOIDDoUsuarioASerDeletado(){
         usuariosRequest = new UsuariosRequest();
         usuariosRequest.envioARequisicaoComIDDoUsuarioASerDeletadoRequest(ID_USUARIO);
         validatableResponse = usuariosRequest.executeRequest();
@@ -224,8 +224,8 @@ public class UsuarioStepDefinitions {
                 "user.name", containsString(NOME_USUARIO));
     }
 
-    @When("envio um novo usuario minimo sem o nome de usuario")
-    public void envioNovoUsuarioMinimoSemNomeDeUsuario(){
+    @When("um usuario envia uma requisicao de um novo usuario minimo sem o nome de usuario")
+    public void umUsuarioEnviaUmaRequisicaoDeUmNovoUsuarioMinimoSemONomeDeUsuario(){
         NOME_USUARIO = "";
         usuariosRequest = new UsuariosRequest();
         usuariosRequest.criarNovoUsuarioMinimoRequest(NOME_USUARIO);
@@ -241,7 +241,7 @@ public class UsuarioStepDefinitions {
         validatableResponse.log().all();
     }
 
-    @Then("json schema criar novo usuario minimo e validado com sucesso")
+    @Then("o json schema criar novo usuario minimo e validado com sucesso")
     public void jsonSchemaCriarNovoUsuarioMinimoValidadoComSucesso(){
         validatableResponse.body(JsonSchemaValidator.matchesJsonSchemaInClasspath("novoUsuarioMinimoSchema.json"));
     }

@@ -60,6 +60,25 @@ public class UsuariosRequest extends RequestRestBase {
         headers.put("content-type","application/json");
     }
 
+    public void criarNovoUsuarioPorEmailRequest(String emailUsuario){
+        SelectDAO selectDAO = new SelectDAO();
+        UsuariosType usuariosType = selectDAO.getUsuarioDadosEmailTesteUsuarioTable(emailUsuario);
+        AccessLevelPostBody access = new AccessLevelPostBody(usuariosType.getTipoCargo());
+        UsuariosPostBody user = new UsuariosPostBody(
+                usuariosType.getUserName(),
+                usuariosType.getPassword(),
+                usuariosType.getRealName(),
+                usuariosType.getEmail(),
+                access,
+                usuariosType.getEnableBoolean(),
+                usuariosType.getProtektedBoolean());
+        setEndPoint(USERS_END_POINT);
+        jsonBody = user;
+        method = Method.POST;
+        headers.put("Authorization",GlobalParameters.TOKEN);
+        headers.put("content-type","application/json");
+    }
+
     public void criarNovoUsuarioMinimoRequest(String nome){
         setEndPoint(USERS_END_POINT);
         jsonBody = "{ \"username\" : \""+nome+"\"}";

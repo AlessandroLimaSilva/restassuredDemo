@@ -42,14 +42,14 @@ public class IssuesStepDefinitions {
     public static int ID_FILEONE;
     public static int ID_FILETWO;
 
-    @Given("que possuo um novo projeto cadastrado")
-    public void quePossuoUmNovoProjetoCadastrado() throws Exception {
+    @Given("que exista um novo projeto cadastrado")
+    public void queExistaUmNovoProjetoCadastrado() throws Exception {
         InsertDAO insertDAO = new InsertDAO();
         ID_PROJETO = insertDAO.setInsertOneProjectAndReturnPk();
     }
 
-    @When("envio uma requisicao para criar uma nova tarefa")
-    public void enviarUmarequisicaoParaCriarUmaNovaTarefa() throws JsonProcessingException {
+    @When("uma requisição e enviada para criar uma nova tarefa")
+    public void umaRequisicaoEEnviadaParaCriarUmaNovaTarefa() throws JsonProcessingException {
         SelectDAO selectDAO = new SelectDAO();
         String body = selectDAO.selectRequestJsonBody("CreateNewIssueBody");
         ObjectMapper mapper = new ObjectMapper();
@@ -95,22 +95,22 @@ public class IssuesStepDefinitions {
         deleteDao.deleteProjectMantisBTPerIDProject(ID_TAREFA);
     }
 
-    @Then("o schema de criar uma nova tarefa e validado com sucesso")
-    public void schemaDeCriarUmaNovaTarefaEValidadoComSucesso(){
+    @Then("o json schema ao criar uma nova tarefa e validado com sucesso")
+    public void oJsonSchemaAoCriarUmaNovaTarefaEValidadoComSucesso(){
         validatableResponse.body(JsonSchemaValidator.matchesJsonSchemaInClasspath("CreateNewIssueSchema.json"));
         JsonPath jsonPath = validatableResponse.extract().jsonPath();
         ID_TAREFA = jsonPath.get("issue.id");
     }
 
-    @Then("o schema de criar uma nova tarefa com dados minimos e validado com sucesso")
-    public void schemaDeCriarUmaNovaTarefaComDadosMinimosEValidadoComSucesso(){
+    @Then("o json schema de criar uma nova tarefa com dados minimos e validado com sucesso")
+    public void oJsonSchemaDeCriarUmaNovaTarefaComDadosMinimosEValidadoComSucesso(){
         validatableResponse.body(JsonSchemaValidator.matchesJsonSchemaInClasspath("IssueCreateAnIssueMinimalSchema.json"));
         JsonPath jsonPath = validatableResponse.extract().jsonPath();
         ID_TAREFA = jsonPath.get("issue.id");
     }
 
-    @When("envio uma requisicao informando apenas os dados minimos para criar uma nova tarefa")
-    public void envioUmaRequisicaoInformandoApenasOsDadosMinimosParaCriarUmaNovaTarefa() throws JsonProcessingException {
+    @When("uma requisição e enviada informando apenas os dados minimos para criar uma nova tarefa")
+    public void umaRequisicaoEEnviadaInformandoApenasOsDadosMinimosParaCriarUmaNovaTarefa() throws JsonProcessingException {
         SelectDAO selectDAO = new SelectDAO();
         String body = selectDAO.selectRequestJsonBody("IssueCreateAnIssueMinimalBody");
         ObjectMapper mapper = new ObjectMapper();
@@ -139,8 +139,8 @@ public class IssuesStepDefinitions {
         validatableResponse.log().all();
     }
 
-    @When("envio uma requisicao para criar uma nova tarefa de copia")
-    public void envioUmaRequisicaoParaCriarUmaNovaTarefaDeCopia() throws JsonProcessingException {
+    @When("uma requisição e enviada para criar uma nova tarefa de copia")
+    public void umaRequisicaoEEnviadaParaCriarUmaNovaTarefaDeCopia() throws JsonProcessingException {
         issuesRequest = new IssuesRequest();
         issuesRequest.createAnIssueCopyRequest();
         validatableResponse = issuesRequest.executeRequest();
@@ -163,8 +163,8 @@ public class IssuesStepDefinitions {
         ID_TAREFA = jsonPath.get("issue.id");
     }
 
-    @Then("o schema de criar uma nova tarefa de copia e validado com sucesso")
-    public void schemaDeCriarUmaNovaTarefaDeCopiaEValidadoComSucesso(){
+    @Then("o json schema de criar uma nova tarefa de copia e validado com sucesso")
+    public void oJsonSchemaDeCriarUmaNovaTarefaDeCopiaEValidadoComSucesso(){
         validatableResponse.body(JsonSchemaValidator.matchesJsonSchemaInClasspath("CreateAnIssueCopySchema.json"));
         JsonPath jsonPath = validatableResponse.extract().jsonPath();
         ID_TAREFA = jsonPath.get("issue.id");
@@ -177,8 +177,8 @@ public class IssuesStepDefinitions {
         ID_TAREFA = jsonPath.get("issue.id");
     }
 
-    @When("envio uma requisicao para criar uma nova tarefa com arquivos")
-    public void envioUmaRequisicaoParaCriarUmaNovaTarefaComArquivos() throws JsonProcessingException {
+    @When("uma requisição e enviada para criar uma nova tarefa com arquivos")
+    public void umaRequisicaoEEnviadaParaCriarUmaNovaTarefaComArquivos() throws JsonProcessingException {
         InsertDAO insertDAO = new InsertDAO();
         CustomField customField = new CustomField();
         Field field = insertDAO.setInsertOneCustomFieldTable();
@@ -221,23 +221,23 @@ public class IssuesStepDefinitions {
         validatableResponse.log().all();
     }
 
-    @When("envio uma requisicao com o id da tarefa")
-    public void envioUmaRequisicaoComOIDDaTarefa(){
+    @When("uma requisição é enviada com o id da tarefa")
+    public void umaRequisicaoEEnviadaComOIDDaTarefa(){
         issuesRequest = new IssuesRequest();
         issuesRequest.getAnIssueRequest(String.valueOf(ID_TAREFA));
         validatableResponse = issuesRequest.executeRequest();
         validatableResponse.log().all();
     }
 
-    @When("^que envio uma requisicao com o id (.*) de uma tarefa que nao existe$")
-    public void queEnvioUmaRequisicaoComOIDDeUmaTarefaQueNaoExiste(int idTarefa){
+    @When("^uma requisição é enviada com o id (.*) de uma tarefa que nao existe$")
+    public void umaRequisicaoEEnviadaComOIDDeUmaTarefaQueNaoExiste(int idTarefa){
         issuesRequest = new IssuesRequest();
         issuesRequest.getAnIssueRequest(String.valueOf(idTarefa));
         validatableResponse = issuesRequest.executeRequest();
         validatableResponse.log().all();
     }
 
-    @Then("^a aplicacao retorna que a tarefa com o id (.*) nao foi encontrado com sucesso$")
+    @Then("^é retornado que a tarefa com id (.*) invalido não foi encontrado com sucesso$")
     public void tarefaNaoERetornadaComSucesso(String idTarefa){
         validatableResponse.statusCode(404).body(
                 "message", containsString("Issue #".concat(idTarefa).concat(" not found")),
@@ -246,8 +246,8 @@ public class IssuesStepDefinitions {
         validatableResponse.log().all();
     }
 
-    @When("^que informo um dado (.*) invalido na requisicao de obter uma tarefa$")
-    public void queInformoUmDadoInvalidoNaREquisicaoDeObterUmaTarefa(String dado){
+    @When("^uma requisição para obter uma tarefa é enviada informando um dado (.*) invalido$")
+    public void umaRequisicaoParaObterUmaTarefaEEnviadaInformandoUmDadoInvalido(String dado){
         issuesRequest = new IssuesRequest();
         issuesRequest.getAnIssueRequest(dado);
         validatableResponse = issuesRequest.executeRequest();
@@ -297,8 +297,8 @@ public class IssuesStepDefinitions {
         validatableResponse.log().all();
     }
 
-    @And("que possuo uma tarefa cadastrada")
-    public void quePossuoUmaTarefaCadastrada() throws Exception {
+    @And("que exista uma tarefa cadastrada")
+    public void queExistaUmaTarefaCadastrada() throws Exception {
         InsertDAO insertDAO = new InsertDAO();
         ArrayList<Integer> list = insertDAO.setInsertBugTextAndProjectAndIssueCreateNewIssueReturnPK();
         ID_BUGTEXT = list.get(0);
@@ -306,20 +306,20 @@ public class IssuesStepDefinitions {
         ID_TAREFA = list.get(2);
     }
 
-    @And("que possuo um projeto cadastrado que nao contem arquivos")
-    public void quePossuoUmProjetoCadastradoQueNaoContemArquivos() throws Exception {
-        quePossuoUmaTarefaCadastrada();
+    @And("que exista uma tarefa cadastrada que nao contem arquivos")
+    public void queExistaUmaTarefaCadastradaQueNaoContemArquivos() throws Exception {
+        queExistaUmaTarefaCadastrada();
     }
 
-    @And("envio uma requisicao com o id de uma tarefa que nao contem arquivo")
-    public void envioUmarequisicaoComOIDDeUmaTarefaQueNaoContemArquivos(){
+    @And("uma requisição com o id de uma tarefa que nao contem arquivo é enviada")
+    public void umaRequisicaoComOIDDeUmaTarefaQueNaoContemArquivoEEnviada(){
         issuesRequest = new IssuesRequest();
         issuesRequest.getIssuesFilesRequest(String.valueOf(ID_TAREFA));
         validatableResponse = issuesRequest.executeRequest();
     }
 
-    @When("^envio uma requisicao com id (.*) invalido de obter uma tarefa com arquivos cadastrados$")
-    public void envioUmaRequisicaoComIDInvalidoDeObterUmaTarefaComarquivosCadastrados(String idTarefa){
+    @When("^uma requisicao de obter uma tarefa com arquivos cadastrados com id (.*) invalido é enviada$")
+    public void umaRequisicaoDeObterUmaTarefaComArquivosCadastradosComIDInvalidoEEnviada(String idTarefa){
         issuesRequest = new IssuesRequest();
         issuesRequest.getIssuesFilesRequest(idTarefa);
         validatableResponse = issuesRequest.executeRequest();
@@ -334,8 +334,8 @@ public class IssuesStepDefinitions {
         validatableResponse.log().all();
     }
 
-    @And("que possuo um projeto com uma tarefa com arquivos cadastrados")
-    public void quePossuoUmProjetoComUmaTarefaComArquivosCadastrados() throws Exception {
+    @And("que exista um projeto com uma tarefa com arquivos cadastrados")
+    public void queExistaUmProjetoComUmaTarefaComArquivosCadastrados() throws Exception {
         InsertDAO insertDAO = new InsertDAO();
         ArrayList<Integer> list = insertDAO.setInsertBugTextAndProjectAndIssueCreateNewIssueAndFilesReturnPK();
         ID_BUGTEXT = list.get(0);
@@ -345,22 +345,22 @@ public class IssuesStepDefinitions {
         ID_FILETWO = list.get(5);
     }
 
-    @When("envio uma requisicao de tarefa que possua arquivos")
-    public void envioUmaRequisicaoDeTarefaQuePossuaArquivos(){
+    @When("uma requisição de tarefa com arquivos é enviada")
+    public void umaRequisicaoDeTarefaComArquivosEEnviada(){
         issuesRequest = new IssuesRequest();
         issuesRequest.getIssuesFilesRequest(String.valueOf(ID_TAREFA));
         validatableResponse = issuesRequest.executeRequest();
     }
 
-    @When("envio uma requisicao com o id da tarefa e id do arquivo")
-    public void envioUmaRequisicaoComOIDDaTarefaEIDDoArquivo(){
+    @When("uma requisicao de obter um arquivo de uma tarefa com o id da tarefa e id do arquivo e enviada")
+    public void umaRequisicaoDeObterUmArquivoDeUmaTarefaComOIDDaTarefaEIDDoArquivoEEnviada(){
         issuesRequest = new IssuesRequest();
         issuesRequest.getIssueFileRequest(String.valueOf(ID_TAREFA),String.valueOf(ID_FILEONE));
         validatableResponse = issuesRequest.executeRequest();
     }
 
-    @Then("envio uma requisicao com o id de uma tarefa que nao possue arquivo e id de arquivo invalido")
-    public void envioUmaRequisicaoComIDDeUmaTarefaEIDDearquivoInvalidoSemArquivo(){
+    @Then("uma requisição de obter um arquivo de uma tarefa é enviada com o id da tarefa que nao possue arquivo e o id do arquivo invalido")
+    public void umaRequisicaoDeObterUmArquivoDeUmaTarefaEEnviadaComOIDDaTarefaQueNaoPossueArquivoEOIDDoArquivoInvalido(){
         issuesRequest = new IssuesRequest();
         issuesRequest.getIssueFileRequest(String.valueOf(ID_TAREFA), String.valueOf(1));
         validatableResponse = issuesRequest.executeRequest();
@@ -370,6 +370,13 @@ public class IssuesStepDefinitions {
     public void envioUmaRequisicaoDeISDeTarefaEIDArquivosInvalido(String idTarefa,String idArquivo){
         issuesRequest = new IssuesRequest();
         issuesRequest.getIssueFileRequest(String.valueOf(ID_TAREFA), String.valueOf(1));
+        validatableResponse = issuesRequest.executeRequest();
+    }
+
+    @When("^uma requisição de obter um arquivo de uma tarefa é enviada com o id (.*) da tarefa invalido e id (.*) do arquivo invalido$")
+    public void umaRequisicaoDeObterUmArquivoDeUmaTarefaEEnviadaComOIDDaTarefaInvalidoEIDDoArquivoInvalido(String idTarefa, String idArquivo){
+        issuesRequest = new IssuesRequest();
+        issuesRequest.getIssueFileRequest(String.valueOf(idTarefa), idArquivo);
         validatableResponse = issuesRequest.executeRequest();
     }
 
@@ -425,8 +432,8 @@ public class IssuesStepDefinitions {
         validatableResponse.log().all();
     }
 
-    @And("deleto o projeto e tarefa inseridos")
-    public void deletoOProjetoETarefaInseridos(){
+    @And("o projeto e tarefa inseridos são deletados")
+    public void oProjetoETarefaInseridosSaoDeletados(){
         DeleteDAO deleteDao = new DeleteDAO();
         //Adicionar delete bug text
         deleteDao.deleteProjectMantisBTPerIDProject(ID_PROJETO);
@@ -438,8 +445,8 @@ public class IssuesStepDefinitions {
         validatableResponse.body(JsonSchemaValidator.matchesJsonSchemaInClasspath("getAIssueSchema.json"));
     }
 
-    @When("envio uma requisicao informando a quantidade de tarefas e paginas")
-    public void envioUmaRequisicaoInformandoAQuantidadeDeTarefasEPaginas(){
+    @When("uma requisicao de obter todas as tarefas informando a quantidade de tarefas e paginas e enviada")
+    public void umaRequisicaDeObterTodasAsTarefasInformandoAQuantidadeDeTarefasEPaginasEEnviada(){
         issuesRequest = new IssuesRequest();
         issuesRequest.getAllIssuesRequest();
         validatableResponse = issuesRequest.executeRequest();
@@ -487,24 +494,24 @@ public class IssuesStepDefinitions {
         validatableResponse.statusCode(200).body(JsonSchemaValidator.matchesJsonSchemaInClasspath("getAllIssuesSchema.json"));
     }
 
-    @When("envio uma requisicao de um projeto informando o id")
-    public void envioUmaRequisicaoDeUmProjetoInformandoOID(){
+    @When("uma requisicao de obter todas as tarefas de um projeto informando o id do projeto e enviada")
+    public void umaRequisicaoDeObterTodasAsTarefasDeUmProjetoInformandoOIDDoProjetoEEnviada(){
         issuesRequest = new IssuesRequest();
         issuesRequest.getIssuesForAProject(String.valueOf(ID_PROJETO));
         validatableResponse = issuesRequest.executeRequest();
         validatableResponse.log().all();
     }
 
-    @When("^envio uma requisicao com o id (.*) de um projeto que nao existe$")
-    public void envioUmarequisicaoComOIDDeUmProjetoQueNaoExiste(String idProjeto){
+    @When("^uma requisicao de obter todas as tarefas de um projeto e enviada com o id (.*) de um projeto que nao existe$")
+    public void umaRequisicaoDeObterTodasAsTarefasDeUmProjetoEEnviadaComOIDDeUmProjetoQueNaoExiste(String idProjeto){
         issuesRequest = new IssuesRequest();
         issuesRequest.getIssuesForAProject(idProjeto);
         validatableResponse = issuesRequest.executeRequest();
         validatableResponse.log().all();
     }
 
-    @When("^envio uma requisicao de obter todas as tarefas de um projeto com id (.*) invalido$")
-    public void envioUmarequisicaoDeObterTodasAsTarefasDeUmProjetoComIDInvalido(String idProjeto){
+    @When("^uma requisicao de obter todas as tarefas de um projeto com id (.*) invalido e enviado$")
+    public void umaRequisicaoDeObterTodasAsTarefasDeUmProjetoComIDInvalidoEEnviado(String idProjeto){
         issuesRequest = new IssuesRequest();
         issuesRequest.getIssuesForAProject(idProjeto);
         validatableResponse = issuesRequest.executeRequest();
@@ -546,8 +553,8 @@ public class IssuesStepDefinitions {
         validatableResponse.statusCode(200).body(JsonSchemaValidator.matchesJsonSchemaInClasspath("getIssuesForAProjectSchema.json"));
     }
 
-    @When("envio uma requisicao informando o id do filtro de tarefas")
-    public void envioUmaRequisicaoInformandoOIDDoFiltroDeTarefas(){
+    @When("uma requisicao obter as tarefas informando o id do filtro de tarefas e enviada")
+    public void umaRequisicaoObterAsTarefasInformandoOIDDoFiltroDeTarefasEEnviada(){
         String filtro = "1";
         issuesRequest = new IssuesRequest();
         issuesRequest.getIssuesMatchingFilter(filtro);
@@ -555,8 +562,21 @@ public class IssuesStepDefinitions {
         validatableResponse.log().all();
     }
 
-    @When("^envio uma requisicao informando um dado (.*) invalido do filtro$")
-    public void envioUmaRequisicaoInformandoUmDadoInvalidoDoFiltro(String dado){
+    @When("^uma requisicao de obter todas as tarefas informando o id (.*) de um projeto que nao existe$")
+    public void umaRequisicaoDeObterTodasAsTarefasInformandoOIDDeUmProjetoQueNaoExiste(String dado){
+        issuesRequest = new IssuesRequest();
+        issuesRequest.getIssuesMatchingFilter(dado);
+        validatableResponse = issuesRequest.executeRequest();
+        validatableResponse.log().all();
+    }
+
+    @Then("e retornado que as tarefas nao existem com sucesso")
+    public void eRetornadoQueAsTarefasNaoExistemComSucesso(){
+        validatableResponse.statusCode(404);
+    }
+
+    @When("^uma requisicao de obter as tarefas informando o id (.*) do filtro invalido e enviado$")
+    public void umaRequisicaoDeObterAsTarefasInformandoOIDDoFiltroInvalidoEEnviado(String dado){
         issuesRequest = new IssuesRequest();
         issuesRequest.getIssuesMatchingFilter(dado);
         validatableResponse = issuesRequest.executeRequest();
