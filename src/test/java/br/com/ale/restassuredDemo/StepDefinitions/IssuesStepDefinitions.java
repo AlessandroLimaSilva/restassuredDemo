@@ -463,6 +463,7 @@ public class IssuesStepDefinitions {
         ObjectMapper mapper = new ObjectMapper();
         CreateNewIssueBody createNewIssueBody = mapper.readValue(body, CreateNewIssueBody.class);
         JsonPath jsonPath = validatableResponse.extract().jsonPath();
+        validatableResponse.log().body();
         List<Integer> idList =jsonPath.getList("issues.id");
         boolean resultado = false;
         for(int x = 0;x < idList.size();x++){

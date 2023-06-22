@@ -292,6 +292,9 @@ Este é um projeto incrível de um framework de teste de API altamente eficiente
 
 #### Usuario root no Ubuntu
 
+## Documentação utilizada nos testes 
+####  [MantisBt API DOCS](https://documenter.getpostman.com/view/29959/mantis-bug-tracker-rest-api/7Lt6zkP#73397753-1560-a5cb-45f0-e0ce0194ceca)
+
 ## Configuração do ambiente de teste
 Neste passo iremos configurar a estrutura de pastas do nosso ambiente, junto a isso iremos subir o nosso ambiente de teste.
 

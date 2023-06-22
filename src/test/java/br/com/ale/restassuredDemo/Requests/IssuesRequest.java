@@ -82,7 +82,7 @@ public class IssuesRequest extends RequestRestBase {
     }
 
     public void getAllIssuesRequest(){
-        setEndPoint("/api/rest/issues".concat("?page_size=10").concat("&").concat("page=1"));
+        setEndPoint("/api/rest/issues".concat("?page_size=10&page=1"));
         method = Method.GET;
         headers.put("Authorization", GlobalParameters.TOKEN);
         headers.put("content-type","application/json");
