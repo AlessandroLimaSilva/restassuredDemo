@@ -1,6 +1,6 @@
 # Framework de Teste de API com RestAssured com Ambiente CI/CD de Testes automatizados
 
-Neste tutorial, vamos explorar como configurar um ambiente CI/CD de testes completo com Docker que contém os contêineres do MantisBT, MySQL e Jenkins, juntamente com o uso do framework de teste de API RestAssured. O ambiente de testes Docker fornecerá uma infraestrutura completa e escalável para executar testes de API do MantisBT API de forma automatizada e controlada.
+Neste tutorial, vamos explorar como configurar um ambiente Jenkins CI/CD, utilizando o Docker para montar um ambiente com os contêineres do MantisBT, MySQL e Jenkins, juntamente com o uso do framework de teste de API RestAssured. O ambiente de testes Docker fornecerá uma infraestrutura completa e escalável para executar testes de API do MantisBT API de forma automatizada e controlada.
 Ao Final deste tutorial teremos implementado um Pipepline com CI/CD completo de testes automatizados.
 
 ## Ambiente de Testes Docker
@@ -11,16 +11,18 @@ O ambiente de testes Docker contém os seguintes contêineres:
 - **MySQL 5.7**: um sistema de gerenciamento de banco de dados relacional, utilizado para armazenar e recuperar dados necessários para os testes.
 - **Jenkins 2.401.1**: uma plataforma de automação de CI/CD (Integração Contínua/Entrega Contínua), que permite criar e executar pipelines de testes automatizados.
 
-A combinação do RestAssured com o ambiente de testes Docker nos permite realizar testes completos de ponta a ponta em APIs RESTful, desde a interação com o banco de dados até a validação da interface do usuário.
+A combinação do RestAssured com o ambiente de testes Docker nos permite realizar testes completos de ponta a ponta em APIs RESTful.
 
 Vamos começar a aproveitar os benefícios deste ambiente de teste poderoso para automatizar e validar suas APIs RESTful usando o framework RestAssured!
 
 
 # Framework de Teste de API com RestAssured
 
-Este é um projeto incrível de um framework de teste de API altamente eficiente, desenvolvido para simplificar e agilizar o processo de validação de APIs RESTful. Com base nas bibliotecas mais poderosas e populares do ecossistema Java, este framework oferece uma estrutura robusta e flexível para a automação de testes de API.
+Este é um projeto de framework de teste de API altamente eficiente, desenvolvido para simplificar e agilizar o processo de validação de APIs RESTful. Com base nas bibliotecas mais poderosas e populares do ecossistema Java, este framework oferece uma estrutura robusta e flexível para a automação de testes de API.
 
 ## Recursos Destacados
+
+- **Java**: Linguagem de programação versátil, orientada a objetos e altamente portátil, com um vasto ecossistema de bibliotecas e ferramentas. É amplamente utilizado para o desenvolvimento de aplicativos empresariais, web e móveis devido à sua segurança, desempenho e facilidade de uso.
 
 - **Cucumber**: Aproveite o poder do BDD (Behavior-Driven Development) com o Cucumber, uma biblioteca que permite escrever testes em uma linguagem de domínio específica (Gherkin) e executá-los em um formato legível para não desenvolvedores. Isso facilita a colaboração entre equipes técnicas e não técnicas.
 
